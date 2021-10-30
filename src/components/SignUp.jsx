@@ -3,12 +3,35 @@ import globe from '../assets/globe.svg';
 import google from '../assets/google.svg'
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { validEmail, validPassword } from './regex.jsx';
 
 const SignUp = () => {
 
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
-    const [newPass, setNewPass] = useState("");
+    const [newPass, setNewPass] = useState(""); 
+
+
+    const validate = ()=>{
+        if(email===""){
+            alert("Email required.");
+        }
+        else if(pass===""){
+            alert("Password required.");
+        }
+        else if(newPass===""){
+            alert("Confirm password required");
+        }
+        else if (!validEmail.test(email)) {
+            alert("Your email is invalid. Must contain '@' and a domain.")
+        }
+        else if (!validPassword.test(pass)) {
+            alert("Your password is invalid. Must contain an upper case, a lower case and a special character. Should be atleast 6 characters long")
+        }
+        else if(pass!==newPass){
+            alert("Passwords do not match");
+        }
+    }
 
     return (
         <div>
@@ -18,10 +41,10 @@ const SignUp = () => {
             <h2>Create your Account</h2>
 
             <Form>
-                <div class="input-icons input-field google-signin">
-                    <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+                <div className="input-icons input-field google-signin">
+                    <a className="btn btn-block btn-social btn-google" href="/auth/google" role="button">
                         <img src = {google} alt="googleicon"/>
-                        <span class="google-span">Sign Up with Google</span>
+                        <span className="google-span">Sign Up with Google</span>
                     </a>
                 </div>
 
@@ -30,10 +53,10 @@ const SignUp = () => {
                 <br/>
                 <br/>
 
-                <div class="input-icons">
-                    <i class="fa fa-envelope icon">
+                <div className="input-icons">
+                    <i className="fa fa-envelope icon">
                 </i>
-                    <input class="input-field" 
+                    <input className="input-field" 
                         type="email"
                         value={email}
                         placeholder="Email"
@@ -41,27 +64,27 @@ const SignUp = () => {
                         />
                 </div>
     
-                <div class="input-icons">
-                    <i class="fa fa-lock icon lock">
+                <div className="input-icons">
+                    <i className="fa fa-lock icon lock">
                 </i>
-                    <input class="input-field" 
+                    <input className="input-field" 
                         type="password"
                         value={pass}
                         placeholder="Password"
                         onChange={(e)=>setPass(e.target.value)}
                         />
                 </div>
-                <div class="input-icons">
-                    <i class="fa fa-lock icon lock">
+                <div className="input-icons">
+                    <i className="fa fa-lock icon lock">
                 </i>
-                    <input class="input-field" 
+                    <input className="input-field" 
                         type="password"
                         value={newPass}
                         placeholder="Confirm Password"
                         onChange={(e)=>setNewPass(e.target.value)}
                         />
                 </div>
-                <Button variant="primary" size="lg" className="input-field btnsubmit">
+                <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>
                     Sign Up
                 </Button>
             </Form>

@@ -3,6 +3,7 @@ import globe from '../assets/globe.svg';
 import google from '../assets/google.svg'
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { validEmail, validPassword } from './regex.jsx';
 
 
 const Login = () => {
@@ -10,6 +11,20 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
 
+    const validate = ()=>{
+        if(email===""){
+            alert("Email required.");
+        }
+        else if(pass===""){
+            alert("Password required.");
+        }
+        else if (!validEmail.test(email)) {
+            alert("Your email is invalid. Must contain '@' and a domain.")
+        }
+        else if (!validPassword.test(pass)) {
+            alert("Your password is invalid. Must contain an upper case, a lower case and a special character. Should be atleast 6 characters long")
+        }
+    }
     return (
         <div>
             <img src = {globe} alt="globe" className="globe"/>
@@ -17,10 +32,10 @@ const Login = () => {
             <h2>Login to your Account</h2>
 
             <Form>
-                <div class="input-icons input-field google-signin">
-                    <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+                <div className="input-icons input-field google-signin">
+                    <a className="btn btn-block btn-social btn-google" href="/auth/google" role="button">
                         <img src = {google} alt="googleicon"/>
-                        <span class="google-span">Sign In with Google</span>
+                        <span className="google-span">Sign In with Google</span>
                     </a>
                 </div>
 
@@ -29,10 +44,10 @@ const Login = () => {
                 <br/>
                 <br/>
 
-                <div class="input-icons">
-                    <i class="fa fa-envelope icon">
+                <div className="input-icons">
+                    <i className="fa fa-envelope icon">
                 </i>
-                    <input class="input-field" 
+                    <input className="input-field" 
                         type="email"
                         value={email}
                         placeholder="Email"
@@ -40,10 +55,10 @@ const Login = () => {
                         />
                 </div>
     
-                <div class="input-icons">
-                    <i class="fa fa-lock icon lock">
+                <div className="input-icons">
+                    <i className="fa fa-lock icon lock">
                 </i>
-                    <input class="input-field" 
+                    <input className="input-field" 
                         type="password"
                         value={pass}
                         placeholder="Password"
@@ -52,11 +67,12 @@ const Login = () => {
                 <Link to="/forgot-password" className="forgot">Forgot Password?</Link>
 
                 </div>
-                <Button variant="primary" size="lg" className="input-field btnsubmit">
+                <Button variant="primary" size="lg" className="input-field btnsubmit" onClick = {validate}>
                     Sign in
                 </Button>
             </Form>
-
+            {/* {emailErr && alert("Your email is invalid. Must contain '@' and should be atleast 6 characters long.</p>")}
+            {pwdError && alert("Your password is invalid. Must contain an upper case, a lower case and a special character.")} */}
             <div className="donthave">
                 <p>Don't have an account? <Link to="/signup" className="link2">Sign Up</Link></p>
                 <p>By signing up, you agree with our <Link to="/tnc" className="link2">terms and conditions</Link></p>

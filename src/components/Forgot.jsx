@@ -3,12 +3,25 @@ import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap';
 
 import globe from '../assets/globe.svg'
+import { validEmail } from './regex.jsx';
+
 
 const Forgot = () => {
 
     
     const [email, setEmail] = useState("");
     const [otp, setOtp] = useState("");
+    const validate = ()=>{
+        if(email===""){
+            alert("Email required.");
+        }
+        else if(otp===""){
+            alert("Please enter the otp.");
+        }
+        else if (!validEmail.test(email)) {
+            alert("Your email is invalid. Must contain '@' and a domain.")
+        }
+    }
 
     return (
         <div>
@@ -17,10 +30,10 @@ const Forgot = () => {
             <h2 style={{marginLeft:"3%", top:"25%"}}>Forgot Password?</h2>
 
             <Form style={{top: "40%"}}>
-                <div class="input-icons">
-                    <i class="fa fa-envelope icon">
+                <div className="input-icons">
+                    <i className="fa fa-envelope icon">
                 </i>
-                    <input class="input-field" 
+                    <input className="input-field" 
                         type="email"
                         value={email}
                         placeholder="Email"
@@ -28,10 +41,10 @@ const Forgot = () => {
                         />
                 </div>
     
-                <div class="input-icons">
-                    <i class="fa fa-lock icon lock">
+                <div className="input-icons">
+                    <i className="fa fa-lock icon lock">
                 </i>
-                    <input class="input-field" 
+                    <input className="input-field" 
                         type="password"
                         value={otp}
                         placeholder="OTP"
@@ -39,7 +52,7 @@ const Forgot = () => {
                         />
 
                 </div>
-                <Button variant="primary" size="lg" className="input-field btnsubmit">
+                <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>
                     Confirm
                 </Button>
             </Form>
