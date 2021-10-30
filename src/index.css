@@ -11,3 +11,73 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #885050;
+  opacity: 1; /* Firefox */
+}
+
+
+.globe{
+  height: 100vh;
+  width: 50vw;
+  padding-left: 5%;
+}
+
+form{
+  position: absolute;
+  width: 40%;
+  height: 50%;
+  left: 55%;
+  top: 35%;
+
+  box-sizing: border-box;
+}
+.input-icons i {
+  position: absolute;
+}
+
+.input-icons {
+  width: 100%;
+  margin-bottom: 10px;
+  
+}
+
+.icon {
+  padding: 15px;
+  min-width: 60px;
+  text-align: center;
+  margin-left: 10%;
+
+}
+.lock{
+  font-size: 24px;
+  padding: 12px;
+}
+
+.input-field {
+  height: 50px;
+  width: 256px;
+  left: 732px;
+
+  padding: 10px;
+  text-align: center;
+  margin-left: 10%;
+
+  background: #FFFBFE;
+  border: 0.75px solid #000000;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+.google-signin{
+  padding: 0;
+  text-align: left;
+}
+
+.google-span{
+  position: absolute;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #070000;
+}
