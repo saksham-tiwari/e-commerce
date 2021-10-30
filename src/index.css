@@ -8,7 +8,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: Roboto, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -28,7 +28,7 @@ form{
   width: 40%;
   height: 50%;
   left: 55%;
-  top: 35%;
+  top: 25%;
 
   box-sizing: border-box;
 }
@@ -47,7 +47,7 @@ form{
   min-width: 60px;
   text-align: center;
   margin-left: 10%;
-
+  color: #AF9595;
 }
 .lock{
   font-size: 24px;
@@ -67,6 +67,12 @@ form{
   border: 0.75px solid #000000;
   box-sizing: border-box;
   border-radius: 20px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  align-items: center;
 }
 .google-signin{
   padding: 0;
@@ -82,14 +88,61 @@ form{
   color: #070000;
 }
 
-.rule{
-  border: none;
-  background-color: black;
-  display: inline-block;
+hr {
+  display: inline-block; 
   width: 20%;
-  margin-top: 10px;
+  position: relative;
+  top: .666em;
 }
-.rule-span{
-  position: inline;
+.hr-span{
+  font-size: 20px;
+}
+
+h2{
+  position: absolute;
+  width: 40%;
+  height: 50%;
+  left: 55%;
   top: 10%;
+  font-size: 36px;
+}
+
+.btnsubmit{
+  background-color: #0811ED;
+
+}
+
+.forgot{
+  margin-left: 37%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  text-decoration: none;
+
+  color: #7C64EF;
+}
+
+.donthave{
+  position: absolute;
+  left: 55%;
+  top: 85%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+
+}
+.link2{
+  text-decoration: none;
+  color: #8C6E86;
+}
+.link2:hover{
+  color: #644b60;
+
 }
