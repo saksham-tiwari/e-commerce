@@ -25,11 +25,11 @@ const Forgot = () => {
                 </i>
                     <input class="input-field" 
                         type="password"
-                        placeholder="Password"/>
+                        placeholder="OTP"/>
 
                 </div>
                 <Button variant="primary" size="lg" className="input-field btnsubmit">
-                    Sign in
+                    Confirm
                 </Button>
             </Form>
             <div className="donthave">

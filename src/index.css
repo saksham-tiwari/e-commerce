@@ -13,7 +13,7 @@ code {
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #885050;
-  opacity: 1; /* Firefox */
+  opacity: 0.7;
 }
 
 
@@ -77,6 +77,8 @@ form{
 .google-signin{
   padding: 0;
   text-align: left;
+  width: 264px;
+
 }
 
 .google-span{
