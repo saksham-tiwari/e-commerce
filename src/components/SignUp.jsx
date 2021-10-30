@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import globe from '../assets/globe.svg';
 import google from '../assets/google.svg'
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
+
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
+    const [newPass, setNewPass] = useState("");
+
     return (
         <div>
             <div>
@@ -30,7 +35,10 @@ const SignUp = () => {
                 </i>
                     <input class="input-field" 
                         type="email"
-                        placeholder="Email"/>
+                        value={email}
+                        placeholder="Email"
+                        onChange={(e)=>setEmail(e.target.value)}
+                        />
                 </div>
     
                 <div class="input-icons">
@@ -38,14 +46,20 @@ const SignUp = () => {
                 </i>
                     <input class="input-field" 
                         type="password"
-                        placeholder="Password"/>
+                        value={pass}
+                        placeholder="Password"
+                        onChange={(e)=>setPass(e.target.value)}
+                        />
                 </div>
                 <div class="input-icons">
                     <i class="fa fa-lock icon lock">
                 </i>
                     <input class="input-field" 
                         type="password"
-                        placeholder="Confirm Password"/>
+                        value={newPass}
+                        placeholder="Confirm Password"
+                        onChange={(e)=>setNewPass(e.target.value)}
+                        />
                 </div>
                 <Button variant="primary" size="lg" className="input-field btnsubmit">
                     Sign Up

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap';
@@ -6,6 +6,11 @@ import { Form, Button } from 'react-bootstrap';
 import globe from '../assets/globe.svg'
 
 const ChangePassword = () => {
+
+    
+    const [newPass, setNewPass] = useState("");
+    const [confPass, setConfPass] = useState("");
+
     return (
         <div>
             <img src = {globe} alt="globe" className="globe"/>
@@ -18,7 +23,10 @@ const ChangePassword = () => {
             </i>
                 <input class="input-field" 
                     type="password"
-                    placeholder="New Password"/>
+                    value={newPass}
+                    placeholder="New Password"
+                    onChange = {(e)=>setNewPass(e.target.value)}
+                    />
 
             </div>
             <div class="input-icons">
@@ -26,7 +34,10 @@ const ChangePassword = () => {
                 </i>
                     <input class="input-field" 
                         type="password"
-                        placeholder="Confirm Password"/>
+                        value = {confPass}
+                        placeholder="Confirm Password"
+                        onChange = {(e)=>setConfPass(e.target.value)}
+                        />
                 </div>
             <Button variant="primary" size="lg" className="input-field btnsubmit">
                 Reset password

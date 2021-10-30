@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap';
 
 import globe from '../assets/globe.svg'
 
 const Forgot = () => {
+
+    
+    const [email, setEmail] = useState("");
+    const [otp, setOtp] = useState("");
+
     return (
         <div>
             <img src = {globe} alt="globe" className="globe"/>
@@ -17,7 +22,10 @@ const Forgot = () => {
                 </i>
                     <input class="input-field" 
                         type="email"
-                        placeholder="Email"/>
+                        value={email}
+                        placeholder="Email"
+                        onChange={(e)=>setEmail(e.target.value)}
+                        />
                 </div>
     
                 <div class="input-icons">
@@ -25,7 +33,10 @@ const Forgot = () => {
                 </i>
                     <input class="input-field" 
                         type="password"
-                        placeholder="OTP"/>
+                        value={otp}
+                        placeholder="OTP"
+                        onChange={(e)=>setOtp(e.target.value)}
+                        />
 
                 </div>
                 <Button variant="primary" size="lg" className="input-field btnsubmit">
