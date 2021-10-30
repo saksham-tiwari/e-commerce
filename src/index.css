@@ -16,6 +16,9 @@ code {
   opacity: 0.7;
 }
 
+.color-nav{
+  background-color: #FFFFFF;
+}
 
 .globe{
   height: 100vh;

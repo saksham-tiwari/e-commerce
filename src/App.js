@@ -6,6 +6,7 @@ import {
 import ChangePassword from "./components/ChangePassword";
 import Forgot from "./components/Forgot";
 import Login from "./components/Login";
+import NavBar from "./components/Navbar";
 import SignUp from "./components/SignUp";
 
 
@@ -14,7 +15,10 @@ import SignUp from "./components/SignUp";
 function App() {
   return (
     <Router>
+      <NavBar/>
+
       <Switch>
+
       <Route exact path="/login">
           <Login/>
       </Route>
