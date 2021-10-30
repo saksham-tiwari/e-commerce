@@ -77,7 +77,19 @@ form{
   position: absolute;
   font-family: Roboto;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 24px;
   color: #070000;
+}
+
+.rule{
+  border: none;
+  background-color: black;
+  display: inline-block;
+  width: 20%;
+  margin-top: 10px;
+}
+.rule-span{
+  position: inline;
+  top: 10%;
 }

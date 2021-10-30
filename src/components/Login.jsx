@@ -36,6 +36,8 @@ const Login = () => {
                     </a>
                 </div>
 
+                <hr className="rule"/><span className="rule-span">Sign In with Email</span><hr className="rule"/>
+
                 <div class="input-icons">
                     <i class="fa fa-envelope icon">
                 </i>
