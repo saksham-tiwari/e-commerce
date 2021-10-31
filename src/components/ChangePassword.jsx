@@ -31,9 +31,9 @@ const ChangePassword = () => {
         <div>
             <img src = {globe} alt="globe" className="globe"/>
 
-        <h2 style={{marginLeft:"3%", top:"25%"}}>Change Password</h2>
+        <h2 class="chng">Change Password</h2>
 
-        <Form style={{top: "40%"}}>
+        <Form class="chng-form">
             <div className="input-icons">
                 <i className="fa fa-lock icon lock">
             </i>

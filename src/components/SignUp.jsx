@@ -48,7 +48,11 @@ const SignUp = () => {
                     </a>
                 </div>
 
-                <hr className="rule"/><span className="hr-span">Sign Up with Email</span><hr className="rule"/>
+                <div className="rule-div">
+                    <hr className="rule"/>
+                    <span className="hr-span">Sign Up with Email</span>
+                    <hr className="rule"/>
+                </div>
 
                 <br/>
                 <br/>

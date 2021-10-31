@@ -38,8 +38,12 @@ const Login = () => {
                         <span className="google-span">Sign In with Google</span>
                     </a>
                 </div>
-
-                <hr className="rule"/><span className="hr-span">Sign In with Email</span><hr className="rule"/>
+                <div className="rule-div">
+                    <hr className="rule"/>
+                    <span className="hr-span">Sign In with Email</span>
+                    <hr className="rule"/>
+                </div>
+                
 
                 <br/>
                 <br/>

@@ -93,7 +93,7 @@ form{
   color: #070000;
 }
 
-hr {
+.rule {
   display: inline-block; 
   width: 20%;
   position: relative;
@@ -150,4 +150,81 @@ h2{
 .link2:hover{
   color: #644b60;
 
+}
+
+.chng{
+  margin-left:3%; 
+  top:25%;
+}
+.chng-form{
+  top: 40%;
+}
+
+@media only screen and (max-width: 720px) {
+  .globe{
+    height: 50vh;
+    width: 50vw;
+    padding-left: 5%;
+    margin-left: 25%;
+  }
+  h2, .chng{
+    top: 47%;
+    left: 0;
+    margin-left: 15%;
+    width: 80%;
+  }
+  form, .chng-form{
+    top: 57%;
+    left: 0;
+    margin-left: 7%;
+    width: 75%;
+  }
+  .input-field{
+    width: 100%;
+  }
+  .donthave{
+    left: 0;
+    top: 120%;
+    margin-left: 15%;
+  }
+  .rule{
+    width: 23vw;
+    margin-left: 0;
+    margin-right: 0;
+
+  }
+  .rule-div{
+    position: absolute;
+    left: 11%;
+    width: 80vw;
+  }
+  .forgot{
+    margin-left: 45%;
+  }
+}
+
+@media only screen and (max-width: 454px){
+  h2{
+    font-size: 30px;
+  }
+  .hr-span{
+    font-size: 18px;
+  }
+  .rule{
+    width: 20vw;
+  }
+}
+@media only screen and (max-width: 384px){
+  h2{
+    font-size: 26px;
+  }
+  .hr-span{
+    font-size: 16px;
+  }
+  .rule{
+    width: 18vw;
+  }
+  .google-span{
+    font-size: 18px;
+  }
 }

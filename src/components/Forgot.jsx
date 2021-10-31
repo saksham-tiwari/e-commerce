@@ -27,9 +27,9 @@ const Forgot = () => {
         <div>
             <img src = {globe} alt="globe" className="globe"/>
 
-            <h2 style={{marginLeft:"3%", top:"25%"}}>Forgot Password?</h2>
+            <h2 className="chng">Forgot Password?</h2>
 
-            <Form style={{top: "40%"}}>
+            <Form className="chng-form">
                 <div className="input-icons">
                     <i className="fa fa-envelope icon">
                 </i>
