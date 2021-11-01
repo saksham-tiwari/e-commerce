@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap';
 
-import globe from '../assets/globe.svg'
+import globe from '../../assets/globe.svg'
 import { validEmail } from './regex.jsx';
 
 

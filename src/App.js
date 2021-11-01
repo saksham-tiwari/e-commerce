@@ -3,11 +3,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import ChangePassword from "./components/ChangePassword";
-import Forgot from "./components/Forgot";
-import Login from "./components/Login";
+import ChangePassword from "./components/auth/ChangePassword";
+import Forgot from "./components/auth/Forgot";
+import Login from "./components/auth/Login";
 import NavBar from "./components/Navbar";
-import SignUp from "./components/SignUp";
+import SignUp from "./components/auth/SignUp";
 
 
 

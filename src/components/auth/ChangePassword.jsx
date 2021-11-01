@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import { Form, Button } from 'react-bootstrap';
 
-import globe from '../assets/globe.svg'
+import globe from "../../assets/globe.svg"
 import { validPassword } from './regex.jsx';
 
 
