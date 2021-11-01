@@ -7,7 +7,9 @@ import { validEmail, validPassword } from './regex.jsx';
 
 const SignUp = () => {
 
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [dob, setDOB] = useState("2000-01-01")
     const [pass, setPass] = useState("");
     const [newPass, setNewPass] = useState(""); 
 
@@ -58,6 +60,26 @@ const SignUp = () => {
                 <br/>
 
                 <div className="input-icons">
+                <i class="fa fa-user icon"></i>
+                    <input className="input-field" 
+                        type="text"
+                        value={name}
+                        placeholder="Name"
+                        onChange={(e)=>setName(e.target.value)}
+                        />
+                </div>
+                
+                <label for="dob">Date of Birth:</label>
+                <div className="input-icons">
+                <i class="fa fa-calendar icon"></i>
+                    <input className="input-field" 
+                        type="date"
+                        value={dob}
+                        onChange={(e)=>setDOB(e.target.value)}
+                        />
+                </div>
+
+                <div className="input-icons">
                     <i className="fa fa-envelope icon">
                 </i>
                     <input className="input-field" 
@@ -88,15 +110,17 @@ const SignUp = () => {
                         onChange={(e)=>setNewPass(e.target.value)}
                         />
                 </div>
+                
                 <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>
                     Sign Up
                 </Button>
-            </Form>
-
-            <div className="donthave">
+                <div className="tnc">
                 <p>Already have have an account? <Link to="/login" className="link2">Login</Link></p>
                 <p>By signing up, you agree with our <Link to="/tnc" className="link2">terms and conditions</Link></p>
-            </div>
+                </div>
+            </Form>
+
+            
             </div>
         </div>
         </div>

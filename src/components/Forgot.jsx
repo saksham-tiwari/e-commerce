@@ -55,10 +55,10 @@ const Forgot = () => {
                 <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>
                     Confirm
                 </Button>
-            </Form>
-            <div className="donthave">
+            <div className="tnc">
                 <p>By signing up, you agree with our <Link to="/tnc" className="link2">terms and conditions</Link></p>
             </div>
+            </Form>
         </div>
     )
 }

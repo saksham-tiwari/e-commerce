@@ -74,13 +74,14 @@ const Login = () => {
                 <Button variant="primary" size="lg" className="input-field btnsubmit" onClick = {validate}>
                     Sign in
                 </Button>
-            </Form>
-            {/* {emailErr && alert("Your email is invalid. Must contain '@' and should be atleast 6 characters long.</p>")}
-            {pwdError && alert("Your password is invalid. Must contain an upper case, a lower case and a special character.")} */}
-            <div className="donthave">
+                <div className="tnc">
                 <p>Don't have an account? <Link to="/signup" className="link2">Sign Up</Link></p>
                 <p>By signing up, you agree with our <Link to="/tnc" className="link2">terms and conditions</Link></p>
             </div>
+            </Form>
+            {/* {emailErr && alert("Your email is invalid. Must contain '@' and should be atleast 6 characters long.</p>")}
+            {pwdError && alert("Your password is invalid. Must contain an upper case, a lower case and a special character.")} */}
+            
             </div>
         </div>
     )

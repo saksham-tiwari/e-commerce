@@ -67,6 +67,7 @@ form{
   margin-left: 10%;
 
   background: #FFFBFE;
+  color: #885050;
   border: 0.75px solid #000000;
   box-sizing: border-box;
   border-radius: 20px;
@@ -114,7 +115,7 @@ h2{
 
 .btnsubmit{
   background-color: #0811ED;
-
+  color: white;
 }
 
 .forgot{
@@ -131,17 +132,15 @@ h2{
   color: #7C64EF;
 }
 
-.donthave{
-  position: absolute;
-  left: 55%;
-  top: 85%;
+.tnc{
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
   text-align: center;
-
+  margin-right: 25%;
+  padding: 20px 0px;
 }
 .link2{
   text-decoration: none;
@@ -159,6 +158,14 @@ h2{
 .chng-form{
   top: 40%;
 }
+label{
+  margin-left: 55px;
+  margin-bottom: 5px;
+}
+.donthave-su{
+  top: 108%;
+}
+
 
 @media only screen and (max-width: 720px) {
   .globe{
@@ -182,11 +189,6 @@ h2{
   .input-field{
     width: 100%;
   }
-  .donthave{
-    left: 0;
-    top: 120%;
-    margin-left: 15%;
-  }
   .rule{
     width: 23vw;
     margin-left: 0;
@@ -200,6 +202,10 @@ h2{
   }
   .forgot{
     margin-left: 45%;
+  }
+  .tnc{
+    margin-left: 10%;
+    width: 100%;
   }
 }
 
