@@ -2,17 +2,27 @@ import React, {useState} from 'react'
 import globe from "../../assets/globe.svg";
 import google from '../../assets/google.svg'
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link ,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
+import axios from "axios"
+
 
 const SignUp = () => {
 
     const [name, setName] = useState("");
+    const [nameAlert, setNameAlert] = useState("");
     const [email, setEmail] = useState("");
+    const [emailAlert, setEmailAlert] = useState("");
+
     const [dob, setDOB] = useState("2000-01-01")
     const [pass, setPass] = useState("");
-    const [newPass, setNewPass] = useState(""); 
+    const [passAlert, setPassAlert] = useState("");
 
+    const [newPass, setNewPass] = useState(""); 
+    const [newPassAlert, setNewPassAlert] = useState(""); 
+
+
+    let history = useHistory();
 
     const validate = ()=>{
         if(email===""){
@@ -33,6 +43,19 @@ const SignUp = () => {
         else if(pass!==newPass){
             alert("Passwords do not match");
         }
+        else{
+            sendSignUp();
+        }
+    }
+
+    const sendSignUp= async ()=> {
+        const user={
+            email:email,
+            password:pass,
+            name:name
+        }
+        await axios.put("http://1fe0-103-211-14-16.ngrok.io/auth/signup", user);
+        history.push("/otp");
     }
 
     return (
@@ -60,18 +83,27 @@ const SignUp = () => {
                 <br/>
 
                 <div className="input-icons">
-                <i class="fa fa-user icon"></i>
+                <i className="fa fa-user icon"></i>
                     <input className="input-field" 
                         type="text"
                         value={name}
                         placeholder="Name"
-                        onChange={(e)=>setName(e.target.value)}
+                        onChange={(e)=>{
+                            setName(e.target.value)
+                            if(e.target.value===""){
+                                setNameAlert("Name is required.");
+                            }
+                            else{
+                                setNameAlert("");
+                            }
+                            }}
+                            
                         />
                 </div>
-                
-                <label for="dob">Date of Birth:</label>
+                <p className="alerts">{nameAlert}</p>
+                <label htmlFor="dob">Date of Birth:</label>
                 <div className="input-icons">
-                <i class="fa fa-calendar icon"></i>
+                <i className="fa fa-calendar icon"></i>
                     <input className="input-field" 
                         type="date"
                         value={dob}
@@ -86,9 +118,21 @@ const SignUp = () => {
                         type="email"
                         value={email}
                         placeholder="Email"
-                        onChange={(e)=>setEmail(e.target.value)}
+                        onChange={(e)=>{
+                            setEmail(e.target.value);
+                            if(e.target.value===""){
+                                setEmailAlert("Email is required.");
+                            }
+                            else if(!validEmail.test(e.target.value)){
+                                setEmailAlert("Enter a valid email");
+                            } 
+                            else{
+                                setEmailAlert("");
+                            }
+                            }}
                         />
                 </div>
+                <p className="alerts">{emailAlert}</p>
     
                 <div className="input-icons">
                     <i className="fa fa-lock icon lock">
@@ -97,9 +141,21 @@ const SignUp = () => {
                         type="password"
                         value={pass}
                         placeholder="Password"
-                        onChange={(e)=>setPass(e.target.value)}
+                        onChange={(e)=>{
+                            setPass(e.target.value)
+                            if(e.target.value===""){
+                                setPassAlert("Password is required.");
+                            }
+                            else if(!validPassword.test(e.target.value)){
+                                setPassAlert("Enter a valid password");
+                            } 
+                            else{
+                                setPassAlert("");
+                            }
+                            }}
                         />
                 </div>
+                <p className="alerts">{passAlert}</p>
                 <div className="input-icons">
                     <i className="fa fa-lock icon lock">
                 </i>
@@ -107,9 +163,21 @@ const SignUp = () => {
                         type="password"
                         value={newPass}
                         placeholder="Confirm Password"
-                        onChange={(e)=>setNewPass(e.target.value)}
-                        />
+                        onChange={(e)=>{
+                            setNewPass(e.target.value)
+                            if(e.target.value===""){
+                                setNewPassAlert("Confirmation Password is required.");
+                            }
+                            else if(e.target.value!==pass){
+                                setNewPassAlert("Passwords do not match");
+                            } 
+                            else{
+                                setNewPassAlert("");
+                            }
+                            }}
+                    />
                 </div>
+                <p className="alerts">{newPassAlert}</p>
                 
                 <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>
                     Sign Up

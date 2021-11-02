@@ -10,7 +10,10 @@ const ChangePassword = () => {
 
     
     const [newPass, setNewPass] = useState("");
+    const [newPassAlert, setNewPassAlert] = useState(""); 
+
     const [confPass, setConfPass] = useState("");
+    const [confPassAlert, setConfPassAlert] = useState("");
 
     const validate = ()=>{
         if(newPass===""){
@@ -31,9 +34,9 @@ const ChangePassword = () => {
         <div>
             <img src = {globe} alt="globe" className="globe"/>
 
-        <h2 class="chng">Change Password</h2>
+        <h2 className="chng">Change Password</h2>
 
-        <Form class="chng-form">
+        <Form className="chng-form">
             <div className="input-icons">
                 <i className="fa fa-lock icon lock">
             </i>
@@ -41,10 +44,22 @@ const ChangePassword = () => {
                     type="password"
                     value={newPass}
                     placeholder="New Password"
-                    onChange = {(e)=>setNewPass(e.target.value)}
+                    onChange={(e)=>{
+                            setNewPass(e.target.value)
+                            if(e.target.value===""){
+                                setNewPassAlert("Password is required.");
+                            }
+                            else if(!validPassword.test(e.target.value)){
+                                setNewPassAlert("Enter a valid password");
+                            } 
+                            else{
+                                setNewPassAlert("");
+                            }
+                            }} 
                     />
 
             </div>
+            <p className="alerts">{newPassAlert}</p>
             <div className="input-icons">
                     <i className="fa fa-lock icon lock">
                 </i>
@@ -52,9 +67,21 @@ const ChangePassword = () => {
                         type="password"
                         value = {confPass}
                         placeholder="Confirm Password"
-                        onChange = {(e)=>setConfPass(e.target.value)}
+                        onChange={(e)=>{
+                            setConfPass(e.target.value)
+                            if(e.target.value===""){
+                                setConfPassAlert("Confirmation Password is required.");
+                            }
+                            else if(e.target.value!==newPass){
+                                setConfPassAlert("Passwords do not match");
+                            } 
+                            else{
+                                setConfPassAlert("");
+                            }
+                            }}
                         />
                 </div>
+            <p className="alerts">{confPassAlert}</p>
             <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>
                 Reset password
             </Button>

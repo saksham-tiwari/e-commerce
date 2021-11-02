@@ -9,7 +9,9 @@ import { validEmail, validPassword } from './regex.jsx';
 const Login = () => {
 
     const [email, setEmail] = useState("");
+    const [emailAlert, setEmailAlert] = useState("");
     const [pass, setPass] = useState("");
+    const [passAlert, setPassAlert] = useState("");
 
     const validate = ()=>{
         if(email===""){
@@ -55,10 +57,22 @@ const Login = () => {
                         type="email"
                         value={email}
                         placeholder="Email"
-                        onChange={(e)=>setEmail(e.target.value)}
+                        onChange={(e)=>{
+                            setEmail(e.target.value);
+                            if(e.target.value===""){
+                                setEmailAlert("Email is required.");
+                            }
+                            else if(!validEmail.test(e.target.value)){
+                                setEmailAlert("Enter a valid email");
+                            } 
+                            else{
+                                setEmailAlert("");
+                            }
+                            }}
                         />
                 </div>
-    
+                <p className="alerts">{emailAlert}</p>
+                
                 <div className="input-icons">
                     <i className="fa fa-lock icon lock">
                 </i>
@@ -66,8 +80,20 @@ const Login = () => {
                         type="password"
                         value={pass}
                         placeholder="Password"
-                        onChange={(e)=>setPass(e.target.value)}
+                        onChange={(e)=>{
+                            setPass(e.target.value)
+                            if(e.target.value===""){
+                                setPassAlert("Password is required.");
+                            }
+                            else if(!validPassword.test(e.target.value)){
+                                setPassAlert("Enter a valid password");
+                            } 
+                            else{
+                                setPassAlert("");
+                            }
+                            }}
                         />
+                <p className="alerts">{passAlert}</p>
                 <Link to="/forgot-password" className="forgot">Forgot Password?</Link>
 
                 </div>
