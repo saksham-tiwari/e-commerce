@@ -8,7 +8,8 @@ import Forgot from "./components/auth/Forgot";
 import Login from "./components/auth/Login";
 import NavBar from "./components/Navbar";
 import SignUp from "./components/auth/SignUp";
-import Otp from "./components/auth/Otp"
+import Otp from "./components/auth/Otp";
+import Home from "./components/layout/Home";
 
 
 
@@ -21,6 +22,7 @@ function App() {
       <Switch>
       <Route exact path="/">
           <NavBar/>
+          <Home/>
       </Route>
       <Route exact path="/login">
           <Login/>
