@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 import globe from '../../assets/globe.svg'
 import axios from 'axios';
@@ -10,6 +10,7 @@ const Otp = () => {
     let history = useHistory();
 
     const [otp, setOtp] = useState("");
+    const [msg, setMsg] = useState("");
     const validate = ()=>{
         if(otp===""){
             alert("Please enter the otp.");
@@ -23,10 +24,12 @@ const Otp = () => {
                 stat=response.status;
                 if(stat===202){
                     history.push("/")
-                }
+                } 
               })
               .catch((error)=> {
-                alert(error);
+                if(error.response.status===401){
+                    setMsg("Incorrect OTP");
+                }
               });
               
         }
@@ -41,7 +44,10 @@ const Otp = () => {
             <Form className="chng-form">
                 
                 <h4>An otp has been sent to your mail. Pls verify the otp.</h4>
-    
+                
+                {msg!==""?<Alert variant="danger" onClose={()=>setMsg("")} className="alert" dismissible>
+                    {msg}
+                    </Alert>:<p></p>}
                 <div className="input-icons">
                     <i className="fa fa-lock icon lock">
                 </i>
