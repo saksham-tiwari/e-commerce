@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import globe from '../../assets/globe.svg';
 import google from '../../assets/google.svg'
-import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Form, Button, Alert } from 'react-bootstrap';
+import { Link,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
+import axios from 'axios';
+
 
 
 const Login = () => {
@@ -12,6 +14,12 @@ const Login = () => {
     const [emailAlert, setEmailAlert] = useState("");
     const [pass, setPass] = useState("");
     const [passAlert, setPassAlert] = useState("");
+    const [alert1, setAlert1] = useState(false);
+    const [alert2, setAlert2] = useState(false);
+
+
+
+    let history = useHistory();
 
     const validate = ()=>{
         if(email===""){
@@ -25,6 +33,28 @@ const Login = () => {
         }
         else if (!validPassword.test(pass)) {
             alert("Your password is invalid. Must contain an upper case, a lower case and a special character. Should be atleast 6 characters long")
+        }else {
+            let stat;
+            axios.post("https://vshopappdjango.herokuapp.com/api/Account/login/",{"email":email.trim(),"password":pass.trim()})
+            .then((res)=>{
+                stat=res.status;
+                console.log(stat);
+                if(stat===401){
+                    alert("Incorrect Pass");
+
+                    history.push("/");
+                }
+            })
+            .catch((err)=>{
+                console.log(err);
+                if(err.response.status===401){
+                    setAlert1(true);
+                  }
+                else if(err.response.status===406){
+                    setAlert2(true)
+                }
+            });
+            
         }
     }
     return (
@@ -45,10 +75,15 @@ const Login = () => {
                     <span className="hr-span">Sign In with Email</span>
                     <hr className="rule"/>
                 </div>
+                <br/>
                 
 
-                <br/>
-                <br/>
+                {alert1?<Alert variant="danger" onClose={()=>setAlert1(false)} className="alert" dismissible>
+                    Incorrect password
+                    </Alert>:<p></p>}
+                {alert2?<Alert variant="danger" onClose={()=>setAlert2(false)} className="alert" dismissible>
+                    No account exist with this email Id. Try <Link to="signup">Signing Up.</Link>
+                    </Alert>:<p></p>}
 
                 <div className="input-icons">
                     <i className="fa fa-envelope icon">

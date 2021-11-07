@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import globe from "../../assets/globe.svg";
 import google from '../../assets/google.svg'
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { Link ,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
 import axios from "axios"
@@ -19,12 +19,14 @@ const SignUp = () => {
     const [passAlert, setPassAlert] = useState("");
 
     const [newPass, setNewPass] = useState(""); 
-    const [newPassAlert, setNewPassAlert] = useState(""); 
+    const [newPassAlert, setNewPassAlert] = useState("");
+    const [alert1, setAlert1] = useState(false);
+
 
 
     let history = useHistory();
 
-    const validate = ()=>{
+    const validate = async ()=>{
         if(email===""){
             alert("Email required.");
         }
@@ -44,19 +46,23 @@ const SignUp = () => {
             alert("Passwords do not match");
         }
         else{
-            sendSignUp();
+            const user={
+                email:email.trim(),
+                password:pass.trim(),
+                name: name.trim()
+            }
+            await axios.post("https://vshopappdjango.herokuapp.com/api/Account/create-account/", user)
+            .then(()=>{
+                history.push("/otp");
+            }).catch((err)=>{
+                if(err.response.status===401){
+                    setAlert1(true);
+                }
+            });
+            
         }
     }
 
-    const sendSignUp= async ()=> {
-        const user={
-            email:email,
-            password:pass,
-            name:name
-        }
-        await axios.put("http://1fe0-103-211-14-16.ngrok.io/auth/signup", user);
-        history.push("/otp");
-    }
 
     return (
         <div>
@@ -80,7 +86,9 @@ const SignUp = () => {
                 </div>
 
                 <br/>
-                <br/>
+                {alert1?<Alert variant="danger" onClose={()=>setAlert1(false)} className="alert" dismissible>
+                    Account already exists with this email ID. Try <Link to="/login">Logging in</Link>
+                    </Alert>:<p></p>}
 
                 <div className="input-icons">
                 <i className="fa fa-user icon"></i>

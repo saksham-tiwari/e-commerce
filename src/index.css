@@ -177,6 +177,14 @@ form h4{
   color: red;
   margin-left: 12%;
 }
+.alert{
+  width: 30vw;
+}
+@media only screen and (max-width: 1100px) {
+  .alert{
+    width: 90%;
+  }
+}
 
 @media only screen and (max-width: 720px) {
   .globe{
@@ -220,6 +228,10 @@ form h4{
   .tnc{
     margin-left: 10%;
     width: 100%;
+  }
+  .alert{
+    margin-top: 5%;
+    margin-left: 12%;
   }
 }
 

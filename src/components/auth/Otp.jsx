@@ -1,15 +1,34 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap';
 
 import globe from '../../assets/globe.svg'
+import axios from 'axios';
 
 const Otp = () => {
+
+    let history = useHistory();
 
     const [otp, setOtp] = useState("");
     const validate = ()=>{
         if(otp===""){
             alert("Please enter the otp.");
+        }
+        else {
+            let stat;
+            let otpInt = parseInt(otp);
+            axios.post("https://vshopappdjango.herokuapp.com/api/Account/otp/verify/",{"otp":otpInt})
+              .then((response)=> {
+                console.log(response.status);
+                stat=response.status;
+                if(stat===202){
+                    history.push("/")
+                }
+              })
+              .catch((error)=> {
+                alert(error);
+              });
+              
         }
     }
 
