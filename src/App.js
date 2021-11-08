@@ -10,6 +10,7 @@ import NavBar from "./components/Navbar";
 import SignUp from "./components/auth/SignUp";
 import Otp from "./components/auth/Otp";
 import Home from "./components/layout/Home";
+import Footer from "./components/layout/Footer";
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Otp/>
       </Route>
       </Switch>
+      <Footer/>
     </Router>
   );
 }
