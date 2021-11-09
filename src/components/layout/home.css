@@ -81,3 +81,44 @@ body{
     width: 12%;
     margin-left: 10px;
 }
+.design1{
+margin-left: 5%;
+margin-bottom: 5%;
+opacity: 0.8;
+}
+.design2{
+    position: absolute;
+    top: 1100px;
+    left: 880px;
+    z-index: -1;
+    opacity: 0.8;
+}
+.design3{
+    position: absolute;
+width: 255px;
+left: 980px;
+top: 1557px;
+
+opacity: 0.8;
+}
+.clothings{
+    margin-left: 20%;
+    z-index: 1;
+    margin-bottom: 200px;
+}
+.clothing{
+    display: inline-block;
+    width: 35%;
+    height: 360px;
+    border: #CDB8C9 solid 1px;
+    margin: 0 10px;
+    background-color: #CDB8C9;
+}
+.clothing h1{
+    text-align: right;
+}
+.clothing-link{
+    position: relative;
+    color: black;
+    top: 280px;
+}
