@@ -43,7 +43,7 @@ const Otp = () => {
 
             <Form className="chng-form">
                 
-                <h4>An otp has been sent to your mail. Pls verify the otp.</h4>
+                <h4>An otp has been sent to your mail. Please verify the otp.</h4>
                 
                 {msg!==""?<Alert variant="danger" onClose={()=>setMsg("")} className="alert" dismissible>
                     {msg}

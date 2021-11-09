@@ -1,4 +1,4 @@
-@import '~mdb-ui-kit/css/mdb.min.css';
+/* @import '~mdb-ui-kit/css/mdb.min.css'; */
 body{
     overflow-x: hidden;
     font-family: 'Josefin Sans', sans-serif;
@@ -64,6 +64,20 @@ body{
     padding: 0;
     margin: 0;
 }
-.headings-all{
+.headings-all, h1,h2,h3,h4,h5,h6{
     font-family: 'Oswald', serif;
+}
+.footer-main-body{
+    margin: 0;
+    max-width: 100%;
+    text-align: left;
+}
+.brands{
+    width: 80%;
+    display: flex;
+    margin-left: 18%;
+}
+.brands img{
+    width: 12%;
+    margin-left: 10px;
 }

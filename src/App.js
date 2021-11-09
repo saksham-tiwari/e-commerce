@@ -24,6 +24,8 @@ function App() {
       <Route exact path="/">
           <NavBar/>
           <Home/>
+          <Footer/>
+
       </Route>
       <Route exact path="/login">
           <Login/>
@@ -41,7 +43,6 @@ function App() {
           <Otp/>
       </Route>
       </Switch>
-      <Footer/>
     </Router>
   );
 }

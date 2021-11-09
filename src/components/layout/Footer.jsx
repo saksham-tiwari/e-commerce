@@ -5,84 +5,99 @@ const Footer = () => {
     return (
         <div>
             <MDBFooter className='text-white text-center text-lg-left' style={{backgroundColor: "#B4AC9D"}}>
-            <MDBContainer className='p-4'>
+            <MDBContainer className='p-4 footer-main-body'>
                 <MDBRow>
                 <MDBCol lg='2' md='6' className='mb-4 mb-md-0'>
-                    <h5 className='text-uppercase'>Links</h5>
+                    <h5 className='text-uppercase text-black'>About</h5>
 
                     <ul className='list-unstyled mb-0'>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 1
+                        Contact Us
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 2
+                        About Us
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 3
+                        Careers
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 4
+                        Press
+                        </a>
+                    </li>
+                    <li>
+                        <a href='#!' className='text-white'>
+                        Corporate Information
                         </a>
                     </li>
                     </ul>
                 </MDBCol>
 
                 <MDBCol lg='2' md='6' className='mb-4 mb-md-0'>
-                    <h5 className='text-uppercase'>Links</h5>
+                    <h5 className='text-uppercase text-black'>Help</h5>
 
                     <ul className='list-unstyled mb-0'>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 1
+                        Payments
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 2
+                        Shipping
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 3
+                        Cancellation and Returns
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 4
+                        FAQ
+                        </a>
+                    </li>
+                    <li>
+                        <a href='#!' className='text-white'>
+                        Report infringement
                         </a>
                     </li>
                     </ul>
                 </MDBCol>
 
                 <MDBCol lg='2' md='6' className='mb-4 mb-md-0'>
-                    <h5 className='text-uppercase'>Links</h5>
+                    <h5 className='text-uppercase text-black'>Policy</h5>
 
                     <ul className='list-unstyled mb-0'>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 1
+                        Return Policy
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 2
+                        Terms of use
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 3
+                        Security
                         </a>
                     </li>
                     <li>
                         <a href='#!' className='text-white'>
-                        Link 4
+                        Privacy
+                        </a>
+                    </li>
+                    <li>
+                        <a href='#!' className='text-white'>
+                        ERP Compliance
                         </a>
                     </li>
                     </ul>
@@ -90,48 +105,33 @@ const Footer = () => {
 
                 
 
-                <MDBCol lg='2' md='6' className='mb-4 mb-md-0'>
-                    <h5 className='text-uppercase mb-0'>Links</h5>
-
-                    <ul className='list-unstyled'>
-                    <li>
-                        <a href='#!' className='text-white'>
-                        Link 1
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#!' className='text-white'>
-                        Link 2
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#!' className='text-white'>
-                        Link 3
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#!' className='text-white'>
-                        Link 4
-                        </a>
-                    </li>
-                    </ul>
-                </MDBCol>
-                <MDBCol lg='2' md='6' className='mb-4 mb-md-0'>
-                    <h5 className='text-uppercase'>Footer Content</h5>
+                
+                <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
+                    <h5 className='text-uppercase text-black'>Registered Office Address</h5>
 
                     <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis molestias.
-                    Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam voluptatem veniam, est
-                    atque cumque eum delectus sint!
+                    E-Baazar <br/>
+                    Internet Private Limited,
+                    Buildings Alyssa, Begonia &
+                    Clove Embassy Tech Village,
+                    Outer Ring Road, Devarabeesanahalli Village,
+                    Bengaluru, 560103,
+                    Karnataka, India
                     </p>
                 </MDBCol>
-                <MDBCol lg='2' md='6' className='mb-4 mb-md-0'>
-                    <h5 className='text-uppercase'>Footer Content</h5>
+                <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
+                    <h5 className='text-uppercase text-black'>Mail us:</h5>
 
                     <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis molestias.
-                    Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam voluptatem veniam, est
-                    atque cumque eum delectus sint!
+                    E-Baazar
+                    Internet Private Limited,
+                    Buildings Alyssa, Begonia &
+                    Clove Embassy Tech Village,
+                    Outer Ring Road, Devarabeesanahalli Village,
+                    Bengaluru, 560103,
+                    Karnataka, India
+                    CIN : U51109KA2012PTC066107
+                    Telephone: 1800 202 9898
                     </p>
                 </MDBCol>
 
