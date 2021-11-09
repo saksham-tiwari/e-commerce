@@ -7,10 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: Roboto, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #885050;
   opacity: 0.7;
@@ -190,11 +186,19 @@ form h4{
   width: 400px;
 }
 .navlinks{
-  margin-left: 65%;
+  margin-left: 60%;
 }
 .scrollsearch{
   visibility: collapse;
 }
+
+.carousel-image{
+  width: 200px;
+  height: 200px;
+  background: #C4C4C4;
+
+}
+
 @media only screen and (max-width: 1200px){
   .searchbar{
     width: 320px;
@@ -207,9 +211,6 @@ form h4{
 @media only screen and (max-width: 1100px) {
   .alert{
     width: 90%;
-  }
-  .login-button{
-    width: 20%;
   }
   .navlinks{
     padding-left: 8%;
@@ -289,9 +290,8 @@ form h4{
     margin-left: 17%;
   }
   .login-button{
-    margin-left: 40.5%;
+    margin-left: 0;
   }
-  
 }
 @media only screen and (max-width: 545px){
   .homelink{

@@ -1,5 +1,5 @@
 import React from 'react'
-import image from '../../assets/download.jfif'
+import image from '../../../assets/download.jfif'
 
 const Homeblock2 = () => {
     return (

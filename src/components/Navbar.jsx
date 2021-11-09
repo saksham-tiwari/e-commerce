@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import bag from "../assets/shoppingbag.svg"
 
 const NavBar = () => {
@@ -26,12 +27,12 @@ const NavBar = () => {
         navbarScroll
       >
       
-        <Nav.Link href="#action1" className="homelink">Home</Nav.Link>
-        <Nav.Link href="#action2">Shop</Nav.Link>
-        <Nav.Link href="#action2">Wishlist</Nav.Link>
-        <Nav.Link href="#action2">Help</Nav.Link>
-        <Button variant="primary" className="login-button">Log In</Button>  
-        <Nav.Link href="#action2"><img src={bag} alt="bag"/></Nav.Link>
+        <Nav.Link className="homelink"><Link to="/" className="nav-link">Home</Link></Nav.Link>
+        <Nav.Link><Link to="/shop" className="nav-link">Shop</Link></Nav.Link>
+        <Nav.Link><Link to="/wishlist" className="nav-link">Wishlist</Link></Nav.Link>
+        <Nav.Link><Link to="/help" className="nav-link">Help</Link></Nav.Link>
+        <Link to="/login"><Button variant="primary" className="login-button">Log In</Button></Link>  
+        <Nav.Link><img src={bag} alt="bag"/></Nav.Link>
         <Form className="scrollsearch">
           <FormControl
             type="search"

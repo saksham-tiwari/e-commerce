@@ -1,5 +1,5 @@
 import React from 'react'
-import CardCarousel from "./CardCarousel";
+import CardCarousel from "../CardCarousel";
 
 const Homeblock5 = () => {
     return (

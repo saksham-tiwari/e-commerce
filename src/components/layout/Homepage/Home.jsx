@@ -5,9 +5,9 @@ import Homeblock2 from './Homeblock2'
 import Homeblock3 from './Homeblock3'
 import Homeblock4 from './Homeblock4'
 import Homeblock5 from './Homeblock5'
-import design1 from "../../assets/2.png";
-import design2 from "../../assets/3.png";
-import design3 from "../../assets/1.png";
+import design1 from "../../../assets/2.png";
+import design2 from "../../../assets/3.png";
+import design3 from "../../../assets/1.png";
 
 const Home = () => {
     return (

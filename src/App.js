@@ -9,7 +9,8 @@ import Login from "./components/auth/Login";
 import NavBar from "./components/Navbar";
 import SignUp from "./components/auth/SignUp";
 import Otp from "./components/auth/Otp";
-import Home from "./components/layout/Home";
+import Home from "./components/layout/Homepage/Home";
+import Wishlist from "./components/layout/Wishlist/Wishlist";
 import Footer from "./components/layout/Footer";
 
 
@@ -41,6 +42,11 @@ function App() {
       </Route>
       <Route exact path="/otp">
           <Otp/>
+      </Route>
+      <Route exact path="/wishlist">
+          <NavBar/>
+          <Wishlist/>
+          <Footer/>
       </Route>
       </Switch>
     </Router>

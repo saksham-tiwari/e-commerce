@@ -1,10 +1,10 @@
 import React from 'react'
-import gucci from '../../assets/brands/gucci 1.png';
-import hp from '../../assets/brands/hp 1.png';
-import havells from '../../assets/brands/havells 1.png';
-import nike from '../../assets/brands/nike 1.png';
-import oneplus from '../../assets/brands/one plus 1.png';
-import puma from '../../assets/brands/Puma 1.png';
+import gucci from '../../../assets/brands/gucci 1.png';
+import hp from '../../../assets/brands/hp 1.png';
+import havells from '../../../assets/brands/havells 1.png';
+import nike from '../../../assets/brands/nike 1.png';
+import oneplus from '../../../assets/brands/one plus 1.png';
+import puma from '../../../assets/brands/Puma 1.png';
 
 const Homeblock3 = () => {
     return (

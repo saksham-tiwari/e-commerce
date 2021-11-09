@@ -1,0 +1,27 @@
+.cardProducts{
+    display: inline-block;
+    width: 40%;
+    margin-left: 5%;
+}
+.cardProduct{
+    display: flex;
+    text-align: justify;
+}
+.imgSample{
+    height: 40vh;
+    width: 45vw;
+    background: #C4C4C4;
+    border: 1px solid gray;
+    margin: 0px 15px;
+    margin-left: 3%;
+}
+.desc{
+    font-size: 14px;
+}
+.cartBtn{
+    background-color: #E4C9DF;
+    border-radius: 10px;
+    border: 0px;
+    font-weight: 700;
+    margin-left: 25%;
+}
