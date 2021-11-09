@@ -190,19 +190,46 @@ form h4{
   width: 400px;
 }
 .navlinks{
-  position: relative;
-  left: 70%;
+  margin-left: 65%;
 }
-.login-button{
-  background-color: #0811ED;
-  color: #FFFFFF;
+.scrollsearch{
+  visibility: collapse;
+}
+@media only screen and (max-width: 1200px){
+  .searchbar{
+    width: 320px;
+    left: 25%;
+  }
+  .navlinks{
+    margin-left: 50%;
+  }
 }
 @media only screen and (max-width: 1100px) {
   .alert{
     width: 90%;
   }
+  .login-button{
+    width: 20%;
+  }
+  .navlinks{
+    padding-left: 8%;
+  }
 }
-
+@media only screen and (max-width: 991px) {
+  
+  .searchbar{
+    visibility: hidden;
+  }
+  .scrollsearch{
+    visibility: visible;
+  }
+  
+  
+  .navlinks{
+    margin-left: 0;
+  }
+  
+}
 @media only screen and (max-width: 720px) {
   .globe{
     height: 50vh;
@@ -250,6 +277,29 @@ form h4{
     margin-top: 5%;
     margin-left: 12%;
   }
+  .homelink{
+    margin-top: 20%;
+  }
+  .navlinks{
+    text-align: center;
+
+  }
+  .scrollsearch{
+    margin-top: -30%;
+    margin-left: 17%;
+  }
+  .login-button{
+    margin-left: 40.5%;
+  }
+  
+}
+@media only screen and (max-width: 545px){
+  .homelink{
+    margin-top: 23%;
+  }
+  .scrollsearch{
+    margin-top: -35%;
+  }
 }
 
 @media only screen and (max-width: 454px){
@@ -276,4 +326,5 @@ form h4{
   .google-span{
     font-size: 18px;
   }
+  
 }
