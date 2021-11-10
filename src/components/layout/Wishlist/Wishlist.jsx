@@ -1,19 +1,18 @@
 import React from 'react'
-import styles from "./Wishlist.module.css"
-import Block from "./Block"
+import Block from "../Block/WishlistBlock"
 import CardCarousel from "../CardCarousel"
 
 const Wishlist = () => {
     return (
         <div>
-            <h1 className={styles.whole}>My Wishlist</h1>
-            <hr/>
+            <h1 className="whole">My Wishlist</h1>
+            <hr className="hr-wish"/>
             <Block/>            
             <Block/>            
             <Block/>
             <Block/>
             <br/>
-            <hr/>
+            <hr className="hr-wish"/>
             <br/>
             <h3>Similars</h3>
             <br/>

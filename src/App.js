@@ -12,6 +12,8 @@ import Otp from "./components/auth/Otp";
 import Home from "./components/layout/Homepage/Home";
 import Wishlist from "./components/layout/Wishlist/Wishlist";
 import Footer from "./components/layout/Footer";
+import Cart from "./components/layout/Cart/Cart";
+import ProductsPage from "./components/layout/ProductsPage/ProductsPage";
 
 
 
@@ -46,6 +48,16 @@ function App() {
       <Route exact path="/wishlist">
           <NavBar/>
           <Wishlist/>
+          <Footer/>
+      </Route>
+      <Route exact path="/cart">
+          <NavBar/>
+          <Cart/>
+          <Footer/>
+      </Route>
+      <Route exact path="/products-page">
+          <NavBar/>
+          <ProductsPage/>
           <Footer/>
       </Route>
       </Switch>

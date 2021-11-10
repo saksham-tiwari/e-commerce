@@ -1,0 +1,11 @@
+.tot{
+    margin-top: 25px;
+    width: 40%;
+    border: 2px solid black;
+    font-size: 20px;
+}
+.checkoutBtn{
+    margin-left: 45%;
+    margin-top: 1%;
+    width: 10%;
+}

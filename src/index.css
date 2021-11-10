@@ -192,6 +192,15 @@ form h4{
   visibility: collapse;
 }
 
+.whole{
+  text-align: center;
+}
+.hr-wish{
+  width: 90%;
+  margin-left: 5%;
+  border: 2px black solid;
+}
+
 .carousel-image{
   width: 200px;
   height: 200px;

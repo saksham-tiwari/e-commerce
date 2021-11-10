@@ -12,8 +12,6 @@ import design3 from "../../../assets/1.png";
 const Home = () => {
     return (
         <div>
-            <br/>
-            <br/>
             <Homeblock1/>
             <Homeblock2/>
             <Homeblock3/>
