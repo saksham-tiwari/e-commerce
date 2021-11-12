@@ -6,6 +6,7 @@ import globe from '../../assets/globe.svg'
 import axios from 'axios';
 import { useUpdateUser } from '../../contexts/UserContext';
 import { useEmail } from '../../contexts/EmailContext';
+import { useObject, useUpdateObject } from '../../contexts/ObjectContext';
 
 
 const Otp = () => {
@@ -16,6 +17,8 @@ const Otp = () => {
     const [msg, setMsg] = useState("");
     const changeUser=useUpdateUser();
     const ifEmail = useEmail();
+    const obj = useObject();
+    const changeObj = useUpdateObject();
     const validate = ()=>{
         if(otp===""){
             alert("Please enter the otp.");
@@ -30,7 +33,16 @@ const Otp = () => {
                 if(stat===202){
                     changeUser();
                     if(ifEmail===""){
-                        history.push("/")
+                        axios.post("https://vshopappdjango.herokuapp.com/api/token/",obj)
+                        .then((res)=>{
+                            // console.log(res.data);
+                            localStorage.setItem("keys", JSON.stringify(res.data));
+                            changeUser();
+                            changeObj({});
+
+                            history.push("/");
+                        })
+                        // history.push("/")
                     } else{
                         history.push("/change-password")
                     }

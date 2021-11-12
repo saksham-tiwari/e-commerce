@@ -14,7 +14,8 @@ import ProductsPage from "./components/layout/ProductsPage/ProductsPage";
 import Checkout from "./components/layout/Checkout/Checkout";
 
 import { UserProvider } from './contexts/UserContext';
-import { EmailProvider } from "./contexts/EmailContext"
+import { EmailProvider } from "./contexts/EmailContext";
+import { ObjectProvider } from "./contexts/ObjectContext";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   return (
     <UserProvider>
     <EmailProvider>
+    <ObjectProvider>
       <Router>
         {/* <NavBar/> */}
 
@@ -68,6 +70,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+    </ObjectProvider>
     </EmailProvider>
     </UserProvider>
   );

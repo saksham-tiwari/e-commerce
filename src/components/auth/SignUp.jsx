@@ -5,6 +5,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { Link ,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
 import axios from "axios"
+import { useUpdateObject } from '../../contexts/ObjectContext';
 
 
 const SignUp = () => {
@@ -22,6 +23,7 @@ const SignUp = () => {
     const [newPassAlert, setNewPassAlert] = useState("");
     const [alert1, setAlert1] = useState(false);
 
+    const createObj = useUpdateObject();
 
 
     let history = useHistory();
@@ -53,6 +55,7 @@ const SignUp = () => {
             }
             await axios.post("https://vshopappdjango.herokuapp.com/api/Account/create-account/", user)
             .then(()=>{
+                createObj({email,password:pass})
                 history.push("/otp");
             }).catch((err)=>{
                 if(err.response.status===401){
