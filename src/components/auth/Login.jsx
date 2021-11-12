@@ -5,6 +5,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { Link,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
 import axios from 'axios';
+import { useUpdateUser } from "../../contexts/UserContext"
 
 
 
@@ -17,11 +18,14 @@ const Login = () => {
     const [alert1, setAlert1] = useState(false);
     const [alert2, setAlert2] = useState(false);
 
+    // var tokens;
+
+    const changeUser = useUpdateUser();
 
 
     let history = useHistory();
 
-    const validate = ()=>{
+    const validate = async ()=>{
         if(email===""){
             alert("Email required.");
         }
@@ -35,7 +39,7 @@ const Login = () => {
             alert("Your password is invalid. Must contain an upper case, a lower case and a special character. Should be atleast 6 characters long")
         }else {
             let stat;
-            axios.post("https://vshopappdjango.herokuapp.com/api/Account/login/",{"email":email.trim(),"password":pass.trim()})
+            await axios.post("https://vshopappdjango.herokuapp.com/api/Account/login/",{"email":email.trim(),"password":pass.trim()})
             .then((res)=>{
                 stat=res.status;
                 console.log(stat);
@@ -43,6 +47,15 @@ const Login = () => {
                     alert("Incorrect Pass");
 
                     history.push("/");
+                }
+                else if(stat===202){
+                    axios.post("https://vshopappdjango.herokuapp.com/api/token/",{"email":email.trim(),"password":pass.trim()})
+                    .then((res)=>{
+                        // console.log(res.data);
+                        localStorage.setItem("keys", JSON.stringify(res.data));
+                        changeUser();
+                        history.push("/");
+                    })
                 }
             })
             .catch((err)=>{

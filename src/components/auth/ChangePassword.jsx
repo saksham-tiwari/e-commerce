@@ -1,9 +1,13 @@
+import axios from 'axios';
 import React, {useState} from 'react';
 
 import { Form, Button } from 'react-bootstrap';
 
 import globe from "../../assets/globe.svg"
 import { validPassword } from './regex.jsx';
+import { useEmail, useSetEmail } from '../../contexts/EmailContext';
+import { useUpdateUser } from '../../contexts/UserContext';
+import { useHistory } from 'react-router';
 
 
 const ChangePassword = () => {
@@ -14,8 +18,13 @@ const ChangePassword = () => {
 
     const [confPass, setConfPass] = useState("");
     const [confPassAlert, setConfPassAlert] = useState("");
+    const email = useEmail();
+    const setEmail = useSetEmail();
+    const setUserStat = useUpdateUser();
 
-    const validate = ()=>{
+    const history = useHistory();
+
+    const validate = async ()=>{
         if(newPass===""){
             alert("Password required.");
         }
@@ -27,6 +36,15 @@ const ChangePassword = () => {
         }
         else if(newPass !== confPass){
             alert("Passwords do not match")
+        } else{
+            await axios.post("https://vshopappdjango.herokuapp.com/api/Account/reset-password/change-password/",{email,"new password": newPass})
+            .then((res)=>{
+                if(res.status===202){
+                    setEmail("");
+                    setUserStat();
+                    history.push("/");
+                }
+            })
         }
     }
 

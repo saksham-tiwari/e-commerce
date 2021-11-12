@@ -7,10 +7,14 @@ import {
   FormControl,
   Button
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import bag from "../assets/shoppingbag.svg";
+import { useUser, useUpdateUser } from "../contexts/UserContext";
 
 const NavBar = () => {
+  const history = useHistory();
+  const btnText = useUser();
+  const setBtnText = useUpdateUser();
   return (
     <div>
       <Navbar bg="light" expand="lg" className="color-nav navibar">
@@ -55,11 +59,20 @@ const NavBar = () => {
                   Help
                 </Link>
               </Nav.Link>
-              <Link to="/login" className="nav-link">
-                <Button variant="primary" className="login-button">
-                  Log In
+              {/* <Link to className="nav-link"> */}
+                <Button variant="primary" className="login-button" onClick={()=>{
+                  if(btnText==="Logout")
+                  {
+                    localStorage.removeItem("keys"); 
+                    setBtnText()
+                    window.location.reload();
+                  }
+                  else{
+                    history.push("/login");
+                  }}}>
+                  {btnText}
                 </Button>
-              </Link>
+              {/* </Link> */}
               <Nav.Link>
                 <Link to="/cart" className="nav-link">
                   <img src={bag} alt="bag" />

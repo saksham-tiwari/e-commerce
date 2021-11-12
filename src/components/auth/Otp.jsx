@@ -4,6 +4,9 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 import globe from '../../assets/globe.svg'
 import axios from 'axios';
+import { useUpdateUser } from '../../contexts/UserContext';
+import { useEmail } from '../../contexts/EmailContext';
+
 
 const Otp = () => {
 
@@ -11,6 +14,8 @@ const Otp = () => {
 
     const [otp, setOtp] = useState("");
     const [msg, setMsg] = useState("");
+    const changeUser=useUpdateUser();
+    const ifEmail = useEmail();
     const validate = ()=>{
         if(otp===""){
             alert("Please enter the otp.");
@@ -23,7 +28,14 @@ const Otp = () => {
                 console.log(response.status);
                 stat=response.status;
                 if(stat===202){
-                    history.push("/")
+                    changeUser();
+                    if(ifEmail===""){
+                        history.push("/")
+                    } else{
+                        history.push("/change-password")
+                    }
+                    // history.push("/")
+
                 } 
               })
               .catch((error)=> {

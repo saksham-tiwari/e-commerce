@@ -1,25 +1,36 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom'
+import { Form, Button, Alert } from 'react-bootstrap';
 
 import globe from '../../assets/globe.svg'
 import { validEmail } from './regex.jsx';
+import axios from 'axios';
+import { useSetEmail } from '../../contexts/EmailContext';
 
 
 const Forgot = () => {
 
     
     const [email, setEmail] = useState("");
-    const [otp, setOtp] = useState("");
-    const validate = ()=>{
+    const [emailAlert, setEmailAlert] = useState("");
+    const [alert1, setAlert1] = useState(false);
+    const history = useHistory();
+    const saveEmail = useSetEmail();
+    const validate = async ()=>{
         if(email===""){
             alert("Email required.");
         }
-        else if(otp===""){
-            alert("Please enter the otp.");
-        }
         else if (!validEmail.test(email)) {
             alert("Your email is invalid. Must contain '@' and a domain.")
+        } else{
+            await axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/",{email})
+            .then((res)=>{
+                if(res.status===202){
+                    saveEmail(email);
+                    history.push("/otp");
+                }
+            })
+
         }
     }
 
@@ -29,6 +40,10 @@ const Forgot = () => {
 
             <h2 className="chng">Forgot Password?</h2>
 
+            {alert1?<Alert variant="danger" onClose={()=>setAlert1(false)} className="alert" dismissible>
+                    Incorrect password
+                    </Alert>:<p></p>}
+
             <Form className="chng-form">
                 <div className="input-icons">
                     <i className="fa fa-envelope icon">
@@ -37,23 +52,25 @@ const Forgot = () => {
                         type="email"
                         value={email}
                         placeholder="Email"
-                        onChange={(e)=>setEmail(e.target.value)}
+                        onChange={(e)=>{
+                            setEmail(e.target.value);
+                            if(e.target.value===""){
+                                setEmailAlert("Email is required.");
+                            }
+                            else if(!validEmail.test(e.target.value)){
+                                setEmailAlert("Enter a valid email");
+                            } 
+                            else{
+                                setEmailAlert("");
+                            }
+                            }}
                         />
                 </div>
-    
-                <div className="input-icons">
-                    <i className="fa fa-lock icon lock">
-                </i>
-                    <input className="input-field" 
-                        type="password"
-                        value={otp}
-                        placeholder="OTP"
-                        onChange={(e)=>setOtp(e.target.value)}
-                        />
+                <p className="alerts">{emailAlert}</p>
 
-                </div>
+    
                 <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>
-                    Confirm
+                    Send Otp
                 </Button>
             <div className="tnc">
                 <p>By signing up, you agree with our <Link to="/tnc" className="link2">terms and conditions</Link></p>

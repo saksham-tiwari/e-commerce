@@ -10,6 +10,7 @@ import design2 from "../../../assets/3.png";
 import design3 from "../../../assets/1.png";
 
 const Home = () => {
+    // console.log(localStorage.getItem("keys").access);
     return (
         <div>
             <Homeblock1/>
