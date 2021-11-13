@@ -6,6 +6,10 @@ import { Link,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
 import axios from 'axios';
 import { useUpdateUser } from "../../contexts/UserContext"
+import { useSetEmail } from '../../contexts/EmailContext';
+import { useSetAllow } from '../../contexts/AllowedContext';
+import { useSetPush } from '../../contexts/PushContext';
+import { useUpdateObject } from '../../contexts/ObjectContext';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
@@ -20,6 +24,12 @@ const Login = () => {
     const [alert1, setAlert1] = useState(false);
     const [alert2, setAlert2] = useState(false);
     const [showPass, setShowPass] = useState(false);
+
+    const saveEmail = useSetEmail();
+    const setAllow = useSetAllow();
+    const setPush = useSetPush();
+    const createObj = useUpdateObject();
+
 
     // var tokens;
 
@@ -46,19 +56,15 @@ const Login = () => {
             .then((res)=>{
                 stat=res.status;
                 console.log(stat);
-                if(stat===401){
-                    alert("Incorrect Pass");
-
-                    history.push("/");
-                }
-                else if(stat===202){
-                    axios.post("https://vshopappdjango.herokuapp.com/api/token/",{"email":email.trim(),"password":pass.trim()})
+                if(stat===202){
+                    axios.post("https://vshopappdjango.herokuapp.com/api/token/",{"email":email.trim(),"password":pass.trim()})    
                     .then((res)=>{
-                        // console.log(res.data);
-                        localStorage.setItem("keys", JSON.stringify(res.data));
-                        changeUser();
-                        history.push("/");
-                    })
+                            // console.log(res.data);
+                            localStorage.setItem("keys", JSON.stringify(res.data));
+                            changeUser();
+                            history.push("/");
+                        })
+                    
                 }
             })
             .catch((err)=>{
@@ -66,6 +72,13 @@ const Login = () => {
                 if(err.response.status===401){
                     setAlert1(true);
                   }
+                else if(err.response.status===503){
+                    saveEmail(email);
+                    setPush("signin");
+                    setAllow();
+                    createObj({email, password:pass});
+                    history.push("/otp");
+                }
                 else if(err.response.status===406){
                     setAlert2(true)
                 }

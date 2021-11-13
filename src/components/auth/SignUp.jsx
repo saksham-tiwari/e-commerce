@@ -6,6 +6,9 @@ import { Link ,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
 import axios from "axios"
 import { useUpdateObject } from '../../contexts/ObjectContext';
+import { useSetPush } from '../../contexts/PushContext';
+import { useSetAllow } from '../../contexts/AllowedContext';
+import { useSetEmail } from '../../contexts/EmailContext';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
@@ -39,6 +42,9 @@ const SignUp = () => {
     }
 
     const createObj = useUpdateObject();
+    const setPush = useSetPush();
+    const setAllow = useSetAllow();
+    const saveEmail = useSetEmail();
 
 
     let history = useHistory();
@@ -71,6 +77,9 @@ const SignUp = () => {
             await axios.post("https://vshopappdjango.herokuapp.com/api/Account/create-account/", user)
             .then(()=>{
                 createObj({email,password:pass})
+                setPush("signup")
+                saveEmail(email);
+                setAllow();
                 history.push("/otp");
             }).catch((err)=>{
                 if(err.response.status===401){

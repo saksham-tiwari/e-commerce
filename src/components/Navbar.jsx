@@ -136,11 +136,19 @@ const NavBar = () => {
                   Help
                 </Link>
               </Nav.Link>
-              <Link to="/login" className="nav-link">
-                <Button variant="primary" className="login-button">
-                  Log In
+              <Button variant="primary" className="login-button" onClick={()=>{
+                  if(btnText==="Logout")
+                  {
+                    localStorage.removeItem("keys"); 
+                    setBtnText()
+                    
+                    window.location.reload();
+                  }
+                  else{
+                    history.push("/login");
+                  }}}>
+                  {btnText}
                 </Button>
-              </Link>
               <Nav.Link>
                 <Link to="/cart" className="nav-link">
                   <img src={bag} alt="bag" />

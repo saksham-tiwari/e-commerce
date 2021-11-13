@@ -14,7 +14,7 @@ export function useUpdateObject(){
 export function ObjectProvider({children}){
     const [object, setObject] = useState({});
     function createObject(obj){
-        setObject(object);
+        setObject(obj);
     }
 
     return(

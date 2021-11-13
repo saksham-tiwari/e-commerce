@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Alert } from 'react-bootstrap';
 
@@ -7,18 +7,40 @@ import axios from 'axios';
 import { useUpdateUser } from '../../contexts/UserContext';
 import { useEmail } from '../../contexts/EmailContext';
 import { useObject, useUpdateObject } from '../../contexts/ObjectContext';
+import { usePush } from '../../contexts/PushContext';
+import { useAllow, useSetAllow } from '../../contexts/AllowedContext';
 
 
 const Otp = () => {
 
     let history = useHistory();
 
+
+    const isAllowed=useAllow();
+    const setAllow= useSetAllow();
+    useEffect(() => {
+        if(isAllowed){
+            setAllow();
+        }
+        else{
+            history.push("/login");
+        }
+    }, [])
+
+
     const [otp, setOtp] = useState("");
     const [msg, setMsg] = useState("");
     const changeUser=useUpdateUser();
-    const ifEmail = useEmail();
+    const email = useEmail();
+    const push = usePush();
     const obj = useObject();
     const changeObj = useUpdateObject();
+
+    async function resendOtp(){
+        console.log(email)
+        await axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/", {"email":email.trim()} )
+    }
+
     const validate = ()=>{
         if(otp===""){
             alert("Please enter the otp.");
@@ -26,24 +48,24 @@ const Otp = () => {
         else {
             let stat;
             let otpInt = parseInt(otp);
-            axios.post("https://vshopappdjango.herokuapp.com/api/Account/otp/verify/",{"otp":otpInt})
+            axios.post("https://vshopappdjango.herokuapp.com/api/Account/otp/verify/",{"otp":otpInt, "email":email.trim()})
               .then((response)=> {
                 console.log(response.status);
                 stat=response.status;
                 if(stat===202){
                     changeUser();
-                    if(ifEmail===""){
+                    if(push==="signup"){
                         axios.post("https://vshopappdjango.herokuapp.com/api/token/",obj)
                         .then((res)=>{
                             // console.log(res.data);
                             localStorage.setItem("keys", JSON.stringify(res.data));
-                            changeUser();
+                            // changeUser();
                             changeObj({});
 
                             history.push("/");
                         })
                         // history.push("/")
-                    } else{
+                    } else if(push === "forgot"){
                         history.push("/change-password")
                     }
                     // history.push("/")
@@ -83,6 +105,9 @@ const Otp = () => {
                         />
 
                 </div>
+                {/* <Button style={{display:"block"}} onClick={resendOtp}>Resend OTP</Button> */}
+                <p className="forgot" onClick={resendOtp} type="button">Resend OTP</p>
+
                 <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>
                     Verify
                 </Button>

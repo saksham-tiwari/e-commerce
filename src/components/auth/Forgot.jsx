@@ -6,6 +6,8 @@ import globe from '../../assets/globe.svg'
 import { validEmail } from './regex.jsx';
 import axios from 'axios';
 import { useSetEmail } from '../../contexts/EmailContext';
+import { useSetPush } from '../../contexts/PushContext';
+
 
 
 const Forgot = () => {
@@ -16,6 +18,7 @@ const Forgot = () => {
     const [alert1, setAlert1] = useState(false);
     const history = useHistory();
     const saveEmail = useSetEmail();
+    const setPush = useSetPush();
     const validate = async ()=>{
         if(email===""){
             alert("Email required.");
@@ -27,6 +30,7 @@ const Forgot = () => {
             .then((res)=>{
                 if(res.status===202){
                     saveEmail(email);
+                    setPush("forgot");
                     history.push("/otp");
                 }
             })
