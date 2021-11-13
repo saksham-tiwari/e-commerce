@@ -76,7 +76,7 @@ const Otp = () => {
                     <i className="fa fa-lock icon lock">
                 </i>
                     <input className="input-field" 
-                        type="password"
+                        type="text"
                         value={otp}
                         placeholder="OTP"
                         onChange={(e)=>setOtp(e.target.value)}

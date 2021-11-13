@@ -6,6 +6,9 @@ import { Link ,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
 import axios from "axios"
 import { useUpdateObject } from '../../contexts/ObjectContext';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 
 const SignUp = () => {
@@ -22,6 +25,18 @@ const SignUp = () => {
     const [newPass, setNewPass] = useState(""); 
     const [newPassAlert, setNewPassAlert] = useState("");
     const [alert1, setAlert1] = useState(false);
+    const [showPass, setShowPass] = useState(false);
+    const [showConfPass, setShowConfPass] = useState(false);
+
+
+
+
+    function togglePassword(){
+        setShowPass(!showPass);
+    }
+    function toggleConfPassword(){
+        setShowConfPass(!showConfPass);
+    }
 
     const createObj = useUpdateObject();
 
@@ -149,7 +164,7 @@ const SignUp = () => {
                     <i className="fa fa-lock icon lock">
                 </i>
                     <input className="input-field" 
-                        type="password"
+                        type={showPass?"text":"password"}
                         value={pass}
                         placeholder="Password"
                         onChange={(e)=>{
@@ -165,13 +180,15 @@ const SignUp = () => {
                             }
                             }}
                         />
+                {showPass?<VisibilityIcon onClick={togglePassword} className="eye"/>:<VisibilityOffIcon onClick={togglePassword} className="eye"/>}
+
                 </div>
                 <p className="alerts">{passAlert}</p>
                 <div className="input-icons">
                     <i className="fa fa-lock icon lock">
                 </i>
                     <input className="input-field" 
-                        type="password"
+                        type={showConfPass?"text":"password"}
                         value={newPass}
                         placeholder="Confirm Password"
                         onChange={(e)=>{
@@ -187,6 +204,8 @@ const SignUp = () => {
                             }
                             }}
                     />
+                    {showConfPass?<VisibilityIcon onClick={toggleConfPassword} className="eye"/>:<VisibilityOffIcon onClick={toggleConfPassword} className="eye"/>}
+
                 </div>
                 <p className="alerts">{newPassAlert}</p>
                 

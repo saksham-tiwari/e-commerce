@@ -6,6 +6,8 @@ import { Link,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
 import axios from 'axios';
 import { useUpdateUser } from "../../contexts/UserContext"
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 
@@ -17,6 +19,7 @@ const Login = () => {
     const [passAlert, setPassAlert] = useState("");
     const [alert1, setAlert1] = useState(false);
     const [alert2, setAlert2] = useState(false);
+    const [showPass, setShowPass] = useState(false);
 
     // var tokens;
 
@@ -36,7 +39,7 @@ const Login = () => {
             alert("Your email is invalid. Must contain '@' and a domain.")
         }
         else if (!validPassword.test(pass)) {
-            alert("Your password is invalid. Must contain an upper case, a lower case and a special character. Should be atleast 6 characters long")
+            alert("Your password is invalid. Must contain atleast a string and an integer. Should be atleast 6 characters long")
         }else {
             let stat;
             await axios.post("https://vshopappdjango.herokuapp.com/api/Account/login/",{"email":email.trim(),"password":pass.trim()})
@@ -69,6 +72,9 @@ const Login = () => {
             });
             
         }
+    }
+    function togglePassword(){
+        setShowPass(!showPass);
     }
     return (
         <div>
@@ -125,7 +131,7 @@ const Login = () => {
                     <i className="fa fa-lock icon lock">
                 </i>
                     <input className="input-field" 
-                        type="password"
+                        type={showPass?"text":"password"}
                         value={pass}
                         placeholder="Password"
                         onChange={(e)=>{
@@ -141,6 +147,7 @@ const Login = () => {
                             }
                             }}
                         />
+                {showPass?<VisibilityIcon onClick={togglePassword} className="eye"/>:<VisibilityOffIcon onClick={togglePassword} className="eye"/>}
                 <p className="alerts">{passAlert}</p>
                 <Link to="/forgot-password" className="forgot">Forgot Password?</Link>
 

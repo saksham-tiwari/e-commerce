@@ -8,6 +8,8 @@ import { validPassword } from './regex.jsx';
 import { useEmail, useSetEmail } from '../../contexts/EmailContext';
 import { useUpdateUser } from '../../contexts/UserContext';
 import { useHistory } from 'react-router';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 const ChangePassword = () => {
@@ -21,8 +23,19 @@ const ChangePassword = () => {
     const email = useEmail();
     const setEmail = useSetEmail();
     const setUserStat = useUpdateUser();
+    const [showPass, setShowPass] = useState(false);
+    const [showConfPass, setShowConfPass] = useState(false);
+
+
 
     const history = useHistory();
+
+    function togglePassword(){
+        setShowPass(!showPass);
+    }
+    function toggleConfPassword(){
+        setShowConfPass(!showConfPass);
+    }
 
     const validate = async ()=>{
         if(newPass===""){
@@ -59,7 +72,7 @@ const ChangePassword = () => {
                 <i className="fa fa-lock icon lock">
             </i>
                 <input className="input-field" 
-                    type="password"
+                    type={showPass?"text":"password"}
                     value={newPass}
                     placeholder="New Password"
                     onChange={(e)=>{
@@ -75,6 +88,8 @@ const ChangePassword = () => {
                             }
                             }} 
                     />
+                {showPass?<VisibilityIcon onClick={togglePassword} className="eye"/>:<VisibilityOffIcon onClick={togglePassword} className="eye"/>}
+
 
             </div>
             <p className="alerts">{newPassAlert}</p>
@@ -82,7 +97,8 @@ const ChangePassword = () => {
                     <i className="fa fa-lock icon lock">
                 </i>
                     <input className="input-field" 
-                        type="password"
+                        type={showConfPass?"text":"password"}
+
                         value = {confPass}
                         placeholder="Confirm Password"
                         onChange={(e)=>{
@@ -98,6 +114,8 @@ const ChangePassword = () => {
                             }
                             }}
                         />
+                    {showConfPass?<VisibilityIcon onClick={toggleConfPassword} className="eye"/>:<VisibilityOffIcon onClick={toggleConfPassword} className="eye"/>}
+
                 </div>
             <p className="alerts">{confPassAlert}</p>
             <Button variant="primary" size="lg" className="input-field btnsubmit" onClick={validate}>

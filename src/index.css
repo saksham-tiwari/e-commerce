@@ -291,6 +291,10 @@ form h4{
   height: 40px;
   top: 8px;
 }
+.eye{
+  margin-left: -8%;
+  margin-bottom: 5px;
+}
 
 @media only screen and (max-width: 1200px){
   .searchbar{
