@@ -1,0 +1,39 @@
+.info{
+    display: block;
+    position: relative;
+    width: 70vw;
+    height: 100vh;
+    margin-left: 10%;
+    left: 22%;
+    /* border: 1px solid salmon; */
+}
+.infoForm{
+    position: relative;
+    width: 80%;
+    height: 50%;
+    left: 10%;
+    top: 0;
+  
+    box-sizing: border-box;
+}
+.label{
+    margin-left: 0;
+}
+.input{
+    background: #E4DADA;
+    border-radius: 0;
+}
+.input::placeholder{
+    color:#D3ACAC;
+}
+.sellerbtn{
+    position: relative;
+    top:200px;
+    left: 90px;
+}
+@media only screen and (max-width: 795px) {
+    .info{
+        width: 50vw;
+        left: 35%;
+    }
+  }

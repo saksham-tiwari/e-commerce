@@ -12,6 +12,7 @@ import Footer from "./components/layout/Footer";
 import Cart from "./components/layout/Cart/Cart";
 import ProductsPage from "./components/layout/ProductsPage/ProductsPage";
 import Checkout from "./components/layout/Checkout/Checkout";
+import MyProfile from "./components/layout/Profile/MyProfile"
 
 import { UserProvider, useUpdateUser } from './contexts/UserContext';
 import { EmailProvider } from "./contexts/EmailContext";
@@ -85,6 +86,11 @@ function App() {
           <Route exact path="/checkout">
             <NavBar />
             <Checkout />
+            <Footer />
+          </Route>
+          <Route exact path="/profile">
+            <NavBar />
+            <MyProfile />
             <Footer />
           </Route>
         </Switch>

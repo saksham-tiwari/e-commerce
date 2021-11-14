@@ -88,7 +88,7 @@ const Login = () => {
                   }
                 else if(err.response.status===503){
                     saveEmail(email);
-                    setPush("signin");
+                    setPush("signup");
                     setAllow();
                     createObj({email, password:pass});
                     history.push("/otp");
