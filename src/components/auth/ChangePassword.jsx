@@ -10,6 +10,9 @@ import { useUpdateUser } from '../../contexts/UserContext';
 import { useHistory } from 'react-router';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { PropagateLoader } from 'react-spinners';
+import { css } from '@emotion/react'
+
 
 
 const ChangePassword = () => {
@@ -25,7 +28,16 @@ const ChangePassword = () => {
     const setUserStat = useUpdateUser();
     const [showPass, setShowPass] = useState(false);
     const [showConfPass, setShowConfPass] = useState(false);
+    
+    var loaderCSS = css`
+    ${'' /* color: #7c64ef; */}
+    position: absolute;
+    top: -10%;
+    left: 33%;
 
+`
+
+    const [loader, setLoader] = useState(false);
 
 
     const history = useHistory();
@@ -50,12 +62,14 @@ const ChangePassword = () => {
         else if(newPass !== confPass){
             alert("Passwords do not match")
         } else{
+            setLoader(true);
             await axios.post("https://vshopappdjango.herokuapp.com/api/Account/reset-password/change-password/",{email,"new password": newPass})
             .then((res)=>{
                 if(res.status===202){
                     setEmail("");
                     setUserStat();
                     history.push("/");
+                    // setLoader(false)
                 }
             })
         }
@@ -68,6 +82,8 @@ const ChangePassword = () => {
         <h2 className="chng">Change Password</h2>
 
         <Form className="chng-form">
+        <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>
+        
             <div className="input-icons">
                 <i className="fa fa-lock icon lock">
             </i>

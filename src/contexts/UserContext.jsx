@@ -12,9 +12,16 @@ export function useUpdateUser(){
 
 
 export function UserProvider({children}){
-    const [userStat, setUserStat] = useState("Sign In");
-    function isLoggedIn(){
-        setUserStat("Logout");
+    let x;
+    if(localStorage.getItem("keys")!==null){
+        x=true;
+    }
+    else{
+        x=false;
+    }
+    const [userStat, setUserStat] = useState(x);
+    function isLoggedIn(cond){
+        setUserStat(cond);
     }
 
     return(

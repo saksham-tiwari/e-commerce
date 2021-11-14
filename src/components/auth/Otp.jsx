@@ -9,6 +9,8 @@ import { useEmail } from '../../contexts/EmailContext';
 import { useObject, useUpdateObject } from '../../contexts/ObjectContext';
 import { usePush } from '../../contexts/PushContext';
 import { useAllow, useSetAllow } from '../../contexts/AllowedContext';
+import { PropagateLoader } from 'react-spinners';
+import { css } from '@emotion/react'
 
 
 const Otp = () => {
@@ -30,15 +32,33 @@ const Otp = () => {
 
     const [otp, setOtp] = useState("");
     const [msg, setMsg] = useState("");
+    const [success, setSuccess] = useState(false);
     const changeUser=useUpdateUser();
     const email = useEmail();
     const push = usePush();
     const obj = useObject();
     const changeObj = useUpdateObject();
+    var loaderCSS = css`
+        ${'' /* color: #7c64ef; */}
+        position: absolute;
+        top: -10%;
+        left: 33%;
+
+    `
+
+    const [loader, setLoader] = useState(false);
+
 
     async function resendOtp(){
+        setLoader(true);
         console.log(email)
         await axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/", {"email":email.trim()} )
+        .then((res)=>{
+            if(res.status===202){
+                setSuccess(true);
+                setLoader(false);
+            } 
+        })
     }
 
     const validate = ()=>{
@@ -46,6 +66,7 @@ const Otp = () => {
             alert("Please enter the otp.");
         }
         else {
+            setLoader(true);
             let stat;
             let otpInt = parseInt(otp);
             axios.post("https://vshopappdjango.herokuapp.com/api/Account/otp/verify/",{"otp":otpInt, "email":email.trim()})
@@ -75,6 +96,7 @@ const Otp = () => {
               .catch((error)=> {
                 if(error.response.status===401){
                     setMsg("Incorrect OTP");
+                    setLoader(false);
                 }
               });
               
@@ -88,12 +110,17 @@ const Otp = () => {
             <h2 className="chng">Verification Page</h2>
 
             <Form className="chng-form">
+            <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>
+
                 
                 <h4>An otp has been sent to your mail. Please verify the otp.</h4>
                 
                 {msg!==""?<Alert variant="danger" onClose={()=>setMsg("")} className="alert" dismissible>
                     {msg}
                     </Alert>:<p></p>}
+                {success?<Alert variant="success" onClose={()=>setSuccess(false)} className="alert" dismissible>
+                    Otp resent!
+                </Alert>:<p></p>}
                 <div className="input-icons">
                     <i className="fa fa-lock icon lock">
                 </i>

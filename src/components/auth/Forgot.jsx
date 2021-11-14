@@ -7,6 +7,11 @@ import { validEmail } from './regex.jsx';
 import axios from 'axios';
 import { useSetEmail } from '../../contexts/EmailContext';
 import { useSetPush } from '../../contexts/PushContext';
+import { PropagateLoader } from 'react-spinners';
+import { css } from '@emotion/react'
+import { useSetAllow } from '../../contexts/AllowedContext';
+
+
 
 
 
@@ -19,22 +24,45 @@ const Forgot = () => {
     const history = useHistory();
     const saveEmail = useSetEmail();
     const setPush = useSetPush();
-    const validate = async ()=>{
+    const setAllow = useSetAllow();
+    // const [alert2, setAlert2] = useState(false);
+
+    var loaderCSS = css`
+        ${'' /* color: #7c64ef; */}
+        position: absolute;
+        top: -10%;
+        left: 33%;
+
+    `
+
+    const [loader, setLoader] = useState(false);
+
+    const validate = async (e)=>{
+        e.preventDefault();
         if(email===""){
             alert("Email required.");
         }
         else if (!validEmail.test(email)) {
             alert("Your email is invalid. Must contain '@' and a domain.")
         } else{
+            setLoader(true);
             await axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/",{email})
             .then((res)=>{
                 if(res.status===202){
                     saveEmail(email);
                     setPush("forgot");
+                    setAllow();
                     history.push("/otp");
-                }
+                } 
             })
+            .catch((err)=>{
+                if(err.response.status===406){
+                    setAlert1(true);
+                    setLoader(false);
 
+                }
+            }
+            )
         }
     }
 
@@ -42,13 +70,17 @@ const Forgot = () => {
         <div>
             <img src = {globe} alt="globe" className="globe"/>
 
+           
             <h2 className="chng">Forgot Password?</h2>
-
-            {alert1?<Alert variant="danger" onClose={()=>setAlert1(false)} className="alert" dismissible>
-                    Incorrect password
-                    </Alert>:<p></p>}
+            
+            
 
             <Form className="chng-form">
+            
+            <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>
+            {alert1?(<Alert variant="danger" onClose={()=>setAlert1(false)} className="alert" dismissible>
+                    User does not exist. Pls <Link to="signup">Signup</Link>
+                    </Alert>):<p></p>}
                 <div className="input-icons">
                     <i className="fa fa-envelope icon">
                 </i>

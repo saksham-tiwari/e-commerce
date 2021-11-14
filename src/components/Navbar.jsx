@@ -13,8 +13,8 @@ import { useUser, useUpdateUser } from "../contexts/UserContext";
 
 const NavBar = () => {
   const history = useHistory();
-  const btnText = useUser();
-  const setBtnText = useUpdateUser();
+  const isUser = useUser();
+  const chnageUser = useUpdateUser();
   return (
     <div>
       <Navbar bg="light" expand="lg" className="color-nav navibar">
@@ -61,16 +61,16 @@ const NavBar = () => {
               </Nav.Link>
               {/* <Link to className="nav-link"> */}
                 <Button variant="primary" className="login-button" onClick={()=>{
-                  if(btnText==="Logout")
+                  if(isUser)
                   {
                     localStorage.removeItem("keys"); 
-                    setBtnText()
+                    chnageUser(false);
                     window.location.reload();
                   }
                   else{
                     history.push("/login");
                   }}}>
-                  {btnText}
+                  {isUser?"Logout":"SignUp"}
                 </Button>
               {/* </Link> */}
               <Nav.Link>
@@ -137,17 +137,16 @@ const NavBar = () => {
                 </Link>
               </Nav.Link>
               <Button variant="primary" className="login-button" onClick={()=>{
-                  if(btnText==="Logout")
+                  if(isUser)
                   {
                     localStorage.removeItem("keys"); 
-                    setBtnText()
-                    
+                    chnageUser(false);
                     window.location.reload();
                   }
                   else{
                     history.push("/login");
                   }}}>
-                  {btnText}
+                  {isUser?"Logout":"SignUp"}
                 </Button>
               <Nav.Link>
                 <Link to="/cart" className="nav-link">

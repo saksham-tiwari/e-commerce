@@ -296,6 +296,9 @@ form h4{
   margin-bottom: 5px;
   color: #AF9595;
 }
+.loader{
+  color: #7C64EF;
+}
 
 @media only screen and (max-width: 1200px){
   .searchbar{

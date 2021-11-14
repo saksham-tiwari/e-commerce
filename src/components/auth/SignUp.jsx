@@ -11,6 +11,8 @@ import { useSetAllow } from '../../contexts/AllowedContext';
 import { useSetEmail } from '../../contexts/EmailContext';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { PropagateLoader } from 'react-spinners';
+import { css } from '@emotion/react'
 
 
 
@@ -30,6 +32,16 @@ const SignUp = () => {
     const [alert1, setAlert1] = useState(false);
     const [showPass, setShowPass] = useState(false);
     const [showConfPass, setShowConfPass] = useState(false);
+
+    var loaderCSS = css`
+        ${'' /* color: #7c64ef; */}
+        position: absolute;
+        top: 32%;
+        left: 33%;
+
+    `
+
+    const [loader, setLoader] = useState(false);
 
 
 
@@ -69,6 +81,8 @@ const SignUp = () => {
             alert("Passwords do not match");
         }
         else{
+            setLoader(true);
+
             const user={
                 email:email.trim(),
                 password:pass.trim(),
@@ -84,6 +98,7 @@ const SignUp = () => {
             }).catch((err)=>{
                 if(err.response.status===401){
                     setAlert1(true);
+                    setLoader(false);
                 }
             });
             
@@ -99,6 +114,8 @@ const SignUp = () => {
             <h2>Create your Account</h2>
 
             <Form>
+            <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>
+
                 <div className="input-icons input-field google-signin">
                     <a className="btn btn-block btn-social btn-google" href="/auth/google" role="button">
                         <img src = {google} alt="googleicon"/>

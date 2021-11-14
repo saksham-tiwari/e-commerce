@@ -12,6 +12,8 @@ import { useSetPush } from '../../contexts/PushContext';
 import { useUpdateObject } from '../../contexts/ObjectContext';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { PropagateLoader } from 'react-spinners';
+import { css } from '@emotion/react'
 
 
 
@@ -34,6 +36,16 @@ const Login = () => {
     // var tokens;
 
     const changeUser = useUpdateUser();
+    var loaderCSS = css`
+        ${'' /* color: #7c64ef; */}
+        position: absolute;
+        top: 32%;
+        left: 33%;
+
+    `
+
+    const [loader, setLoader] = useState(false);
+
 
 
     let history = useHistory();
@@ -51,6 +63,7 @@ const Login = () => {
         else if (!validPassword.test(pass)) {
             alert("Your password is invalid. Must contain atleast a string and an integer. Should be atleast 6 characters long")
         }else {
+            setLoader(true);
             let stat;
             await axios.post("https://vshopappdjango.herokuapp.com/api/Account/login/",{"email":email.trim(),"password":pass.trim()})
             .then((res)=>{
@@ -61,7 +74,7 @@ const Login = () => {
                     .then((res)=>{
                             // console.log(res.data);
                             localStorage.setItem("keys", JSON.stringify(res.data));
-                            changeUser();
+                            changeUser(true);
                             history.push("/");
                         })
                     
@@ -71,6 +84,7 @@ const Login = () => {
                 console.log(err);
                 if(err.response.status===401){
                     setAlert1(true);
+                    setLoader(false);
                   }
                 else if(err.response.status===503){
                     saveEmail(email);
@@ -81,6 +95,7 @@ const Login = () => {
                 }
                 else if(err.response.status===406){
                     setAlert2(true)
+                    setLoader(false);
                 }
             });
             
@@ -96,6 +111,8 @@ const Login = () => {
             <h2>Login to your Account</h2>
 
             <Form>
+            <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>
+
                 <div className="input-icons input-field google-signin">
                     <a className="btn btn-block btn-social btn-google" href="/auth/google" role="button">
                         <img src = {google} alt="googleicon"/>
@@ -110,9 +127,9 @@ const Login = () => {
                 <br/>
                 
 
-                {alert1?<Alert variant="danger" onClose={()=>setAlert1(false)} className="alert" dismissible>
+                {alert1?(<Alert variant="danger" onClose={()=>setAlert1(false)} className="alert" dismissible>
                     Incorrect password
-                    </Alert>:<p></p>}
+                    </Alert>):<p></p>}
                 {alert2?<Alert variant="danger" onClose={()=>setAlert2(false)} className="alert" dismissible>
                     No account exist with this email Id. Try <Link to="signup">Signing Up.</Link>
                     </Alert>:<p></p>}

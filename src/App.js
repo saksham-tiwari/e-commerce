@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ChangePassword from "./components/auth/ChangePassword";
 import Forgot from "./components/auth/Forgot";
@@ -13,14 +13,27 @@ import Cart from "./components/layout/Cart/Cart";
 import ProductsPage from "./components/layout/ProductsPage/ProductsPage";
 import Checkout from "./components/layout/Checkout/Checkout";
 
-import { UserProvider } from './contexts/UserContext';
+import { UserProvider, useUpdateUser } from './contexts/UserContext';
 import { EmailProvider } from "./contexts/EmailContext";
 import { ObjectProvider } from "./contexts/ObjectContext";
 import { PushProvider } from "./contexts/PushContext";
 import { AllowProvider } from "./contexts/AllowedContext"
 
+
 function App() {
 
+  const [isKeys, setIsKeys]= useState(false);
+  useEffect(() => {
+    if(localStorage.getItem("keys")!==null){
+      setIsKeys(true);
+    }
+  }, []);
+  const updateUser = useUpdateUser();
+  function checkUser(){
+    // const updateUser = useUpdateUser();
+    console.log("checking");
+    isKeys?updateUser(true):updateUser(false);
+  }
   return (
     <UserProvider>
     <EmailProvider>
@@ -30,8 +43,11 @@ function App() {
       <Router>
         {/* <NavBar/> */}
 
+
         <Switch>
           <Route exact path="/">
+        {()=>{checkUser()}}
+
             <NavBar />
             <Home />
             <Footer />
