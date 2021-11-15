@@ -28,8 +28,11 @@
 }
 .sellerbtn{
     position: relative;
-    top:200px;
+    top:230px;
     left: 90px;
+}
+.alertSuccess{
+    margin-top: 10px;
 }
 @media only screen and (max-width: 795px) {
     .info{

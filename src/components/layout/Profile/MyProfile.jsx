@@ -4,6 +4,8 @@ import PersonalInfo from '../PersonalInfo/PersonalInfo'
 // import styles from "./MyProfile.module.css"
 
 const MyProfile = () => {
+   
+
     return (
         <div>
             <h1 className="whole">My Profile</h1>

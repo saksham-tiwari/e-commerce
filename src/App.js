@@ -18,7 +18,7 @@ import { UserProvider, useUpdateUser } from './contexts/UserContext';
 import { EmailProvider } from "./contexts/EmailContext";
 import { ObjectProvider } from "./contexts/ObjectContext";
 import { PushProvider } from "./contexts/PushContext";
-import { AllowProvider } from "./contexts/AllowedContext"
+import { AllowProvider } from "./contexts/AllowedContext";
 
 
 function App() {
