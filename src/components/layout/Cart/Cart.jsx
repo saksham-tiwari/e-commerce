@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CardCarousel from "../CardCarousel";
 import Block from "../Block/CartBlock"
 import styles from "./Cart.module.css"
 import { Col, Container, Row, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router';
+import { useUser } from '../../../contexts/UserContext';
 
 const Cart = () => {
+    const history = useHistory();
+    const isUser = useUser();
+    useEffect(()=>{
+        if(isUser!==true){
+            history.push("/");
+        }
+    },[])
     return (
         <div>
             <h1 className="whole">My Bag</h1>

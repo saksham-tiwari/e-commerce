@@ -9,6 +9,7 @@ import { useEmail } from '../../contexts/EmailContext';
 import { useObject, useUpdateObject } from '../../contexts/ObjectContext';
 import { usePush } from '../../contexts/PushContext';
 import { useAllow, useSetAllow } from '../../contexts/AllowedContext';
+import { useSetSeller } from '../../contexts/SellerContext';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
 
@@ -20,9 +21,12 @@ const Otp = () => {
 
     const isAllowed=useAllow();
     const setAllow= useSetAllow();
+    const setSeller = useSetSeller();
+    // var access_token;
     useEffect(() => {
         if(isAllowed){
             setAllow();
+            // access_token= JSON.parse(localStorage.getItem("keys")).access;
         }
         else{
             history.push("/login");
@@ -82,12 +86,42 @@ const Otp = () => {
                             localStorage.setItem("keys", JSON.stringify(res.data));
                             // changeUser();
                             changeObj({});
+                            changeUser(true);
 
                             history.push("/");
                         })
                         // history.push("/")
                     } else if(push === "forgot"){
                         history.push("/change-password")
+                    } else if(push==="seller"){
+                        let access_token = JSON.parse(localStorage.getItem("keys")).access;
+                        // axios.put("https://vshopappdjango.herokuapp.com/api/Account/become-seller/",{
+                        //     headers:{
+                        //         Authorization: "Bearer " + access_token
+                        //     }
+                        //     })
+                        //     .then((res)=>{
+                        //         if(res.status===200){
+                        //             history.push("/")
+                        //         }
+                        //     })
+
+                        axios({
+                            method: "put",
+                            url: "https://vshopappdjango.herokuapp.com/api/Account/become-seller/",
+                            headers: { 
+                                Authorization: "Bearer " + access_token
+                                },
+                            })
+                            .then((res)=> {
+                                //handle success
+                                if(res.status===200){
+                                    setSeller(true);
+                                    changeUser(true);
+                                    history.push("/")
+
+                                }
+                            })
                     }
                     // history.push("/")
 

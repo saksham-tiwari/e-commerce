@@ -15,6 +15,13 @@ const NavBar = () => {
   const history = useHistory();
   const isUser = useUser();
   const chnageUser = useUpdateUser();
+  // const style2={
+  //   maxHeight: "400px",
+  //   marginLeft: "75%"
+  // }
+  // const style1={
+  //   maxHeight: "400px"
+  // }
   return (
     <div>
       <Navbar bg="light" expand="lg" className="color-nav navibar">
@@ -36,7 +43,7 @@ const NavBar = () => {
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0 navlinks"
-              style={{ maxHeight: "400px" }}
+              style={isUser?{maxHeight: "400px"}:{maxHeight: "400px", marginLeft: "75%"}}
               navbarScroll
             >
               <Nav.Link className="homelink">
@@ -44,16 +51,16 @@ const NavBar = () => {
                   Home
                 </Link>
               </Nav.Link>
-              <Nav.Link>
-                <Link to="/shop" className="nav-link">
-                  Shop
-                </Link>
-              </Nav.Link>
-              <Nav.Link>
+              {isUser?<><Nav.Link>
                 <Link to="/wishlist" className="nav-link">
                   Wishlist
                 </Link>
               </Nav.Link>
+              <Nav.Link>
+                <Link to="/orders" className="nav-link">
+                  Orders
+                </Link>
+              </Nav.Link></>:<></>}
               <Nav.Link>
                 <Link to="/help" className="nav-link">
                   Help
@@ -63,21 +70,22 @@ const NavBar = () => {
                 <Button variant="primary" className="login-button" onClick={()=>{
                   if(isUser)
                   {
-                    localStorage.removeItem("keys"); 
-                    chnageUser(false);
-                    window.location.reload();
+                    // localStorage.removeItem("keys"); 
+                    // chnageUser(false);
+                    // window.location.reload();
+                    history.push("/profile");
                   }
                   else{
                     history.push("/login");
                   }}}>
-                  {isUser?"Logout":"SignUp"}
+                  {isUser?"Profile":"SignIn"}
                 </Button>
               {/* </Link> */}
-              <Nav.Link>
+              {isUser?<Nav.Link>
                 <Link to="/cart" className="nav-link">
                   <img src={bag} alt="bag" />
                 </Link>
-              </Nav.Link>
+              </Nav.Link>:<></>}
               <Form className="scrollsearch">
                 <FormControl
                   type="search"
@@ -121,16 +129,16 @@ const NavBar = () => {
                   Home
                 </Link>
               </Nav.Link>
-              <Nav.Link>
-                <Link to="/shop" className="nav-link">
-                  Shop
-                </Link>
-              </Nav.Link>
-              <Nav.Link>
+              {isUser?<><Nav.Link>
                 <Link to="/wishlist" className="nav-link">
                   Wishlist
                 </Link>
               </Nav.Link>
+              <Nav.Link>
+                <Link to="/orders" className="nav-link">
+                  Orders
+                </Link>
+              </Nav.Link></>:<></>}
               <Nav.Link>
                 <Link to="/help" className="nav-link">
                   Help
@@ -139,20 +147,21 @@ const NavBar = () => {
               <Button variant="primary" className="login-button" onClick={()=>{
                   if(isUser)
                   {
-                    localStorage.removeItem("keys"); 
-                    chnageUser(false);
-                    window.location.reload();
+                    // localStorage.removeItem("keys"); 
+                    // chnageUser(false);
+                    // window.location.reload();
+                    history.push("/profile")
                   }
                   else{
                     history.push("/login");
                   }}}>
-                  {isUser?"Logout":"SignUp"}
+                  {isUser?"Profile":"SignIn"}
                 </Button>
-              <Nav.Link>
+              {isUser?<Nav.Link>
                 <Link to="/cart" className="nav-link">
                   <img src={bag} alt="bag" />
                 </Link>
-              </Nav.Link>
+              </Nav.Link>:<></>}
               <Form className="scrollsearch">
                 <FormControl
                   type="search"

@@ -19,7 +19,7 @@ import { EmailProvider } from "./contexts/EmailContext";
 import { ObjectProvider } from "./contexts/ObjectContext";
 import { PushProvider } from "./contexts/PushContext";
 import { AllowProvider } from "./contexts/AllowedContext";
-
+import { SellerProvider } from "./contexts/SellerContext"
 
 function App() {
 
@@ -41,6 +41,7 @@ function App() {
     <ObjectProvider>
     <PushProvider>
     <AllowProvider>
+    <SellerProvider>
       <Router>
         {/* <NavBar/> */}
 
@@ -93,8 +94,14 @@ function App() {
             <MyProfile />
             <Footer />
           </Route>
+          <Route exact path="/dashboard">
+            <NavBar />
+            {/* <MyProfile /> */}
+            <Footer />
+          </Route>
         </Switch>
       </Router>
+    </SellerProvider>
     </AllowProvider>
     </PushProvider>
     </ObjectProvider>

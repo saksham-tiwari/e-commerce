@@ -66,9 +66,19 @@ const ChangePassword = () => {
             await axios.post("https://vshopappdjango.herokuapp.com/api/Account/reset-password/change-password/",{email,"new password": newPass})
             .then((res)=>{
                 if(res.status===202){
+                    const obj = { email, password:newPass}
                     setEmail("");
-                    setUserStat();
-                    history.push("/");
+                    axios.post("https://vshopappdjango.herokuapp.com/api/token/",obj)
+                    .then((res)=>{
+                        // console.log(res.data);
+                        localStorage.setItem("keys", JSON.stringify(res.data));
+                        // changeUser();
+                        // changeObj({});
+                        setUserStat(true);
+
+                        history.push("/");
+                    })
+                    // history.push("/");
                     // setLoader(false)
                 }
             })

@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Block from "../Block/WishlistBlock"
 import CardCarousel from "../CardCarousel"
+import { useUser } from '../../../contexts/UserContext'
+import { useHistory } from 'react-router'
 
 const Wishlist = () => {
+    const history = useHistory();
+    const isUser = useUser();
+    useEffect(()=>{
+        if(isUser!==true){
+            history.push("/");
+        }
+    },[])
     return (
         <div>
             <h1 className="whole">My Wishlist</h1>

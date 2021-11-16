@@ -6,11 +6,11 @@ const Homeblock4 = () => {
         <div className="clothings">
             <div className="clothing">
                 <h1>Men's clothing</h1>
-                <Link className="clothing-link">View Catalog</Link>
+                <Link to="/" className="clothing-link">View Catalog</Link>
             </div>
             <div className="clothing">
                 <h1>Women's clothing</h1>
-                <Link className="clothing-link">View Catalog</Link>
+                <Link to="/" className="clothing-link">View Catalog</Link>
             </div>
         </div>
     )

@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useHistory } from "react-router";
+import { useUser } from "../../../contexts/UserContext";
+
+
 const Cart = () => {
+  const history = useHistory();
+    const isUser = useUser();
+    useEffect(()=>{
+        if(isUser!==true){
+            history.push("/");
+        }
+    },[])
   return (
+    
     <div>
       <h1 className="whole">Checkout</h1>
       <hr className="hr-wish" />

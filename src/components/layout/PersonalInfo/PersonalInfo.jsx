@@ -5,12 +5,17 @@ import styles from "./PersonalInfo.module.css"
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useUpdateUser } from '../../../contexts/UserContext';
+import { useUpdateUser, useUser } from '../../../contexts/UserContext';
 import { useHistory } from 'react-router';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
-import userImg from "../../../assets/userImg.png"
+// import userImg from "../../../assets/userImg.png"
 import styles2 from "../Sidebar/Sidebar.module.css"
+import {useSetAllow} from "../../../contexts/AllowedContext";
+import { useSetEmail } from '../../../contexts/EmailContext';
+import { useSetPush } from '../../../contexts/PushContext';
+import { useSeller, useSetSeller } from '../../../contexts/SellerContext';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
@@ -31,14 +36,28 @@ const PersonalInfo = () => {
     const [phone, setPhone] = useState();
     const [phoneAlert, setPhoneAlert] = useState("");
 
-    const [file, setFile] = useState(null);
+    const setEmail = useSetEmail();
+    const setPush = useSetPush();
+
+
+    const isSeller= useSeller();
+
+    const setSeller = useSetSeller();
+    const isUser = useUser();
+
+    const setAllow = useSetAllow();
+
 
 
     useEffect(() => {
         setLoader(true);
-        
-        access_token= JSON.parse(localStorage.getItem("keys")).access;
-        xyz();
+        if(isUser){
+            access_token= JSON.parse(localStorage.getItem("keys")).access;
+            xyz();
+
+        } else{
+            history.push("/")
+        }
          
     }, [])
     var loaderCSS = css`
@@ -46,8 +65,7 @@ const PersonalInfo = () => {
     position: absolute;
     top: 5%;
     left: 33%;
-
-`
+    `
 
     const [loader, setLoader] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -63,12 +81,16 @@ const PersonalInfo = () => {
         .then((res)=>{
             console.log(res.data)
             setData(res.data);
+            setEmail(res.data.email);
             if(res.data.gender==="F"){
                 setFemale(true);
             }else if(res.data.gender==="M"){
                 setMale(true);
             } else if(res.data.gender==="O"){
                 setOthers(true);
+            }
+            if(res.data.is_seller){
+                setSeller(true);
             }
             setLoader(false);
             // console.log(data);
@@ -79,7 +101,7 @@ const PersonalInfo = () => {
                 alert("Pls login.");
                 localStorage.clear();
                 updateUser(false);
-                history.push("/")
+                history.push("/");
             } else if(err.response.status===500){
                 alert("Server error. Pls try after sometime.")
             }
@@ -112,6 +134,7 @@ const PersonalInfo = () => {
         event.preventDefault();
         setLoader(true);
         var formData = new FormData(event.target);
+        formData.append("is_seller",isSeller);
         access_token = JSON.parse(localStorage.getItem("keys")).access;
         // axios.put("https://vshopappdjango.herokuapp.com/api/Account/update-account/",{
         //     headers: { 
@@ -145,6 +168,23 @@ const PersonalInfo = () => {
             });
 
     }
+    const sellerHandle=()=>{
+        if(isUser){
+            setLoader(true);
+            // setEmail(data.email);
+            axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/",{email:data.email})
+            .then((res)=>{
+                if(res.status===202){
+                    setAllow();
+                    setPush("seller");
+                    history.push("/otp")
+                }
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+    }
 
     let imgLink = "https://vshopappdjango.herokuapp.com"+data.picture;
     // const genderCheck = (x)=>{
@@ -154,6 +194,16 @@ const PersonalInfo = () => {
 
 
     // formData.append('file', 'Chris');
+    const logoutHandle = ()=>{
+        localStorage.removeItem("keys"); 
+        updateUser(false);
+        window.location.reload();
+    }
+
+    const sellerCall = ()=>{
+        history.push("/dashboard");
+    }
+
     return (
         <div>
         <div className={styles2.sidebar}>
@@ -161,6 +211,7 @@ const PersonalInfo = () => {
                     <img src={imgLink} alt="user" className={styles2.userImg}/>
                     <h5 className={styles2.username}>{data.name}</h5>
                 </div>
+                <Button className={styles2.logoutBtn} onClick={logoutHandle}> <LogoutIcon/> LogOut</Button>
                 {/* <ul className={styles.list}>
                     <Link className={styles.listLinks}><li><ShoppingCartIcon className={styles.listIcons}/>My Orders</li></Link>
                     <Link className={styles.listLinks}><li><ShoppingBagIcon className={styles.listIcons}/>My Wishlist</li></Link>
@@ -209,7 +260,8 @@ const PersonalInfo = () => {
                     name="picture" 
                     type="file" 
                     className={styles.input} 
-                    // onChange={saveImg}
+                    onClick={()=>{setSubmit(false)}}
+
                     />
                 </Form.Group>
 
@@ -299,7 +351,7 @@ const PersonalInfo = () => {
                 </Form.Group>
 
                 <Button type="submit" disabled={submit}>Submit</Button> 
-                <Link to="forgot-password"><button type="link">Reset password</button></Link>
+                <Link to="forgot-password"><Button type="link" variant="secondary">Reset password</Button></Link>
 
                 {success?<Alert variant="success" onClose={()=>setSuccess(false)} className={styles.alertSuccess} dismissible>
                     Updated.
@@ -309,8 +361,8 @@ const PersonalInfo = () => {
 
                 </Form>
                 <div className={styles.sellerbtn}>
-                    <button>Become Seller?</button>
-                    <label style={{marginLeft:"0", left:"0"}}>Know more...</label>
+                    {!isSeller?<Button variant="success" onClick={sellerHandle}>Become Seller?</Button>:<Button variant="warning" onClick={sellerCall}>Seller Dashboard</Button>}
+                    <label style={{marginLeft:"0", left:"0"}}></label>
                 </div>
             </div>
 

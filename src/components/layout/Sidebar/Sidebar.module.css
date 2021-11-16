@@ -13,25 +13,26 @@
 .userCapsule{
     position: relative;
     /* margin-top: 25px; */
-    top: 25%;
+    top: 15%;
     left: 7.5%;
     width: 75%;
-    height: 45px;
+    height: 200px;
     box-shadow: 0px 4px 10px rgba(175, 137, 255, 0.15);
     border-radius: 8px;
     background: #F8FAFF;
 }
 .userImg{
-    width: 30px;
-    height: 30px;
+    width: 150px;
+    height: 150px;
     margin: 8px;
+    margin-left: 25px;
     border-radius: 50%;
 }
 .username{
     display: inline-block;
     position: relative;
     top: 5px;
-    left: 5px;
+    left: 20%;
 }
 .list{
     position: relative;
@@ -60,4 +61,13 @@
     top: 25%;
     left: 10%;
     font-size: smaller;
+}
+.logoutBtn{
+    position: relative;
+    top: 18%;
+    left: 22%;
+    background: #C3DFFA;
+    color: #1A6BBA;
+
+
 }
