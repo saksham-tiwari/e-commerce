@@ -228,6 +228,18 @@ form h4{
   margin-left: 58%;
 }
 
+.oval-img{
+  height: 55vh;
+  border-radius: 50%;
+  width: 100%
+
+}
+
+.priceTag{
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+}
 
 
 .flip-card {
@@ -279,6 +291,17 @@ form h4{
   color: white;
   transform: rotateY(180deg);
   padding-top: 10%;
+}
+.flip-card-back h1{
+  width: 50%;
+  margin-left: 25%;
+}
+.flip-card-back p{
+  width: 80%;
+  margin-left: 10%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .prev-nex{

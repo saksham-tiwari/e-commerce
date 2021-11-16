@@ -1,158 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Oval1 from './Oval1'
 import Oval2 from './Oval2'
 import Oval3 from './Oval3'
 import { Button } from 'react-bootstrap'
 import CardCarousel from '../CardCarousel';
+import axios from 'axios'
 
 const ProductsPage = () => {
-    const products=[
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "xyz",
-            category: "Clothes",
-            desc: "Sweater"
-        },
-        {
-            name: "abc",
-            category: "Clothes",
-            desc: "Sweater"   
-        },
-        {
-            name: "def",
-            category: "Clothes",
-            desc: "Sweater"
-        }
-    ]
+
+    useEffect(()=>{
+        axios.get("https://vshopappdjango.herokuapp.com/api/products/")
+        .then((res)=>{
+            console.log(res.data)
+            setProducts(res.data.reverse());
+        })
+    },[])
+
+    const [products, setProducts] = useState([])
+
     let allProds;
     const [page, setPage] = useState(1);
     // const [disp, setDisp] = useState(false);
     let count =-1;
+    // var len;
     if(products.length>24){
+        // len = products.len;
+        // products.reverse();
+        // console.log(products.reverse())
         allProds = products.slice((24*(page-1)),(24*page));
         // setDisp(true);
 
     } else{
         allProds = products;
+    }
+
+    const productClick = ()=>{
+        console.log("clicked")
     }
     return (
         <div>
@@ -163,11 +46,11 @@ const ProductsPage = () => {
                     count = 0;
                 }
                 if(count === 0){
-                    return(<Oval1 name={product.name} category={product.category} desc={product.desc}/>)
+                    return(<Oval1 name={product.name} brand={product.brand} description={product.description} img={"https://vshopappdjango.herokuapp.com"+String(product.picture1)} price = {product.price} onClick={productClick}/>)
                 } else if(count === 1){
-                    return(<Oval2 name={product.name} category={product.category} desc={product.desc}/>)
+                    return(<Oval2 name={product.name} brand={product.brand} description={product.description} img={"https://vshopappdjango.herokuapp.com"+String(product.picture1)} price = {product.price} onClick={productClick}/>)
                 } else{
-                    return(<Oval3 name={product.name} category={product.category} desc={product.desc}/>)
+                    return(<Oval3 name={product.name} brand={product.brand} description={product.description} img={"https://vshopappdjango.herokuapp.com"+String(product.picture1)} price = {product.price} onClick={productClick}/>)
                 }
             })}
            
@@ -179,7 +62,7 @@ const ProductsPage = () => {
 
            </div>
 
-            {allProds.length!==24?<CardCarousel/>:""}
+            {allProds.length!==24?<><h3>Similar Products</h3><CardCarousel/></>:""}
 
         </div>
     )

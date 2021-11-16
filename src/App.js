@@ -13,6 +13,7 @@ import Cart from "./components/layout/Cart/Cart";
 import ProductsPage from "./components/layout/ProductsPage/ProductsPage";
 import Checkout from "./components/layout/Checkout/Checkout";
 import MyProfile from "./components/layout/Profile/MyProfile"
+import Product from './components/layout/Product/Product';
 
 import { UserProvider, useUpdateUser } from './contexts/UserContext';
 import { EmailProvider } from "./contexts/EmailContext";
@@ -20,6 +21,9 @@ import { ObjectProvider } from "./contexts/ObjectContext";
 import { PushProvider } from "./contexts/PushContext";
 import { AllowProvider } from "./contexts/AllowedContext";
 import { SellerProvider } from "./contexts/SellerContext"
+import Dashboard from './components/layout/Dashboard/Dashboard';
+import AddProducts from './components/layout/Dashboard/AddProducts/AddProducts';
+import MyProducts from './components/layout/Dashboard/MyProducts/MyProducts';
 
 function App() {
 
@@ -96,7 +100,24 @@ function App() {
           </Route>
           <Route exact path="/dashboard">
             <NavBar />
-            {/* <MyProfile /> */}
+            <Dashboard />
+            <Footer />
+          </Route>
+          <Route exact path="/dashboard/add-products">
+            <NavBar />
+            <Dashboard />
+            <AddProducts/>
+            <Footer />
+          </Route>
+          <Route exact path="/dashboard/my-products">
+            <NavBar />
+            <Dashboard />
+            <MyProducts/>
+            <Footer />
+          </Route>
+          <Route exact path="/product">
+            <NavBar />
+            <Product />
             <Footer />
           </Route>
         </Switch>

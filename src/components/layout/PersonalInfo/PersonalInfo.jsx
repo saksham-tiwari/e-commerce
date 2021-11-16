@@ -154,9 +154,10 @@ const PersonalInfo = () => {
           })
             .then(function (response) {
               //handle success
-              if(response.status===200)
+              if(response.status===200){
                 setLoader(false);
                 setSuccess(true);
+              }
             })
             .catch(function (err) {
               //handle error
@@ -206,23 +207,24 @@ const PersonalInfo = () => {
 
     return (
         <div>
-        <div className={styles2.sidebar}>
-                <div className={styles2.userCapsule}>
-                    <img src={imgLink} alt="user" className={styles2.userImg}/>
-                    <h5 className={styles2.username}>{data.name}</h5>
-                </div>
-                <Button className={styles2.logoutBtn} onClick={logoutHandle}> <LogoutIcon/> LogOut</Button>
-                {/* <ul className={styles.list}>
-                    <Link className={styles.listLinks}><li><ShoppingCartIcon className={styles.listIcons}/>My Orders</li></Link>
-                    <Link className={styles.listLinks}><li><ShoppingBagIcon className={styles.listIcons}/>My Wishlist</li></Link>
-                    <Link className={styles.listLinks}><li><LocalShippingIcon className={styles.listIcons}/>My Cart</li></Link>
-                    <Link className={styles.listLinks}><li><CreditCardIcon className={styles.listIcons}/>My Transactions</li></Link>
-                    <Link className={styles.listLinks}><li><ChatBubbleOutlineOutlinedIcon className={styles.listIcons}/>My Stuff</li></Link>
-                    <Link className={styles.listLinks}><li><SettingsIcon className={styles.listIcons}/>Settings</li></Link>
-                </ul> */}
-                <h5 className={styles2.customerSupport}>Customer Support</h5>
-                <p className={styles2.customerSupportPara}>Ask you query , place requests or important issues. Our support team will contact 24/7 to you. </p>
+            <div className={styles2.sidebar}>
+                    <div className={styles2.userCapsule}>
+                        <img src={imgLink} alt="user" className={styles2.userImg}/>
+                        <h5 className={styles2.username}>{data.name}</h5>
+                    </div>
+                    <Button className={styles2.logoutBtn} onClick={logoutHandle}> <LogoutIcon/> LogOut</Button>
+                    {/* <ul className={styles.list}>
+                        <Link className={styles.listLinks}><li><ShoppingCartIcon className={styles.listIcons}/>My Orders</li></Link>
+                        <Link className={styles.listLinks}><li><ShoppingBagIcon className={styles.listIcons}/>My Wishlist</li></Link>
+                        <Link className={styles.listLinks}><li><LocalShippingIcon className={styles.listIcons}/>My Cart</li></Link>
+                        <Link className={styles.listLinks}><li><CreditCardIcon className={styles.listIcons}/>My Transactions</li></Link>
+                        <Link className={styles.listLinks}><li><ChatBubbleOutlineOutlinedIcon className={styles.listIcons}/>My Stuff</li></Link>
+                        <Link className={styles.listLinks}><li><SettingsIcon className={styles.listIcons}/>Settings</li></Link>
+                    </ul> */}
+                    <h5 className={styles2.customerSupport}>Customer Support</h5>
+                    <p className={styles2.customerSupportPara}>Ask you query , place requests or important issues. Our support team will contact 24/7 to you. </p>
             </div>
+
             <div className={styles.info}>
                 <h3 style={{marginLeft:"20%"}}>Personal Information</h3>
                 <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>

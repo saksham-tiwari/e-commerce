@@ -1,0 +1,22 @@
+.block{
+    display: block;
+    position: relative;
+    width: 75vw;
+    height: 100vh;
+    /* margin-left: 10%; */
+    left: 22%;
+    border: 1px solid salmon;
+}
+
+.head{
+    text-align: center;
+}
+.addForm{
+    position: relative;
+    top: 0;
+    left: 25%;
+    width: 50%;
+}
+.label{
+    margin-left: 0;
+}
