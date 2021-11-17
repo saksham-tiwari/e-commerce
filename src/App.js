@@ -115,7 +115,7 @@ function App() {
             <MyProducts/>
             <Footer />
           </Route>
-          <Route exact path="/product">
+          <Route exact path="/product/:id">
             <NavBar />
             <Product />
             <Footer />

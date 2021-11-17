@@ -1,0 +1,92 @@
+.imgOval{
+    width: 39.5vw;
+    height: 90vh;
+    /* border-radius: 1000px 1000px 0 0; */
+    /* width: 400px; */
+    /* height: 800px; */
+    border-radius: 50% / 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-left: 29.7vw;
+
+    background: #E8E7E5;
+}
+
+.priceBox{
+    position: absolute;
+    width: 35%;
+    top: 64%;
+    padding: 20px;
+}
+.priceBox2{
+    position: absolute;
+    width: 35%;
+    top: 60%;
+    right: -5%;
+    padding: 20px;
+}
+
+.btnWish{
+    width: 39%;
+    margin-left: 4%;
+    background-color: rgb(44, 39, 39);
+    border-color: rgb(44, 39, 39);
+    color: antiquewhite;
+}
+.btnOrder{
+    width: 60%;
+    height: 8vh;
+    margin-left: 10%;
+    background-color: rgb(44, 39, 39);
+    border-color: rgb(44, 39, 39);
+    color: antiquewhite;
+}
+.btnWish:hover{
+    background-color: antiquewhite;
+    color: rgb(44, 39, 39);
+}
+.btnOrder:hover{
+    background-color: antiquewhite;
+    color: rgb(44, 39, 39);
+}
+.hrsides{
+    width: 95%;
+    margin-left: -5%;
+    border: 2px solid black;
+    border-radius: 10px;
+    opacity: 0.7;
+}
+.shortImg{
+    display: inline-block;
+    height: 15vh;
+    width: 5vw;
+    margin: 10px;
+    border-radius: 50px;
+    background-color: #E8E7E5;
+}
+.prodID{
+    text-align: right;
+    width: 80%;
+}
+.brandDes{
+    width: 40%;
+    margin-left: 2%;
+}
+.textarea{
+    width: 50%;
+    margin: 10px;
+}
+.ratePro{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.textAreaBtn{
+    margin-left: 40%;
+    width: 10%;
+    margin-bottom: 3%;
+}
+.comment{
+    width: 70%;
+    margin: 20px;
+    margin-left: 5%;
+}

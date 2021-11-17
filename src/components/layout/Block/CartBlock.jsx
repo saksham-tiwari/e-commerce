@@ -15,7 +15,7 @@ const Block = (props) => {
                 <div>
                     <h4>Product Name</h4>
                     <h5>Price</h5>
-                    <Stars rating={props.rating}/>
+                    <Stars rating={props.rating} edit={false}/>
                     <span>Desc</span>
                     <p className={styles.desc}>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
                     <RemoveIcon fontSize="small"/><span className={styles.number}>1</span><AddIcon fontSize="small"/> <DeleteIcon/>

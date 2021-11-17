@@ -5,14 +5,28 @@ import Oval3 from './Oval3'
 import { Button } from 'react-bootstrap'
 import CardCarousel from '../CardCarousel';
 import axios from 'axios'
+import { BounceLoader } from 'react-spinners'
+import { css } from '@emotion/react'
+
 
 const ProductsPage = () => {
 
+    const [loader, setLoader] = useState(false);
+
+    var loaderCSS = css`
+        margin: 45%;
+        color : #5afe;
+
+    `
+
+
     useEffect(()=>{
+        setLoader(true)
         axios.get("https://vshopappdjango.herokuapp.com/api/products/")
         .then((res)=>{
             console.log(res.data)
             setProducts(res.data.reverse());
+            setLoader(false);
         })
     },[])
 
@@ -40,17 +54,18 @@ const ProductsPage = () => {
     return (
         <div>
             <h1 className="whole">Search results for: Clothings</h1>
+            <BounceLoader loading={loader}  css={loaderCSS} color="#8C6E86" size="80"/>
             {allProds.map((product)=>{
                 count++;
                 if(count===3){
                     count = 0;
                 }
                 if(count === 0){
-                    return(<Oval1 name={product.name} brand={product.brand} description={product.description} img={"https://vshopappdjango.herokuapp.com"+String(product.picture1)} price = {product.price} onClick={productClick}/>)
+                    return(<Oval1 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price} onClick={productClick}/>)
                 } else if(count === 1){
-                    return(<Oval2 name={product.name} brand={product.brand} description={product.description} img={"https://vshopappdjango.herokuapp.com"+String(product.picture1)} price = {product.price} onClick={productClick}/>)
+                    return(<Oval2 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price} onClick={productClick}/>)
                 } else{
-                    return(<Oval3 name={product.name} brand={product.brand} description={product.description} img={"https://vshopappdjango.herokuapp.com"+String(product.picture1)} price = {product.price} onClick={productClick}/>)
+                    return(<Oval3 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price} onClick={productClick}/>)
                 }
             })}
            
