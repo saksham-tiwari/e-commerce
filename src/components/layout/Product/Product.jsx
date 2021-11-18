@@ -21,6 +21,7 @@ const Product = (props) => {
     }]);
     var img1;
     useEffect(()=>{
+        // console.log(props.match.params.id)
         axios.get("https://vshopappdjango.herokuapp.com/api/products/")
         .then((res)=>{
             setData(res.data.filter(prod=>prod.id==props.match.params.id));
@@ -28,6 +29,29 @@ const Product = (props) => {
             img1= data[0].picture1
 
         })
+
+        
+
+        // axios.get("https://vshopappdjango.herokuapp.com/api/products/product-details/",{id:props.match.params.id})
+        // .then((res)=>{
+        //     setData(res.data);
+        //     console.log(res.data);
+        //     img1= data.picture1
+
+        // })
+
+        // let fd = new FormData();
+        // fd.append("id",props.match.params.id)
+
+        // axios({
+        //     method: "get",
+        //     url: "https://vshopappdjango.herokuapp.com/api/products/product-details/",
+        //     data: fd,
+        //   })
+        //   .then((res)=>{
+        //       setData(res.data);
+        //       console.log(res.data);
+        //   })
     },[])
 
     const handleCartClick = ()=>{
@@ -53,9 +77,9 @@ const Product = (props) => {
             </div>
             <div className={styles.priceBox2}>
                 <span ><img src={data[0].picture1} alt="" className={styles.shortImg}></img></span>
-                <span ><img src={data[0].picture1} alt="" className={styles.shortImg}></img></span>
-                <span ><img src={data[0].picture1} alt="" className={styles.shortImg}></img></span>
-                <span ><img src={data[0].picture1} alt="" className={styles.shortImg}></img></span>
+                <span ><img src={data[0].picture2} alt="" className={styles.shortImg}></img></span>
+                <span ><img src={data[0].picture3} alt="" className={styles.shortImg}></img></span>
+                <span ><img src={data[0].picture4} alt="" className={styles.shortImg}></img></span>
                 <hr className={styles.hrsides}></hr>
                 <p className={styles.prodID}>Product ID: {data[0].id}</p>
                 <Button className={styles.btnOrder}>Buy Now!</Button>

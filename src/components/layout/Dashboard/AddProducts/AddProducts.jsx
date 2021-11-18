@@ -48,7 +48,7 @@ const AddProducts = () => {
              },
           }).then((response)=> {
               //handle success
-              if(response.status===200){
+              if(response.status===201){
                 setLoader(false);
                 setSuccess(true);
               }
@@ -97,7 +97,7 @@ const AddProducts = () => {
             </Form>
 
             {success?<Alert variant="success" onClose={()=>setSuccess(false)} className={styles.alertSuccess} dismissible>
-                    Updated.
+                    Product created.
                 </Alert>:<p></p>}
         </div>
     )

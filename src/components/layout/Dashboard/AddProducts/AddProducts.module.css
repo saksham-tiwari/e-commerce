@@ -2,7 +2,7 @@
     display: block;
     position: relative;
     width: 75vw;
-    height: 100vh;
+    height: 110vh;
     /* margin-left: 10%; */
     left: 22%;
     border: 1px solid salmon;
@@ -19,4 +19,8 @@
 }
 .label{
     margin-left: 0;
+}
+.alertSuccess{
+    margin-top: 22%;
+    margin-left: 25%;
 }
