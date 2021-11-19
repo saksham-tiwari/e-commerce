@@ -8,15 +8,16 @@
     text-align: justify;
 }
 .imgSample{
-    height: 40vh;
-    width: 45vw;
+    height: 30vh;
+    width: 20vw;
     background: #C4C4C4;
-    border: 1px solid gray;
     margin: 0px 15px;
     margin-left: 3%;
 }
 .desc{
     font-size: 14px;
+    height: 100px;
+    overflow-wrap: break-word;
 }
 .cartBtn{
     background-color: #E4C9DF;
@@ -24,7 +25,19 @@
     border: 0px;
     font-weight: 700;
     margin-left: 25%;
+    width: 10vw;
 }
 .number{
-    font-size: 18px;
+    position: relative;
+    font-size: 24px;
+    color: royalblue;
+    margin: 4px;
+    top: 4px;
+
+}
+.btnPlusMinus{
+    background: #E4C9DF;
+    border: none;
+    border-radius: 10px;
+    margin: 4px;
 }

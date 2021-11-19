@@ -90,3 +90,7 @@
     margin: 20px;
     margin-left: 5%;
 }
+.alertSuccess{
+    position: absolute;
+    top: -100%;
+}

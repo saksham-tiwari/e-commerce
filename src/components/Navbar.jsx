@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Navbar,
@@ -9,12 +9,11 @@ import {
 } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import bag from "../assets/shoppingbag.svg";
-import { useUser, useUpdateUser } from "../contexts/UserContext";
+import { useUser } from "../contexts/UserContext";
 
 const NavBar = () => {
   const history = useHistory();
   const isUser = useUser();
-  const chnageUser = useUpdateUser();
   // const style2={
   //   maxHeight: "400px",
   //   marginLeft: "75%"
@@ -22,6 +21,14 @@ const NavBar = () => {
   // const style1={
   //   maxHeight: "400px"
   // }
+
+  const [search, setSearch] = useState("")
+
+  const searchProd = ()=>{
+    setSearch("");
+    history.push(`/products/${search}`);
+  }
+
   return (
     <div>
       <Navbar bg="light" expand="lg" className="color-nav navibar">
@@ -36,8 +43,10 @@ const NavBar = () => {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              value={search}
+              onChange={(e)=>{setSearch(e.target.value)}}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" onClick={searchProd}>Search</Button>
           </Form>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -109,13 +118,15 @@ const NavBar = () => {
           <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
 
           <Form className="d-flex searchbar">
-            <FormControl
+          <FormControl
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              value={search}
+              onChange={(e)=>{setSearch(e.target.value)}}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" onClick={searchProd}>Search</Button>
           </Form>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">

@@ -6,15 +6,16 @@ import { Button } from 'react-bootstrap'
 import CardCarousel from '../CardCarousel';
 import axios from 'axios'
 import MyComponent from 'react-fullpage-custom-loader'
+import { withRouter } from 'react-router'
 
 
-const ProductsPage = () => {
+const ProductsPage = (props) => {
 
     const [fullPageLoader, setFullPageLoader] = useState(false);
 
     useEffect(()=>{
         setFullPageLoader(true)
-        axios.get("https://vshopappdjango.herokuapp.com/api/products/")
+        axios.get(`https://vshopappdjango.herokuapp.com/api/products/search-product/?search=${props.match.params.query}`)
         .then((res)=>{
             console.log(res.data)
             setProducts(res.data.reverse());
@@ -44,9 +45,8 @@ const ProductsPage = () => {
         <div>
             {fullPageLoader?<MyComponent loaderType="ball-circus" fadeIn={true} sentences={[]}/>:<></>}
 
-            <h1 className="whole">All Products</h1>
+            <h1 className="whole">Search results for: {props.match.params.query}</h1>
             <hr className="hr-wish"/>
-
             {allProds.map((product)=>{
                 count++;
                 if(count===3){
@@ -75,4 +75,5 @@ const ProductsPage = () => {
     )
 }
 
-export default ProductsPage
+
+export default withRouter(ProductsPage)

@@ -14,6 +14,10 @@ import ProductsPage from "./components/layout/ProductsPage/ProductsPage";
 import Checkout from "./components/layout/Checkout/Checkout";
 import MyProfile from "./components/layout/Profile/MyProfile"
 import Product from './components/layout/Product/Product';
+import Dashboard from './components/layout/Dashboard/Dashboard';
+import AddProducts from './components/layout/Dashboard/AddProducts/AddProducts';
+import MyProducts from './components/layout/Dashboard/MyProducts/MyProducts';
+import ProductsSearch from './components/layout/ProductsPage/ProductsSearch';
 
 import { UserProvider, useUpdateUser } from './contexts/UserContext';
 import { EmailProvider } from "./contexts/EmailContext";
@@ -21,9 +25,6 @@ import { ObjectProvider } from "./contexts/ObjectContext";
 import { PushProvider } from "./contexts/PushContext";
 import { AllowProvider } from "./contexts/AllowedContext";
 import { SellerProvider } from "./contexts/SellerContext"
-import Dashboard from './components/layout/Dashboard/Dashboard';
-import AddProducts from './components/layout/Dashboard/AddProducts/AddProducts';
-import MyProducts from './components/layout/Dashboard/MyProducts/MyProducts';
 
 function App() {
 
@@ -118,6 +119,11 @@ function App() {
           <Route exact path="/product/:id">
             <NavBar />
             <Product />
+            <Footer />
+          </Route>
+          <Route exact path="/products/:query">
+            <NavBar />
+            <ProductsSearch />
             <Footer />
           </Route>
         </Switch>
