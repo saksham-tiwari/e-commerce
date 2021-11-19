@@ -24,7 +24,10 @@ import { EmailProvider } from "./contexts/EmailContext";
 import { ObjectProvider } from "./contexts/ObjectContext";
 import { PushProvider } from "./contexts/PushContext";
 import { AllowProvider } from "./contexts/AllowedContext";
-import { SellerProvider } from "./contexts/SellerContext"
+import { SellerProvider } from "./contexts/SellerContext";
+import { CartProvider } from './contexts/CartContext';
+import { WishlistProvider } from './contexts/WishlistContext';
+import OrderSuccess from './components/layout/OrderSuccess/OrderSuccess';
 
 function App() {
 
@@ -47,6 +50,8 @@ function App() {
     <PushProvider>
     <AllowProvider>
     <SellerProvider>
+    <CartProvider>
+    <WishlistProvider>
       <Router>
         {/* <NavBar/> */}
 
@@ -102,6 +107,7 @@ function App() {
           <Route exact path="/dashboard">
             <NavBar />
             <Dashboard />
+            <AddProducts/>
             <Footer />
           </Route>
           <Route exact path="/dashboard/add-products">
@@ -126,8 +132,15 @@ function App() {
             <ProductsSearch />
             <Footer />
           </Route>
+          <Route exact path="/order-success/:txn_id">
+            <NavBar />
+            <OrderSuccess />
+            <Footer />
+          </Route>
         </Switch>
       </Router>
+    </WishlistProvider>
+    </CartProvider>
     </SellerProvider>
     </AllowProvider>
     </PushProvider>

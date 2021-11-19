@@ -37,7 +37,7 @@ const NavBar = () => {
             <Navbar.Brand>V-Shop</Navbar.Brand>
           </Link>
 
-          <Form className="d-flex searchbar">
+          <Form className="d-flex searchbar" onSubmit={(e)=>{e.preventDefault();}}>
             <FormControl
               type="search"
               placeholder="Search"
@@ -117,7 +117,7 @@ const NavBar = () => {
         <Container fluid>
           <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
 
-          <Form className="d-flex searchbar">
+          <Form className="d-flex searchbar" onSubmit={(e)=>{e.preventDefault();}}>
           <FormControl
               type="search"
               placeholder="Search"

@@ -14,9 +14,16 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 // import SettingsIcon from '@mui/icons-material/Settings';
 // import { Link } from 'react-router-dom';
 // import { style } from '@mui/system';
+import { useUpdateUser } from '../../../contexts/UserContext';
 
 
 const Sidebar = () => {
+    const updateUser = useUpdateUser();
+    const logoutHandle = ()=>{
+        localStorage.removeItem("keys"); 
+        updateUser(false);
+        window.location.reload();
+    }
     return (
         <div className={styles.sidebar}>
         <div className={styles.dashCapsule}>
@@ -24,7 +31,7 @@ const Sidebar = () => {
             <DashboardIcon className={styles.dashIcon}/>
             <h5 className={styles.username}>Dashboard</h5>
         </div>
-        <Button className={styles.logoutBtn}> <LogoutIcon/> LogOut</Button>
+        <Button className={styles.logoutBtn} onClick={logoutHandle}> <LogoutIcon/> LogOut</Button>
         <ul className={styles.list}>
             <Link to="/dashboard/add-products" className={styles.listLinks}><li><ShoppingCartIcon className={styles.listIcons}/>Add Product</li></Link>
             <Link to="/dashboard/my-products" className={styles.listLinks}><li><ShoppingBagIcon className={styles.listIcons}/>My Products</li></Link>

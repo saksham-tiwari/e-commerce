@@ -187,7 +187,7 @@ const PersonalInfo = () => {
         }
     }
 
-    let imgLink = "https://vshopappdjango.herokuapp.com"+data.picture;
+    let imgLink = data.picture;
     // const genderCheck = (x)=>{
     //     setGvalue(x)
     //     // console.log(gvalue);

@@ -5,6 +5,7 @@ import {Link, withRouter} from "react-router-dom"
 import styles from "./Product.module.css"
 import Stars from "../Stars/Stars"
 import { Tick } from 'react-crude-animated-tick';
+import ReactStars from "react-rating-stars-component";
 import MyComponent from 'react-fullpage-custom-loader'
 
 
@@ -26,7 +27,12 @@ const Product = (props) => {
     const [success, setSuccess] = useState(false);
     const [success2, setSuccess2] = useState(false);
     const [success3, setSuccess3] = useState(false);
+    const [success4, setSuccess4] = useState(false);
     const [fullPageLoader, setFullPageLoader] = useState(false);
+
+    const [stars, setStars] = useState(3);
+    const [comment, setComment] = useState("")
+    const [mainImg, setMainImg] = useState();
 
 
     // var img1;
@@ -37,6 +43,7 @@ const Product = (props) => {
         .then((res)=>{
             setData(res.data.filter(prod=>prod.id==props.match.params.id));
             console.log(res.data.filter(prod=>prod.id==props.match.params.id));
+            setMainImg(res.data.filter(prod=>prod.id==props.match.params.id)[0].picture1);
             // img1= data[0].picture1
             setFullPageLoader(false);
 
@@ -118,13 +125,51 @@ const Product = (props) => {
         })
     }
 
+    const ratingChanged = (newRating) => {
+        setStars(newRating)
+        console.log(stars);
+      };
+
+    const handleReviews = ()=>{
+        access_token = JSON.parse(localStorage.getItem("keys")).access;
+        console.log(parseInt(props.match.params.id));
+        console.log(comment);
+        console.log(stars);
+        axios({
+            method: "post",
+            url: "https://vshopappdjango.herokuapp.com/api/products/add-comment/",
+            data: {product:parseInt(props.match.params.id), content:comment, rating:stars.toString()},
+            headers: { 
+                Authorization: "Bearer " + access_token
+            },
+        })
+        .then((res)=>{
+            if(res.status===201){
+                console.log(res);
+                setSuccess4(true);
+                setStars(0);
+                setComment("");
+                setTimeout(()=>{
+                    setSuccess4(false);
+                },2000)
+            }
+        })
+        .catch((err)=>{
+            console.log(err.response);
+        })
+    }
+
+    const handleImgClick = (x)=>{
+        setMainImg(x)
+    }
+
     return (
         <div>
             {fullPageLoader?<MyComponent loaderType="ball-circus" fadeIn={true} sentences={[]}/>:<></>}
             {/* {props.match.params.id} */}
             <h1 className="whole">{data[0].name}</h1>
             <div>
-                <img src={data[0].picture1} alt="" className={styles.imgOval}></img>
+                <img src={mainImg} alt="" className={styles.imgOval}></img>
             </div>
             <div className={styles.priceBox}>
                 {success?<Alert variant="success" onClose={()=>setSuccess(false)} className={styles.alertSuccess} dismissible>
@@ -143,10 +188,11 @@ const Product = (props) => {
 
             </div>
             <div className={styles.priceBox2}>
-                <span ><img src={data[0].picture1} alt="" className={styles.shortImg}></img></span>
-                <span ><img src={data[0].picture2} alt="" className={styles.shortImg}></img></span>
-                <span ><img src={data[0].picture3} alt="" className={styles.shortImg}></img></span>
-                <span ><img src={data[0].picture4} alt="" className={styles.shortImg}></img></span>
+                <span onClick={()=>{handleImgClick(data[0].picture1)}}><img src={data[0].picture1} alt="" className={styles.shortImg}></img></span>
+                {data[0].picture2!==null?<span onClick={()=>{handleImgClick(data[0].picture2)}}><img src={data[0].picture2} alt="" className={styles.shortImg}></img></span>:<></>}
+                {data[0].picture3!==null?<span onClick={()=>{handleImgClick(data[0].picture3)}}><img src={data[0].picture3} alt="" className={styles.shortImg}></img></span>:<></>}
+                {data[0].picture4!==null?<span onClick={()=>{handleImgClick(data[0].picture4)}}><img src={data[0].picture4} alt="" className={styles.shortImg}></img></span>:<></>}
+
                 <hr className={styles.hrsides}></hr>
                 <p className={styles.prodID}>Product ID: {data[0].id}</p>
                 <Button className={styles.btnOrder} onClick={handleCartClick}>Buy Now!</Button>
@@ -158,19 +204,23 @@ const Product = (props) => {
             </div>
             <div className={styles.ratePro}>
                 <p>Rate the product and give your reviews.</p>
-                <Stars edit={true} size={32}/>
-                <Form.Control as="textarea" rows={4} placeholder="Your reviews" className={styles.textarea} />
-                <Button className={styles.textAreaBtn}>Submit</Button>
+                <ReactStars size={32} count={5} isHalf= {true} edit= {true} onChange={ratingChanged}/>
+                {/* <Stars edit={true} size={32}/> */}
+                <Form.Control as="textarea" rows={4} placeholder="Your reviews" className={styles.textarea} onChange={(e)=>{setComment(e.target.value)}} />
+                <Button className={styles.textAreaBtn} onClick={handleReviews}>Submit</Button>
+                {success4?<Alert variant="success" onClose={()=>setSuccess4(false)} dismissible>
+                    <p>Review added successfully. Thanks for your contribution.</p><Tick size={40} /> 
+                </Alert>:<p></p>}
             </div>
 
-            <div>
+            <div className={styles.reviewBlock}>
                 <h1>Reviews</h1>
                 {data[0].comment_product.map((comment)=>{
                     return(
                     <div className={styles.comment}>
                         <h3>{comment.author}</h3>
-                        <p>{comment.content}</p>
                         <Stars edit={false} rating={comment.rating}/>
+                        <p>{comment.content}</p>
                     </div>
                     )
                 }

@@ -5,27 +5,20 @@ import { useUser } from '../../../contexts/UserContext'
 import { useHistory } from 'react-router'
 import axios from 'axios'
 import MyComponent from 'react-fullpage-custom-loader'
+import { useWishlist, useSetWishlist } from '../../../contexts/WishlistContext'
+import { Alert } from 'react-bootstrap'
 
 
 const Wishlist = () => {
     var access_token
     const [fullPageLoader, setFullPageLoader] = useState(false);
 
+    const wishlist = useWishlist();
+    const setWishlist = useSetWishlist();
+    const [success, setSuccess] = useState(false);
+
     const history = useHistory();
     const isUser = useUser();
-    const [data,setData] = useState([{
-        id: 0,
-        name: "Name",
-        price: 0,
-        brand: "Brand",
-        description: "Description",
-        picture1: "",
-        picture2: "",
-        picture3: "",
-        picture4: "",
-        comment_product: [],
-        tag_product: []
-    }]);
     useEffect(()=>{
         if(isUser!==true){
             history.push("/");
@@ -40,7 +33,8 @@ const Wishlist = () => {
              },
         })
         .then((res)=>{
-            setData(res.data)
+            // setData(res.data)
+            setWishlist(res.data)
             console.log(res.data);
             setFullPageLoader(false);
         })
@@ -51,8 +45,11 @@ const Wishlist = () => {
 
             <h1 className="whole">My Wishlist</h1>
             <hr className="hr-wish"/>
-            {data.map((product)=>{
-                return(<Block id={product.id} name={product.name} price={product.price} desc={product.description} img={product.picture1}/>)
+            {success?<Alert variant="success" onClose={()=>setSuccess(false)} className="alert" style={{marginLeft:"35%"}} dismissible>
+                    Added to cart
+                </Alert>:<p></p>}
+            {wishlist.map((product)=>{
+                return(<Block id={product.id} name={product.name} price={product.price} desc={product.description} img={product.picture1} setSuccess={setSuccess}/>)
             })}
             {/* <Block/>            
             <Block/>            

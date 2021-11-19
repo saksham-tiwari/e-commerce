@@ -19,7 +19,7 @@ const Oval3 = (props) => {
                 <p>{props.description}</p>
                 </div>
             </div>
-            <p className="priceTag">Rs.{props.price}</p>
+            <p className="priceTag">&#8377;{props.price}</p>
         </div>
     )
 }

@@ -17,7 +17,9 @@
 .desc{
     font-size: 14px;
     height: 100px;
-    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  /* white-space: nowrap; */
 }
 .cartBtn{
     background-color: #E4C9DF;
@@ -40,4 +42,9 @@
     border: none;
     border-radius: 10px;
     margin: 4px;
+}
+.h4{
+    text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

@@ -21,24 +21,10 @@ const Block = (props) => {
         .then((res)=>{
             
             if(res.status===201){
-                axios({
-                    method: "delete",
-                    url: "https://vshopappdjango.herokuapp.com/api/products/wishlist/",
-                    data: {id:props.id},
-                    headers: { 
-                        Authorization: "Bearer " + access_token
-                     },
-                })
-                .then((res)=>{
-                    if(res.status===404){
-                        alert("moved to cart")
-                    }
-                }).catch((err)=>{
-                    if(err.response.status===404){
-                        alert("moved to cart")
-                        window.location.reload();
-                    }
-                })
+                props.setSuccess(true);
+                setTimeout(()=>{
+                    props.setSuccess(false);
+                },3000)
             }
             // else if(res.status===208){
             //     setSuccess3(true);
@@ -56,8 +42,8 @@ const Block = (props) => {
             <div className={styles.cardProduct}>
                 <div onClick={handleImgClick}> <img src={props.img} alt="" className={styles.imgSample}></img> </div>
                 <div>
-                    <h4>{props.name}</h4>
-                    <h5>{props.price}</h5>
+                    <h4 className={styles.h4}>{props.name}</h4>
+                    <h5>&#8377;{props.price}</h5>
                     <span>Description</span>
                     <p className={styles.desc}>{props.desc}</p>
                     <button class={styles.cartBtn} onClick={sendToCart}>Add to cart</button>

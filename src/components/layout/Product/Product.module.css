@@ -63,6 +63,7 @@
     margin: 10px;
     border-radius: 50px;
     background-color: #E8E7E5;
+    border: 1px solid #E8E7E5
 }
 .prodID{
     text-align: right;
@@ -93,4 +94,7 @@
 .alertSuccess{
     position: absolute;
     top: -100%;
+}
+.reviewBlock{
+    margin-left: 10%;
 }
