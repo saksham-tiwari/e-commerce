@@ -12,6 +12,23 @@ body {
   opacity: 0.7;
 }
 
+.logo{
+  width: 100%;
+}
+
+.main-slogan{
+  font-size: 48px;
+  width: 60%;
+  padding-top: 6%;
+  padding-left: 8%;
+}
+.maingirl{
+  position: absolute;
+  /* top: 10%; */
+  top: 6%;
+  left: 65%;
+}
+
 .color-nav{
   background-color: #FFFFFF;
 }

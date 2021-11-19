@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Carousel } from '@trendyol-js/react-carousel';
 import Sample from "../../assets/download.jfif"
@@ -6,6 +6,9 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const Homeblock2 = () => {
+    // useEffect(()=>{
+
+    // },[])
     return (
         <div>
             <Carousel show={4.5} slide={2} transition={0.5} swiping={true} useArrowKeys={true} leftArrow={<ArrowLeftIcon/>} rightArrow={<ArrowRightIcon/>}>

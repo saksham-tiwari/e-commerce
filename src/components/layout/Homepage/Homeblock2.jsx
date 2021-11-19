@@ -1,6 +1,6 @@
 import React from 'react'
-import image from '../../../assets/download.jfif'
-
+import elec from "../../../assets/homeimages/elec.svg"
+import grocery from "../../../assets/homeimages/grocery.svg"
 const Homeblock2 = () => {
     return (
         <div className="box-2">
@@ -8,21 +8,21 @@ const Homeblock2 = () => {
             <div className="flex-container">
                 <div>
                     <div className="flex-container flex-inside-flex">
-                        <img className="explore-img" src={image} alt="sample"/>
+                        <img className="explore-img" src={elec} alt="sample"/>
                         <div className="desc">
-                            <h3 className="headings-all">XYZ</h3>
+                            <h3 className="headings-all">ELECTRONICS</h3>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec dolor in orci euismod rhoncus sed at orci. In hac habitasse platea dictumst.Cras pulvinar luctus felis.</p>
+                            <p><br/> <br/> Buy 2 save more. <br/> Get Extra 25% off <br/></p>
                         </div>
 
                     </div>
                 </div>
                 <div>
                     <div className="flex-container flex-inside-flex">
-                            <img className="explore-img" src={image} alt="sample"/>
+                            <img className="explore-img" src={grocery} alt="sample"/>
                             <div className="desc">
-                                <h3 className="headings-all">XYZ</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec dolor in orci euismod rhoncus sed at orci. In hac habitasse platea dictumst.Cras pulvinar luctus felis.</p>
+                                <h3 className="headings-all">GROCERY</h3>
+                                <p><br/> <br/> Buy 2 save more. <br/> Get Extra 25% off <br/></p>
                             </div>
                     </div>
                 </div>

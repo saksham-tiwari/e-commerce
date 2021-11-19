@@ -10,6 +10,7 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import bag from "../assets/shoppingbag.svg";
 import { useUser } from "../contexts/UserContext";
+import logo from "../assets/logovshop.png";
 
 const NavBar = () => {
   const history = useHistory();
@@ -33,8 +34,8 @@ const NavBar = () => {
     <div>
       <Navbar bg="light" expand="lg" className="color-nav navibar">
         <Container fluid>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Navbar.Brand>V-Shop</Navbar.Brand>
+          <Link to="/" style={{ textDecoration: "none", width:"10%" }}>
+            <Navbar.Brand><img src={logo} alt="logo" className="logo"></img></Navbar.Brand>
           </Link>
 
           <Form className="d-flex searchbar" onSubmit={(e)=>{e.preventDefault();}}>
