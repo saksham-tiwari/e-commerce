@@ -16,23 +16,6 @@ body {
   width: 100%;
 }
 
-.main-slogan{
-  font-size: 48px;
-  width: 60%;
-  padding-top: 6%;
-  padding-left: 8%;
-}
-.maingirl{
-  position: absolute;
-  /* top: 10%; */
-  top: 6%;
-  left: 65%;
-}
-
-.color-nav{
-  background-color: #FFFFFF;
-}
-
 .globe{
   height: 100vh;
   width: 50vw;
@@ -56,6 +39,16 @@ form{
   width: 100%;
   margin-bottom: 10px;
   
+}
+.viewProdBtn{
+  position: relative;
+  left: 20%;
+}
+
+.carouselh1{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .icon {
@@ -196,6 +189,7 @@ form h4{
 .navibar{
   position: fixed;
   width: 100%;
+  min-width: 100px;
   z-index: 3;
 }
 .searchbar{
@@ -331,6 +325,7 @@ form h4{
 }
 .login-button{
   position: relative;
+  width: 40%;
   height: 40px;
   top: 8px;
 }
@@ -357,6 +352,7 @@ form h4{
     width: 90%;
   }
   .navlinks{
+    margin-left: 43%;
     padding-left: 8%;
   }
 }
@@ -375,7 +371,16 @@ form h4{
   }
   
 }
+@media only screen and (max-width: 845px) {
+  .scrollsearch{
+    width: 30%;
+  }
+
+}
 @media only screen and (max-width: 720px) {
+  .oval, .oval-img{
+    height: 35vh;
+  }
   .globe{
     height: 50vh;
     width: 50vw;
@@ -432,9 +437,10 @@ form h4{
   .scrollsearch{
     margin-top: -30%;
     margin-left: 17%;
+    width: 70%;
   }
   .login-button{
-    margin-left: 0;
+    margin-left: 30%;
   }
 }
 @media only screen and (max-width: 545px){
@@ -443,10 +449,26 @@ form h4{
   }
   .scrollsearch{
     margin-top: -35%;
+    width: 50%;
+  }
+  .navlinks{
+    width: 50%;
+  }
+  .oval2{
+    margin: 0 10%;
+  }
+  .oval3{
+    margin-left: 45%;
   }
 }
 
+@media only screen and (max-width: 480px){
+  .navibar{
+    width: 90%;
+  }
+}
 @media only screen and (max-width: 454px){
+  
   h2{
     font-size: 30px;
   }
@@ -470,5 +492,4 @@ form h4{
   .google-span{
     font-size: 18px;
   }
-  
 }

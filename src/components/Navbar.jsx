@@ -50,6 +50,7 @@ const NavBar = () => {
             <Button variant="outline-success" onClick={searchProd}>Search</Button>
           </Form>
           <Navbar.Toggle aria-controls="navbarScroll" />
+          
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0 navlinks"
@@ -97,19 +98,36 @@ const NavBar = () => {
                 </Link>
               </Nav.Link>:<></>}
               <Form className="scrollsearch">
-                <FormControl
+              <FormControl
                   type="search"
                   placeholder="Search"
                   className="me-2"
                   aria-label="Search"
+                  value={search}
+                  onChange={(e)=>{setSearch(e.target.value)}}
                 />
-                <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" onClick={searchProd}>Search</Button>
               </Form>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <Navbar
         bg="light"
         expand="lg"

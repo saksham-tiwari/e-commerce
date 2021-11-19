@@ -2,7 +2,7 @@
     display: block;
     position: relative;
     width: 70vw;
-    height: 100vh;
+    height: 120vh;
     margin-left: 10%;
     left: 22%;
     /* border: 1px solid salmon; */
@@ -28,8 +28,8 @@
 }
 .sellerbtn{
     position: relative;
-    top:230px;
-    left: 90px;
+    top:25%;
+    left: 40px;
 }
 .alertSuccess{
     margin-top: 10px;
@@ -37,6 +37,13 @@
 @media only screen and (max-width: 795px) {
     .info{
         width: 50vw;
-        left: 35%;
+        left: 40%;
+        /* height: 120vh; */
     }
   }
+@media only screen and (max-width: 380px) {
+    .info{
+        left: 60%;
+    }
+    
+}

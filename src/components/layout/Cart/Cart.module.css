@@ -9,3 +9,12 @@
     margin-top: 1%;
     width: 10%;
 }
+@media only screen and (max-width: 700px){
+    .tot{
+        width: 80%;
+    }
+    .checkoutBtn{
+        width: 60%;
+        margin-left: 20%;
+    }
+}

@@ -221,6 +221,10 @@ const PersonalInfo = () => {
                         <Link className={styles.listLinks}><li><ChatBubbleOutlineOutlinedIcon className={styles.listIcons}/>My Stuff</li></Link>
                         <Link className={styles.listLinks}><li><SettingsIcon className={styles.listIcons}/>Settings</li></Link>
                     </ul> */}
+                    <div className={styles.sellerbtn}>
+                    {!isSeller?<Button variant="success" onClick={sellerHandle}>Become Seller?</Button>:<Button variant="warning" onClick={sellerCall}>Seller Dashboard</Button>}
+                    <label style={{marginLeft:"0", left:"0"}}></label>
+                </div>
                     <h5 className={styles2.customerSupport}>Customer Support</h5>
                     <p className={styles2.customerSupportPara}>Ask you query , place requests or important issues. Our support team will contact 24/7 to you. </p>
             </div>
@@ -362,10 +366,7 @@ const PersonalInfo = () => {
 
 
                 </Form>
-                <div className={styles.sellerbtn}>
-                    {!isSeller?<Button variant="success" onClick={sellerHandle}>Become Seller?</Button>:<Button variant="warning" onClick={sellerCall}>Seller Dashboard</Button>}
-                    <label style={{marginLeft:"0", left:"0"}}></label>
-                </div>
+               
             </div>
 
         </div>

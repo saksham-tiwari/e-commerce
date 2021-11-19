@@ -1,4 +1,3 @@
-import { positions } from '@mui/system'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import mencloth from "../../../assets/homeimages/mencloth.svg"
@@ -10,12 +9,12 @@ const Homeblock4 = () => {
             <div className="clothing">
                 <h1>Men's clothing</h1>
                 <img src={mencloth} alt="menclothing" className="imgclothing"/>
-                <Link to="/products/men clothing" className="clothing-link">View Catalog</Link>
+                {/* <Link to="/products/men clothing" className="clothing-link">View Catalog</Link> */}
             </div>
             <div className="clothing">
                 <h1>Women's clothing</h1>
                 <img src={womencloth} alt="womenclothing" className="imgclothing"/>
-                <Link to="/products/women clothing" className="clothing-link">View Catalog</Link>
+                {/* <Link to="/products/women clothing" className="clothing-link">View Catalog</Link> */}
             </div>
         </div>
     )

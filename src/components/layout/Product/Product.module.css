@@ -98,3 +98,30 @@
 .reviewBlock{
     margin-left: 10%;
 }
+@media only screen and (max-width: 700px){
+    .btnWish{
+        width: 70%;
+    }
+    .btnOrder{
+        height: 12vh;
+    }
+    .textAreaBtn{
+        width: 25%;
+        margin-left: 25%;
+    }
+}
+
+@media only screen and (max-width: 520px){
+    .brandDes{
+        width: 80%;
+        margin-top: 40%;
+        margin-left: 10%;
+        text-align: justify;
+    }
+    .btnOrder{
+        width: 90%;
+    }
+    .btnWish{
+        width: 90%;
+    }
+}

@@ -2,10 +2,10 @@
     display: block;
     position: relative;
     width: 75vw;
-    height: 110vh;
+    height: 120vh;
     /* margin-left: 10%; */
     left: 22%;
-    border: 1px solid salmon;
+    /* border: 1px solid salmon; */
 }
 
 .head{
@@ -23,4 +23,14 @@
 .alertSuccess{
     margin-top: 22%;
     margin-left: 25%;
+}
+@media only screen and (max-width: 600px) {
+    .block{
+        left: 40%;
+    }
+}
+@media only screen and (max-width: 380px){
+    .block{
+        height: 130vh;
+    }
 }

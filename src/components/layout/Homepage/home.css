@@ -5,11 +5,25 @@ body{
 
 }
 .img-main{
-    width: 100%;
+    width: 110%;
     height: 383px;
     background-color: #CDB8C9;
 }
+.main-slogan{
+    font-size: 48px;
+    width: 60%;
+    padding-top: 6%;
+    padding-left: 8%;
+  }
+  .maingirl{
+    position: absolute;
+    /* top: 10%; */
+    top: 6%;
+    left: 65%;
+  }
+  
 .box-2{
+    /* display: flex; */
     position: relative;
     margin-left: 15%;
     margin-top: -5%;
@@ -21,16 +35,38 @@ body{
 .box-2 h1{
     padding: 10px 50px;
 }
+.flexDiv{
+    display: flex;
+}
+
+.blockinlinetwo{
+    display: flex;
+    position: relative;
+    top: 10%;
+}
+/* .blocksecond{
+    left: 50%;
+    top: -43%;
+} */
+.imagesattop{
+    width: 25vw;
+}
+.parablock{
+    /* position: relative; */
+    width: 40%;
+    margin-left: -25%;
+    margin-top: 5%;
+}
 .flex-container {
     display: flex;
-    flex-wrap: wrap;
-    margin-left: 80px;
+    flex-wrap:wrap;
+    /* flex-shrink: 2; */
+    /* width: 10%; */
 
 }
 .flex-inside-flex{
     margin-left: 60px;
-    width: 440px;
-    height: 270px;
+    width: 100%;
 }
 /* .flex-container > div {
     background-color: #f1f1f1;
@@ -46,7 +82,6 @@ body{
     margin-left: -60px;
     margin-top: 5%;
     width: 50%;
-    height: 230px;
 }
 .desc{
     margin-left: 5%;
@@ -54,7 +89,7 @@ body{
 }
 .desc h3{
     font-size: 35px;
-    width: 240px;
+    width: 125%;
     text-align: center;
     padding-top: 30px;
 }
@@ -89,15 +124,15 @@ opacity: 0.8;
 .design2{
     position: absolute;
     top: 1100px;
-    left: 880px;
+    left: 70%;
     z-index: -1;
     opacity: 0.8;
 }
 .design3{
     position: absolute;
 width: 255px;
-left: 980px;
-top: 1557px;
+left: 78%;
+top: 250%;
 
 opacity: 0.8;
 }
@@ -126,6 +161,122 @@ opacity: 0.8;
 }
 
 .imgclothing{
-    height: 70%;
+    height: 80%;
     margin-left: 15%;
   }
+
+  .caraouselMain{
+    width: 125%;
+}
+@media only screen and (max-width: 1100px){
+    .box-2{
+        height: 50vh;
+    }
+}
+
+@media only screen and (max-width: 992px){
+    .imgclothing{
+        margin-left: 0;
+    } 
+    .imagesattop{
+        width: 20vw;
+    }
+
+    .box-2{
+        /* display: flex; */
+        margin-top: -5%;
+        width: 90vw;
+        height: 40vh;
+    }
+    .parablock{
+        width: 25%;
+    }
+}
+@media only screen and (max-width: 940px){
+    .design3{
+        left: 70%;
+    }
+}
+
+@media only screen and (max-width: 847px){
+    .maingirl{
+        top: 8%;
+        left: 60%;
+    }
+    .clothing h1{
+        font-size: 28px;
+    }
+    .clothing{
+        width: 50%;
+    }
+
+}
+@media only screen and (max-width: 772px){
+    .maingirl{
+        left: 52%;
+    }
+    .design3{
+        visibility: hidden;
+    }
+    .design2{
+        visibility: hidden;
+    }
+    .main-slogan{
+        font-size: 40px;
+    }
+    .box-2{
+        margin-left: 10%;
+    }
+}
+@media only screen and (max-width: 700px){
+    .box-2{
+        height: 50vh;
+    }
+    .clothing{
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 605px){
+    .maingirl{
+        left: 55%;
+        top: 10%;
+    }
+    .main-slogan{
+        font-size: 36px;
+    }
+    .parablock{
+        width: 40%;
+        margin-left: -30%;
+    }
+    .box-2 h3{
+        margin-left: -20%;
+    }
+    .box-2{
+        height: 35vh;
+    }
+}
+@media only screen and (max-width: 580px){
+    .box-2{
+        width: 100%;
+        height: 50vh;
+    }
+    .maingirl{
+        width: 40%;
+        top: 25%;
+    }
+    .caraouselMain{
+        width: 125%;
+    }
+}
+@media only screen and (max-width: 454px){
+    .img-main{
+        width: 125%;
+    }
+    
+    .box-2{
+        width: 120%;
+    }
+    .clothing{
+        width: 100%;
+    }
+}
