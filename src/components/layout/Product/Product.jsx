@@ -7,10 +7,13 @@ import Stars from "../Stars/Stars"
 import { Tick } from 'react-crude-animated-tick';
 import ReactStars from "react-rating-stars-component";
 import MyComponent from 'react-fullpage-custom-loader'
+import { useUser } from '../../../contexts/UserContext'
+import { useHistory } from 'react-router'
 
 
 const Product = (props) => {
     var access_token;
+    const history = useHistory();
     const [data,setData] = useState([{
         id: props.match.params.id,
         name: "Name",
@@ -24,6 +27,7 @@ const Product = (props) => {
         comment_product: [],
         tag_product: []
     }]);
+    const isUser= useUser();
     const [success, setSuccess] = useState(false);
     const [success2, setSuccess2] = useState(false);
     const [success3, setSuccess3] = useState(false);
@@ -74,6 +78,10 @@ const Product = (props) => {
     },[])
 
     const handleWishClick= ()=>{
+        if(!isUser){
+            history.push("/login");
+        }
+        else{
         access_token = JSON.parse(localStorage.getItem("keys")).access;
         // axios.put("https://vshopappdjango.herokuapp.com/api/products/wishlist/", {id:props.match.params.id, quantity:1})
         axios({
@@ -98,8 +106,13 @@ const Product = (props) => {
                 },5000);
             }
         })
+        }
     }
     const handleCartClick = ()=>{
+         if(!isUser){
+             history.push("/login");
+         }   
+         else{
         access_token = JSON.parse(localStorage.getItem("keys")).access;
         axios({
             method: "put",
@@ -124,13 +137,19 @@ const Product = (props) => {
             }
         })
     }
+    }
 
     const ratingChanged = (newRating) => {
         setStars(newRating)
         console.log(stars);
       };
 
+
     const handleReviews = ()=>{
+        if(!isUser){
+            history.push("/login");
+        }  
+        else{      
         access_token = JSON.parse(localStorage.getItem("keys")).access;
         console.log(parseInt(props.match.params.id));
         console.log(comment);
@@ -157,6 +176,7 @@ const Product = (props) => {
         .catch((err)=>{
             console.log(err.response);
         })
+        }
     }
 
     const handleImgClick = (x)=>{
