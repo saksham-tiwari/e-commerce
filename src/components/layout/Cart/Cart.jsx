@@ -110,7 +110,8 @@ const Cart = () => {
             })}
             <br/>
             {/* <h3 className={styles.tot}>Cart Total:</h3> */}
-            <Container className={styles.tot}>
+            {cart.length!==0?<>
+                <Container className={styles.tot}>
                 <Row>
                     <Col>Cart Total:</Col>
                     <Col>&#8377;{sum}</Col>
@@ -122,6 +123,7 @@ const Cart = () => {
             </Container>
             <Button className={styles.checkoutBtn} onClick={handleCheckout}>Checkout</Button>
 
+            </>:<h1>No products in cart</h1>}
             
             <hr className="hr-wish"/>
             <br/>
