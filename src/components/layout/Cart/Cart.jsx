@@ -84,6 +84,13 @@ const Cart = () => {
         })
         .then((res)=>{
             if(res.status===201){
+                axios({
+                    method:"put",
+                    url:"https://vshopappdjango.herokuapp.com/api/products/order/checkout/",
+                    headers:{
+                        Authorization: "Bearer " + access_token
+                    }
+                })
                 history.push(`/order-success/${res.data.txn_id}`)
             }
         })

@@ -19,6 +19,7 @@ import AddProducts from './components/layout/Dashboard/AddProducts/AddProducts';
 import MyProducts from './components/layout/Dashboard/MyProducts/MyProducts';
 import ProductsSearch from './components/layout/ProductsPage/ProductsSearch';
 import OrderSuccess from './components/layout/OrderSuccess/OrderSuccess';
+import Orders from './components/layout/Orders/Orders';
 
 import { UserProvider, useUpdateUser } from './contexts/UserContext';
 import { EmailProvider } from "./contexts/EmailContext";
@@ -136,6 +137,11 @@ function App() {
             <NavBar />
             <OrderSuccess />
             <Footer />
+          </Route>
+          <Route exact path="/orders">
+            <NavBar/>
+            <Orders/>
+            <Footer/>
           </Route>
         </Switch>
       </Router>
