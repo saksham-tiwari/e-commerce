@@ -18,6 +18,7 @@ import Dashboard from './components/layout/Dashboard/Dashboard';
 import AddProducts from './components/layout/Dashboard/AddProducts/AddProducts';
 import MyProducts from './components/layout/Dashboard/MyProducts/MyProducts';
 import ProductsSearch from './components/layout/ProductsPage/ProductsSearch';
+import OrderSuccess from './components/layout/OrderSuccess/OrderSuccess';
 
 import { UserProvider, useUpdateUser } from './contexts/UserContext';
 import { EmailProvider } from "./contexts/EmailContext";
@@ -27,7 +28,6 @@ import { AllowProvider } from "./contexts/AllowedContext";
 import { SellerProvider } from "./contexts/SellerContext";
 import { CartProvider } from './contexts/CartContext';
 import { WishlistProvider } from './contexts/WishlistContext';
-import OrderSuccess from './components/layout/OrderSuccess/OrderSuccess';
 
 function App() {
 

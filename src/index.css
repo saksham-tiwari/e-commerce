@@ -82,7 +82,7 @@ form{
   font-weight: normal;
   font-size: 20px;
   line-height: 23px;
-  align-items: center;
+  /* align-items: center; */
 }
 .google-signin{
   padding: 0;
@@ -325,7 +325,7 @@ form h4{
 }
 .login-button{
   position: relative;
-  width: 40%;
+  width: 50%;
   height: 40px;
   top: 8px;
 }
@@ -369,7 +369,14 @@ form h4{
   .navlinks{
     margin-left: 0;
   }
-  
+  .eye{
+    margin-left: -12%;
+  }
+  .input-field{
+    padding: 10px;
+  margin-left: 10%;
+  padding-left: 15%;
+  }
 }
 @media only screen and (max-width: 845px) {
   .scrollsearch{
@@ -441,6 +448,11 @@ form h4{
   }
   .login-button{
     margin-left: 30%;
+  }
+  .eye{
+    position: relative;
+    margin-left: 100%;
+    top: -36px;
   }
 }
 @media only screen and (max-width: 545px){

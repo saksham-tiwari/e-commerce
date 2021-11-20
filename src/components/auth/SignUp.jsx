@@ -36,7 +36,7 @@ const SignUp = () => {
     var loaderCSS = css`
         ${'' /* color: #7c64ef; */}
         position: absolute;
-        top: 32%;
+        top: 15%;
         left: 33%;
 
     `
@@ -116,12 +116,12 @@ const SignUp = () => {
             <Form>
             <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>
 
-                <div className="input-icons input-field google-signin">
+                {/* <div className="input-icons input-field google-signin">
                     <a className="btn btn-block btn-social btn-google" href="/auth/google" role="button">
                         <img src = {google} alt="googleicon"/>
                         <span className="google-span">Sign Up with Google</span>
                     </a>
-                </div>
+                </div> */}
 
                 <div className="rule-div">
                     <hr className="rule"/>

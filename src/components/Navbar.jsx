@@ -72,11 +72,6 @@ const NavBar = () => {
                   Orders
                 </Link>
               </Nav.Link></>:<></>}
-              <Nav.Link>
-                <Link to="/help" className="nav-link">
-                  Help
-                </Link>
-              </Nav.Link>
               {/* <Link to className="nav-link"> */}
                 <Button variant="primary" className="login-button" onClick={()=>{
                   if(isUser)
@@ -169,11 +164,6 @@ const NavBar = () => {
                   Orders
                 </Link>
               </Nav.Link></>:<></>}
-              <Nav.Link>
-                <Link to="/help" className="nav-link">
-                  Help
-                </Link>
-              </Nav.Link>
               <Button variant="primary" className="login-button" onClick={()=>{
                   if(isUser)
                   {
