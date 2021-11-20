@@ -225,6 +225,7 @@ form h4{
   height: 55vh;
   background: #C4C4C4;
   border-radius: 50%;
+  cursor: pointer
 }
 .oval1{
   margin-top: 10%;
