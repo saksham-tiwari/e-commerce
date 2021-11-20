@@ -57,6 +57,7 @@ const Orders = () => {
             {data.map((products)=>{
                 return(<Block id={products.product.id} name={products.product.name} price={products.price} desc={products.product.description} img={products.product.picture1}/>)
             })}
+            {data.length===0?<h1>No Orders!<br/>Get To Shopping!</h1>:<p></p>}
         </div>
     )
 }
