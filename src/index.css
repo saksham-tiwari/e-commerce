@@ -110,6 +110,11 @@ form{
   font-size: 20px;
 }
 
+.footerMain{
+  margin-top: 100px;
+}
+
+
 h2{
   position: absolute;
   width: 40%;
@@ -185,6 +190,22 @@ form h4{
 }
 .alert{
   width: 30vw;
+}
+.pass-hint{
+  color: #7C64EF;
+}
+.pass-hint:hover .hiddentip{
+  visibility: visible;
+}
+.hiddentip{
+  position: absolute;
+  background-color: #000000;
+  color: ghostwhite;
+  padding: 10px;
+  text-align: justify;
+  border-radius: 0px 10px 10px 10px;
+  margin: 10px;
+  visibility: hidden;
 }
 .navibar{
   position: fixed;

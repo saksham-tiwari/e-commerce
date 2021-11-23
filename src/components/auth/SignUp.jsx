@@ -213,7 +213,9 @@ const SignUp = () => {
                 {showPass?<VisibilityIcon onClick={togglePassword} className="eye"/>:<VisibilityOffIcon onClick={togglePassword} className="eye"/>}
 
                 </div>
-                <p className="alerts">{passAlert}</p>
+                {/* <p className="alerts">{passAlert}</p> */}
+                <p className="alerts">{passAlert} <div className="pass-hint">Hint <span  className="hiddentip">Password should be 8 characters long, should have a lower case, an upper case letter, a number and a special symbol. Should not contain any basic number patterns such as 1234 or 121 </span></div> </p>
+
                 <div className="input-icons">
                     <i className="fa fa-lock icon lock">
                 </i>
