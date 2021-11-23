@@ -126,7 +126,7 @@ const ChangePassword = () => {
 
             </div>
             {/* <p className="alerts">{newPassAlert}</p> */}
-            <p className="alerts">{newPassAlert} <div className="pass-hint">Hint <span  className="hiddentip">Password should be 8 characters long, should have a lower case, an upper case letter, a number and a special symbol. Should not contain any basic number patterns such as 1234 or 121 </span></div> </p>
+            <p className="alerts">{newPassAlert} <span className="pass-hint">Hint <span  className="hiddentip">Password should be 8 characters long, should have a lower case, an upper case letter, a number and a special symbol. Should not contain any basic number patterns such as 1234 or 121 </span></span> </p>
 
             <div className="input-icons">
                     <i className="fa fa-lock icon lock">

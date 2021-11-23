@@ -193,9 +193,19 @@ form h4{
 }
 .pass-hint{
   color: #7C64EF;
+  transition: visibility 1s ease opacity 0.5s ease-in;
+}
+.hiddentip{
+  transition:visibility 1s, opacity 1s; 
+  visibility:hidden; 
+  opacity:0;
+  /* transition: visibility 1s ease opacity 0.5s ease-in; */
+
 }
 .pass-hint:hover .hiddentip{
   visibility: visible;
+  opacity: 1;
+  /* transition: visibility 1s ease opacity 0.5s ease-in; */
 }
 .hiddentip{
   position: absolute;
