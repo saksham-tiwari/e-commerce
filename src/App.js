@@ -29,6 +29,7 @@ import { AllowProvider } from "./contexts/AllowedContext";
 import { SellerProvider } from "./contexts/SellerContext";
 import { CartProvider } from './contexts/CartContext';
 import { WishlistProvider } from './contexts/WishlistContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
 
@@ -53,17 +54,18 @@ function App() {
     <SellerProvider>
     <CartProvider>
     <WishlistProvider>
+    <AuthProvider>
       <Router>
         {/* <NavBar/> */}
 
 
+        <NavBar/>
         <Switch>
           <Route exact path="/">
-        {()=>{checkUser()}}
+          
+            {()=>{checkUser()}}
 
-            <NavBar />
-            <Home />
-            <Footer />
+          <Home />
           </Route>
           <Route exact path="/login">
             <Login />
@@ -81,70 +83,48 @@ function App() {
             <Otp />
           </Route>
           <Route exact path="/wishlist">
-            <NavBar />
             <Wishlist />
-            <Footer />
           </Route>
           <Route exact path="/cart">
-            <NavBar />
             <Cart />
-            <Footer />
           </Route>
           <Route exact path="/products-page">
-            <NavBar />
             <ProductsPage />
-            <Footer />
           </Route>
           <Route exact path="/checkout">
-            <NavBar />
             <Checkout />
-            <Footer />
           </Route>
           <Route exact path="/profile">
-            <NavBar />
             <MyProfile />
-            <Footer />
           </Route>
           <Route exact path="/dashboard">
-            <NavBar />
             <Dashboard />
             <AddProducts/>
-            <Footer />
           </Route>
           <Route exact path="/dashboard/add-products">
-            <NavBar />
             <Dashboard />
             <AddProducts/>
-            <Footer />
           </Route>
           <Route exact path="/dashboard/my-products">
-            <NavBar />
             <Dashboard />
             <MyProducts/>
-            <Footer />
           </Route>
           <Route exact path="/product/:id">
-            <NavBar />
             <Product />
-            <Footer />
           </Route>
           <Route exact path="/products/:query">
-            <NavBar />
             <ProductsSearch />
-            <Footer />
           </Route>
           <Route exact path="/order-success/:txn_id">
-            <NavBar />
             <OrderSuccess />
-            <Footer />
           </Route>
           <Route exact path="/orders">
-            <NavBar/>
             <Orders/>
-            <Footer/>
           </Route>
         </Switch>
+          <Footer/>
       </Router>
+    </AuthProvider>
     </WishlistProvider>
     </CartProvider>
     </SellerProvider>

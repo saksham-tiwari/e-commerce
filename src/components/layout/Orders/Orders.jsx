@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import Block from "../Block/OrderBlock";
 import MyComponent from 'react-fullpage-custom-loader'
 import { useHistory } from 'react-router';
+import { useSetAuth } from '../../../contexts/AuthContext';
 
 
 const Orders = () => {
     let access_token;
     const [fullPageLoader, setFullPageLoader] = useState(false);
+    const setAuth = useSetAuth();
 
     const history = useHistory();
     const [data, setData] = useState([{
@@ -30,6 +32,7 @@ const Orders = () => {
 
     useEffect(()=>{
         setFullPageLoader(true);
+        setAuth(false);
         if(localStorage.getItem("keys")===null){
             history.push("/");
         }

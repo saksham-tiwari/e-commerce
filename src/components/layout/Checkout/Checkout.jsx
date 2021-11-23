@@ -2,15 +2,19 @@ import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { useUser } from "../../../contexts/UserContext";
+import { useSetAuth } from '../../../contexts/AuthContext';
+
 
 
 const Cart = () => {
   const history = useHistory();
     const isUser = useUser();
+    const setAuth = useSetAuth();
     useEffect(()=>{
         if(isUser!==true){
             history.push("/");
         }
+        setAuth(false)
     },[])
   return (
     

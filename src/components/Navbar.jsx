@@ -11,6 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import bag from "../assets/shoppingbag.svg";
 import { useUser } from "../contexts/UserContext";
 import logo from "../assets/logovshop.png";
+import { useAuth } from "../contexts/AuthContext";
 
 const NavBar = () => {
   const history = useHistory();
@@ -25,6 +26,8 @@ const NavBar = () => {
 
   const [search, setSearch] = useState("")
 
+  const isAuth = useAuth();
+
   const searchProd = ()=>{
     setSearch("");
     history.push(`/products/${search}`);
@@ -38,6 +41,7 @@ const NavBar = () => {
             <Navbar.Brand><img src={logo} alt="logo" className="logo"></img></Navbar.Brand>
           </Link>
 
+          {!isAuth?
           <Form className="d-flex searchbar" onSubmit={(e)=>{e.preventDefault();}}>
             <FormControl
               type="search"
@@ -48,7 +52,7 @@ const NavBar = () => {
               onChange={(e)=>{setSearch(e.target.value)}}
             />
             <Button variant="outline-success" onClick={searchProd}>Search</Button>
-          </Form>
+          </Form>:<></>}
           <Navbar.Toggle aria-controls="navbarScroll" />
           
           <Navbar.Collapse id="navbarScroll">

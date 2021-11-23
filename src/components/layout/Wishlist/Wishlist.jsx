@@ -7,6 +7,7 @@ import axios from 'axios'
 import MyComponent from 'react-fullpage-custom-loader'
 import { useWishlist, useSetWishlist } from '../../../contexts/WishlistContext'
 import { Alert } from 'react-bootstrap'
+import { useSetAuth } from '../../../contexts/AuthContext'
 
 
 const Wishlist = () => {
@@ -19,10 +20,12 @@ const Wishlist = () => {
 
     const history = useHistory();
     const isUser = useUser();
+    const setAuth = useSetAuth();
     useEffect(()=>{
         if(isUser!==true){
             history.push("/");
         }
+        setAuth(false);
         setFullPageLoader(true);
         access_token= JSON.parse(localStorage.getItem('keys')).access
         axios({

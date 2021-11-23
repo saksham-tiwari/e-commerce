@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import globe from "../../assets/globe.svg";
 import google from '../../assets/google.svg'
 import { Form, Button, Alert } from 'react-bootstrap';
@@ -13,6 +13,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
+import { useSetAuth } from '../../contexts/AuthContext';
 
 
 
@@ -43,7 +44,10 @@ const SignUp = () => {
 
     const [loader, setLoader] = useState(false);
 
-
+    const setAuth = useSetAuth();
+    useEffect(()=>{
+        setAuth(true);
+    },[])
 
 
     function togglePassword(){

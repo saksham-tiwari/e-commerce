@@ -8,6 +8,8 @@ import { useUser } from '../../../contexts/UserContext';
 import axios from 'axios';
 import MyComponent from 'react-fullpage-custom-loader'
 import { useCart, useSetCart } from '../../../contexts/CartContext';
+import { useSetAuth } from '../../../contexts/AuthContext';
+
 
 const Cart = () => {
     const history = useHistory();
@@ -15,6 +17,7 @@ const Cart = () => {
     const [sum,setSum] = useState(0);
     const cart = useCart();
     const setCart = useSetCart();
+    const setAuth = useSetAuth();
 
     const [user, setUser] = useState({
         email: "",
@@ -33,6 +36,7 @@ const Cart = () => {
         if(isUser!==true){
             history.push("/");
         }
+        setAuth(false);
         setFullPageLoader(true);
         access_token= JSON.parse(localStorage.getItem('keys')).access
         axios({

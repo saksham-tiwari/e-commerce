@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { Form, Button } from 'react-bootstrap';
 
@@ -12,6 +12,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
+
+import { useSetAuth } from '../../contexts/AuthContext';
 
 
 
@@ -41,6 +43,11 @@ const ChangePassword = () => {
 
 
     const history = useHistory();
+
+    const setAuth = useSetAuth();
+    useEffect(()=>{
+        setAuth(true);
+    },[])
 
     function togglePassword(){
         setShowPass(!showPass);

@@ -12,6 +12,7 @@ import { useAllow, useSetAllow } from '../../contexts/AllowedContext';
 import { useSetSeller } from '../../contexts/SellerContext';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
+import { useSetAuth } from '../../contexts/AuthContext';
 
 
 const Otp = () => {
@@ -22,10 +23,12 @@ const Otp = () => {
     const isAllowed=useAllow();
     const setAllow= useSetAllow();
     const setSeller = useSetSeller();
+    const setAuth = useSetAuth();
     // var access_token;
     useEffect(() => {
         if(isAllowed){
             setAllow();
+            setAuth(true);
             // access_token= JSON.parse(localStorage.getItem("keys")).access;
         }
         else{

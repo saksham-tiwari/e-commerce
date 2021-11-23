@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Alert } from 'react-bootstrap';
 
@@ -10,6 +10,7 @@ import { useSetPush } from '../../contexts/PushContext';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
 import { useSetAllow } from '../../contexts/AllowedContext';
+import { useSetAuth } from '../../contexts/AuthContext';
 
 
 
@@ -36,6 +37,11 @@ const Forgot = () => {
     `
 
     const [loader, setLoader] = useState(false);
+
+    const setAuth = useSetAuth();
+    useEffect(()=>{
+        setAuth(true);
+    },[])
 
     const validate = async (e)=>{
         e.preventDefault();

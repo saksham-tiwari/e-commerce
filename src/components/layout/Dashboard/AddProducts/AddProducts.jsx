@@ -5,6 +5,8 @@ import { useHistory } from 'react-router'
 import styles from './AddProducts.module.css'
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
+import { useSetAuth } from '../../../../contexts/AuthContext';
+
 
 
 
@@ -22,12 +24,14 @@ const AddProducts = () => {
 
     const [success, setSuccess] = useState(false);
     const [loader, setLoader] = useState(false);
+    const setAuth = useSetAuth();
 
     useEffect(()=>{
         if(localStorage.getItem("keys")===null){
             history.push("/");
         } else{
             access_token= JSON.parse(localStorage.getItem("keys")).access
+            setAuth(false);
         }
     },[])
 

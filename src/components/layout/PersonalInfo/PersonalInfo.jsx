@@ -16,6 +16,7 @@ import { useSetEmail } from '../../../contexts/EmailContext';
 import { useSetPush } from '../../../contexts/PushContext';
 import { useSeller, useSetSeller } from '../../../contexts/SellerContext';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useSetAuth } from '../../../contexts/AuthContext';
 
 
 
@@ -46,13 +47,14 @@ const PersonalInfo = () => {
     const isUser = useUser();
 
     const setAllow = useSetAllow();
-
+    const setAuth = useSetAuth();
 
 
     useEffect(() => {
         setLoader(true);
         if(isUser){
             access_token= JSON.parse(localStorage.getItem("keys")).access;
+            setAuth(false);
             xyz();
 
         } else{

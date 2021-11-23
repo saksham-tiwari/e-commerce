@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { withRouter } from 'react-router'
 import gif from "../../../assets/success.gif"
+import { useSetAuth } from '../../../contexts/AuthContext'
 const OrderSuccess = (props) => {
+    const setAuth = useSetAuth();
+    useEffect(()=>{
+        setAuth(false);
+    })
     return (
         <div>
             <img src={gif} alt="success gif" style={{width:"30%", marginLeft:"35%"}}/>

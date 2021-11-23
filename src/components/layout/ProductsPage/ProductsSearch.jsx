@@ -7,14 +7,17 @@ import CardCarousel from '../CardCarousel';
 import axios from 'axios'
 import MyComponent from 'react-fullpage-custom-loader'
 import { withRouter } from 'react-router'
+import { useSetAuth } from '../../../contexts/AuthContext'
 
 
 const ProductsPage = (props) => {
 
     const [fullPageLoader, setFullPageLoader] = useState(false);
+    const setAuth = useSetAuth();
 
     useEffect(()=>{
         setFullPageLoader(true)
+        setAuth(false);
         axios.get(`https://vshopappdjango.herokuapp.com/api/products/search-product/?search=${props.match.params.query}`)
         .then((res)=>{
             console.log(res.data)
