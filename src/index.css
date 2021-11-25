@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #885050;
   opacity: 0.7;
@@ -43,6 +47,11 @@ form{
 .viewProdBtn{
   position: relative;
   left: 20%;
+  height: 50px;
+  margin-top: -10px;
+  background: linear-gradient(to left, #373B44, #4286f4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: #0811ED;
+
 }
 
 .carouselh1{

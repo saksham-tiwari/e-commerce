@@ -42,7 +42,7 @@ const Block = (props) => {
             <div className={styles.cardProduct}>
                 <div onClick={handleImgClick}> <img src={props.img} alt="" className={styles.imgSample}></img> </div>
                 <div>
-                    <h4 className={styles.h4}>{props.name}</h4>
+                    <h4 className={styles.h4} onClick={handleImgClick}>{props.name}</h4>
                     <h5>&#8377;{props.price}</h5>
                     <span>Description</span>
                     <p className={styles.desc}>{props.desc}</p>

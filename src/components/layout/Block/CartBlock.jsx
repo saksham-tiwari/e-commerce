@@ -6,7 +6,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 import { useHistory } from 'react-router';
-import { useCart, useSetCart } from '../../../contexts/CartContext';
+import { useSetCart } from '../../../contexts/CartContext';
 
 
 const Block = (props) => {
@@ -129,7 +129,7 @@ const Block = (props) => {
             <div className={styles.cardProduct}>
                 <div onClick={handleImgClick}><img src={props.img} alt=""  className={styles.imgSample}></img></div>
                 <div>
-                    <h4 className={styles.h4}>{props.name}</h4>
+                    <h4 className={styles.h4} onClick={handleImgClick}>{props.name}</h4>
                     <h5>&#8377;{props.price}</h5>
                     <Stars rating={props.rating} edit={false}/>
                     <span>Description</span>
