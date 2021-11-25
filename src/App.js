@@ -62,6 +62,7 @@ function App() {
 
 
         <NavBar/>
+        <br/>
         <Switch>
           <Route exact path="/">
           

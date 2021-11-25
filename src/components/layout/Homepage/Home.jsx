@@ -18,7 +18,7 @@ const Home = () => {
         setAuth(false)
     })
     return (
-        <div>
+        <div style={{marginTop:"-25px"}}>
             <Homeblock1/>
             <Homeblock2/>
             <Homeblock3/>

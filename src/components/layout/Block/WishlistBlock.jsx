@@ -2,6 +2,8 @@ import axios from 'axios';
 import React from 'react'
 import { useHistory } from 'react-router';
 import styles from "./Block.module.css"
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 
@@ -46,6 +48,7 @@ const Block = (props) => {
                     <h5>&#8377;{props.price}</h5>
                     <span>Description</span>
                     <p className={styles.desc}>{props.desc}</p>
+                    <button><DeleteIcon/></button>
                     <button class={styles.cartBtn} onClick={sendToCart}>Add to cart</button>
                 </div>
             </div>
