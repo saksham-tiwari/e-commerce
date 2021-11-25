@@ -28,9 +28,10 @@ const NavBar = () => {
 
   const isAuth = useAuth();
 
-  const searchProd = ()=>{
+  const searchProd = (e)=>{
+    e.preventDefault();
     setSearch("");
-    history.push(`/products/${search}`);
+    history.push(`/products/query=${search}`);
   }
 
   return (
@@ -42,7 +43,7 @@ const NavBar = () => {
           </Link>
 
           {!isAuth?
-          <Form className="d-flex searchbar" onSubmit={(e)=>{e.preventDefault();}}>
+          <Form className="d-flex searchbar" onSubmit={searchProd}>
             <FormControl
               type="search"
               placeholder="Search"
@@ -51,7 +52,7 @@ const NavBar = () => {
               value={search}
               onChange={(e)=>{setSearch(e.target.value)}}
             />
-            <Button variant="outline-success" onClick={searchProd}>Search</Button>
+            <Button variant="outline-success" type="submit">Search</Button>
           </Form>:<></>}
           <Navbar.Toggle aria-controls="navbarScroll" />
           

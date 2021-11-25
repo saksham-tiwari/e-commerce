@@ -30,6 +30,7 @@ import { SellerProvider } from "./contexts/SellerContext";
 import { CartProvider } from './contexts/CartContext';
 import { WishlistProvider } from './contexts/WishlistContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { PersonalProvider } from './contexts/PersonalContext';
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
     <CartProvider>
     <WishlistProvider>
     <AuthProvider>
+    <PersonalProvider>
       <Router>
         {/* <NavBar/> */}
 
@@ -112,7 +114,7 @@ function App() {
           <Route exact path="/product/:id">
             <Product />
           </Route>
-          <Route exact path="/products/:query">
+          <Route exact path="/products/query=:query">
             <ProductsSearch />
           </Route>
           <Route exact path="/order-success/:txn_id">
@@ -124,6 +126,7 @@ function App() {
         </Switch>
           <Footer/>
       </Router>
+    </PersonalProvider>
     </AuthProvider>
     </WishlistProvider>
     </CartProvider>

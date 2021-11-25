@@ -17,6 +17,7 @@ import { useSetPush } from '../../../contexts/PushContext';
 import { useSeller, useSetSeller } from '../../../contexts/SellerContext';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useSetAuth } from '../../../contexts/AuthContext';
+import { useSetPersonal, usePersonal } from '../../../contexts/PersonalContext';
 
 
 
@@ -36,6 +37,9 @@ const PersonalInfo = () => {
     const [submit, setSubmit] = useState(true);
     const [phone, setPhone] = useState();
     const [phoneAlert, setPhoneAlert] = useState("");
+    
+    const setPersonal = useSetPersonal();
+    const personal = usePersonal();
 
     const setEmail = useSetEmail();
     const setPush = useSetPush();
@@ -82,7 +86,7 @@ const PersonalInfo = () => {
         })
         .then((res)=>{
             console.log(res.data)
-            setData(res.data);
+            setPersonal(res.data);
             setEmail(res.data.email);
             if(res.data.gender==="F"){
                 setFemale(true);
@@ -156,9 +160,13 @@ const PersonalInfo = () => {
           })
             .then(function (response) {
               //handle success
-              if(response.status===200){
+              if(response.status===202){
                 setLoader(false);
+                setPersonal(response.data)
                 setSuccess(true);
+                setTimeout(()=>{
+                    setSuccess(false);
+                },3000)
               }
             })
             .catch(function (err) {
@@ -175,7 +183,7 @@ const PersonalInfo = () => {
         if(isUser){
             setLoader(true);
             // setEmail(data.email);
-            axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/",{email:data.email})
+            axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/",{email:personal.email})
             .then((res)=>{
                 if(res.status===202){
                     setAllow();
@@ -189,7 +197,7 @@ const PersonalInfo = () => {
         }
     }
 
-    let imgLink = data.picture;
+    let imgLink = personal.picture;
     // const genderCheck = (x)=>{
     //     setGvalue(x)
     //     // console.log(gvalue);
@@ -212,7 +220,7 @@ const PersonalInfo = () => {
             <div className={styles2.sidebar}>
                     <div className={styles2.userCapsule}>
                         <img src={imgLink} alt="user" className={styles2.userImg}/>
-                        <h5 className={styles2.username}>{data.name}</h5>
+                        <h5 className={styles2.username}>{personal.name}</h5>
                     </div>
                     <Button className={styles2.logoutBtn} onClick={logoutHandle}> <LogoutIcon/> LogOut</Button>
                     {/* <ul className={styles.list}>
@@ -244,7 +252,7 @@ const PersonalInfo = () => {
                         }} /> </Form.Label>
                     <Row>
                         <Col>
-                        <Form.Control name="name" placeholder="Name" value={name?data.name:fName} className={styles.input} disabled={name} onChange={(e)=>{
+                        <Form.Control name="name" placeholder="Name" value={name?personal.name:fName} className={styles.input} disabled={name} onChange={(e)=>{
                             setFName(e.target.value);
                         }} />
                         </Col>
@@ -335,7 +343,7 @@ const PersonalInfo = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label className={styles.label} >Email address</Form.Label>
-                    <Form.Control name="email" type="email" placeholder="Enter email" value={data.email} className={styles.input} disabled/>
+                    <Form.Control name="email" type="email" placeholder="Enter email" value={personal.email} className={styles.input} disabled/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -343,7 +351,7 @@ const PersonalInfo = () => {
                         setPno(false) 
                         setSubmit(false)
                         }}/></Form.Label>
-                    <Form.Control name="mobile" type="number" placeholder="Enter Phone number" value={pno?data.mobile:phone} className={styles.input} disabled={pno}  onChange={(e)=>{
+                    <Form.Control name="mobile" type="number" placeholder="Enter Phone number" value={pno?personal.mobile:phone} className={styles.input} disabled={pno}  onChange={(e)=>{
                             setPhone(e.target.value);
                             if(e.target.value===""){
                                 setPhoneAlert("Phone number is empty.");
@@ -359,7 +367,7 @@ const PersonalInfo = () => {
                 </Form.Group>
 
                 <Button type="submit" disabled={submit}>Submit</Button> 
-                <Link to="forgot-password"><Button type="link" variant="secondary">Reset password</Button></Link>
+                <Link to="forgot-password"><Button type="link" variant="secondary" className={styles.resetPass}>Reset password</Button></Link>
 
                 {success?<Alert variant="success" onClose={()=>setSuccess(false)} className={styles.alertSuccess} dismissible>
                     Updated.

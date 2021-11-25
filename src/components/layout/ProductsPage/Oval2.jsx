@@ -14,7 +14,7 @@ const Oval2 = (props) => {
 
                 </div>
                 <div className="flip-card-back">
-                <h1>{props.name}</h1>
+                <h1>{props.name.substring(0,15)+"..."}</h1>
                 <p>{props.brand}</p>
                 <p>{props.description}</p>
                 </div>

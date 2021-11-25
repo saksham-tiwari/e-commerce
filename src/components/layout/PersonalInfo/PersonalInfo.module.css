@@ -28,11 +28,14 @@
 }
 .sellerbtn{
     position: relative;
-    top:25%;
+    top:23%;
     left: 40px;
 }
 .alertSuccess{
     margin-top: 10px;
+}
+.resetPass{
+    margin-left: 2%;
 }
 @media only screen and (max-width: 795px) {
     .info{
