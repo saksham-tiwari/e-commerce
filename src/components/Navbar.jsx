@@ -67,6 +67,11 @@ const NavBar = () => {
                   Home
                 </Link>
               </Nav.Link>
+              <Nav.Link className="homelink">
+                <Link to="/products-page" className="nav-link">
+                  Products
+                </Link>
+              </Nav.Link>
               {isUser?<><Nav.Link>
                 <Link to="/wishlist" className="nav-link">
                   Wishlist
