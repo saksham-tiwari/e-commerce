@@ -4,10 +4,9 @@ import Oval2 from './Oval2'
 import Oval3 from './Oval3'
 import { Button } from 'react-bootstrap'
 import CardCarousel from '../CardCarousel';
-import axios from 'axios'
 import MyComponent from 'react-fullpage-custom-loader'
 import { useSetAuth } from '../../../contexts/AuthContext'
-
+import ProductsService from '../../../api/services/products.service'
 
 const ProductsPage = () => {
 
@@ -17,7 +16,7 @@ const ProductsPage = () => {
     useEffect(()=>{
         setFullPageLoader(true)
         setAuth(false);
-        axios.get("https://vshopappdjango.herokuapp.com/api/products/")
+        ProductsService.GetProducts()
         .then((res)=>{
             console.log(res.data)
             setProducts(res.data.reverse());

@@ -5,10 +5,11 @@ import styles from "./Cart.module.css"
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { useUser } from '../../../contexts/UserContext';
-import axios from 'axios';
 import MyComponent from 'react-fullpage-custom-loader'
 import { useCart, useSetCart } from '../../../contexts/CartContext';
 import { useSetAuth } from '../../../contexts/AuthContext';
+import CartService from '../../../api/services/cart.service';
+import UserService from '../../../api/services/user.service';
 
 
 const Cart = () => {
@@ -31,21 +32,13 @@ const Cart = () => {
     });
 
     const isUser = useUser();
-    var access_token;
     useEffect(()=>{
         if(isUser!==true){
             history.push("/");
         }
         setAuth(false);
         setFullPageLoader(true);
-        access_token= JSON.parse(localStorage.getItem('keys')).access
-        axios({
-            method: "get",
-            url: "https://vshopappdjango.herokuapp.com/api/products/cart/",
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        CartService.GetProducts()
         .then((res)=>{
             let priceSum=0;
             setCart(res.data)
@@ -57,18 +50,13 @@ const Cart = () => {
             setSum(priceSum);
             setFullPageLoader(false);
         })
-        axios.get("https://vshopappdjango.herokuapp.com/api/Account/details/", {
-        headers:{
-            Authorization: "Bearer " + access_token
-        }
-        })
+        UserService.UserDetails()
         .then((res)=>{
             setUser(res.data);
         })
     },[])
 
     const handleCheckout = ()=>{
-        access_token= JSON.parse(localStorage.getItem('keys')).access
         console.log(sum)
 
         var fd = new FormData();
@@ -76,25 +64,10 @@ const Cart = () => {
         fd.append("payment_method","COD");
         fd.append("code","");
 
-        axios({
-            method:"post",
-            url:"https://vshopappdjango.herokuapp.com/api/products/checkout-transaction/",
-            // data: {amount:sum,payment_method:"COD",code:" "},
-            data: fd,
-            headers:{
-                "Content-Type": "multipart/form-data", 
-                Authorization: "Bearer " + access_token
-            },
-        })
+        CartService.Checkout(fd)
         .then((res)=>{
             if(res.status===201){
-                axios({
-                    method:"put",
-                    url:"https://vshopappdjango.herokuapp.com/api/products/order/checkout/",
-                    headers:{
-                        Authorization: "Bearer " + access_token
-                    }
-                })
+                CartService.Order()
                 history.push(`/order-success/${res.data.txn_id}`)
             }
         })

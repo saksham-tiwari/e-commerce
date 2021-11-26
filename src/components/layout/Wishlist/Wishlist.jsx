@@ -3,15 +3,14 @@ import Block from "../Block/WishlistBlock"
 import CardCarousel from "../CardCarousel"
 import { useUser } from '../../../contexts/UserContext'
 import { useHistory } from 'react-router'
-import axios from 'axios'
 import MyComponent from 'react-fullpage-custom-loader'
 import { useWishlist, useSetWishlist } from '../../../contexts/WishlistContext'
 import { Alert } from 'react-bootstrap'
 import { useSetAuth } from '../../../contexts/AuthContext'
+import WishlistService from '../../../api/services/wishlist.service'
 
 
 const Wishlist = () => {
-    var access_token
     const [fullPageLoader, setFullPageLoader] = useState(false);
 
     const wishlist = useWishlist();
@@ -29,14 +28,7 @@ const Wishlist = () => {
         }
         setAuth(false);
         setFullPageLoader(true);
-        access_token= JSON.parse(localStorage.getItem('keys')).access
-        axios({
-            method: "get",
-            url: "https://vshopappdjango.herokuapp.com/api/products/wishlist/",
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        WishlistService.GetProducts()
         .then((res)=>{
             // setData(res.data)
             setWishlist(res.data)

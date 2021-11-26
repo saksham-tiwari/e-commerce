@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React ,{ useEffect, useState } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
 import { useHistory } from 'react-router'
@@ -6,13 +5,12 @@ import styles from './AddProducts.module.css'
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
 import { useSetAuth } from '../../../../contexts/AuthContext';
-
+import ProductsService from '../../../../api/services/products.service'
 
 
 
 const AddProducts = () => {
 
-    var access_token;
     const history = useHistory();
 
     var loaderCSS = css`
@@ -30,7 +28,6 @@ const AddProducts = () => {
         if(localStorage.getItem("keys")===null){
             history.push("/");
         } else{
-            access_token= JSON.parse(localStorage.getItem("keys")).access
             setAuth(false);
         }
     },[])
@@ -38,19 +35,11 @@ const AddProducts = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         setLoader(true);
-        access_token = JSON.parse(localStorage.getItem("keys")).access;
 
         // console.log(e.target);
         var fd = new FormData(e.target);
-        axios({
-            method: "post",
-            url: "https://vshopappdjango.herokuapp.com/api/products/add-product/",
-            data: fd,
-            headers: { 
-                "Content-Type": "multipart/form-data",
-                Authorization: "Bearer " + access_token
-             },
-          }).then((response)=> {
+        ProductsService.AddProduct(fd)
+        .then((response)=> {
               //handle success
               if(response.status===201){
                 setLoader(false);

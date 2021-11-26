@@ -4,40 +4,25 @@ import Stars from "../Stars/Stars"
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
-import axios from 'axios';
 import { useHistory } from 'react-router';
 import { useSetCart } from '../../../contexts/CartContext';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import CartService from '../../../api/services/cart.service';
 
 const Block = (props) => {
     const history = useHistory();
-    var access_token;
     const setCart = useSetCart();
     const [sweet, setSweet] = useState(false);
     const [sweet2, setSweet2] = useState(false);
 
     const handleDelete = ()=>{
         setSweet(false);
-        access_token= JSON.parse(localStorage.getItem('keys')).access
-        axios({
-            method: "delete",
-            url: "https://vshopappdjango.herokuapp.com/api/products/cart/remove-product/",
-            data: {id:props.id},
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        CartService.DeleteProduct({id:props.id})
         .then((res)=>{
             console.log(res.status)
             if(res.status===205){
                 console.log("Deleted");
-                axios({
-                    method: "get",
-                    url: "https://vshopappdjango.herokuapp.com/api/products/cart/",
-                    headers: { 
-                        Authorization: "Bearer " + access_token
-                     },
-                })
+                CartService.GetProducts()
                 .then((res)=>{
                     let priceSum=0;
                     setCart(res.data)
@@ -56,26 +41,12 @@ const Block = (props) => {
     const handleDeleteAll = ()=>{
         setSweet2(false)
 
-        access_token= JSON.parse(localStorage.getItem('keys')).access
-        axios({
-            method: "delete",
-            url: "https://vshopappdjango.herokuapp.com/api/products/cart/delete-product/",
-            data: {id:props.id},
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        CartService.DeleteProducts({id:props.id})
         .then((res)=>{
             console.log(res.status)
             if(res.status===204){
                 console.log("Deleted all");
-                axios({
-                    method: "get",
-                    url: "https://vshopappdjango.herokuapp.com/api/products/cart/",
-                    headers: { 
-                        Authorization: "Bearer " + access_token
-                     },
-                })
+                CartService.GetProducts()
                 .then((res)=>{
                     let priceSum=0;
                     setCart(res.data)
@@ -92,26 +63,12 @@ const Block = (props) => {
     }
 
     const handleAdd = ()=>{
-        access_token = JSON.parse(localStorage.getItem("keys")).access;
-        axios({
-            method: "put",
-            url: "https://vshopappdjango.herokuapp.com/api/products/cart/add-product/",
-            data: {id:props.id, quantity:1},
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        CartService.AddProduct({id:props.id, quantity:1})
         .then((res)=>{
             console.log(res.status)
             if(res.status===201){
                 console.log("Added");
-                axios({
-                    method: "get",
-                    url: "https://vshopappdjango.herokuapp.com/api/products/cart/",
-                    headers: { 
-                        Authorization: "Bearer " + access_token
-                     },
-                })
+                CartService.GetProducts()
                 .then((res)=>{
                     let priceSum=0;
                     setCart(res.data)

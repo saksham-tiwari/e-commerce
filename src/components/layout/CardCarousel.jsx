@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Carousel } from '@trendyol-js/react-carousel';
-import Sample from "../../assets/download.jfif"
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import axios from 'axios';
 import { useHistory } from 'react-router';
+import productsService from '../../api/services/products.service';
 
 const Homeblock2 = () => {
     const [products, setProducts] = useState([
@@ -28,7 +26,7 @@ const Homeblock2 = () => {
     const history = useHistory();
 
     useEffect(()=>{
-        axios.get("https://vshopappdjango.herokuapp.com/api/products/")
+        productsService.GetProducts()
         .then((res)=>{
             // console.log(res.data)
             res.data.reverse();

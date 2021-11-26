@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from "./Sidebar.module.css"
-import userImg from "../../../assets/userImg.png"
 import { Button } from 'react-bootstrap'
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -8,12 +7,6 @@ import { Link } from 'react-router-dom';
 
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-// import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-// import CreditCardIcon from '@mui/icons-material/CreditCard';
-// import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-// import SettingsIcon from '@mui/icons-material/Settings';
-// import { Link } from 'react-router-dom';
-// import { style } from '@mui/system';
 import { useUpdateUser } from '../../../contexts/UserContext';
 
 
@@ -27,7 +20,6 @@ const Sidebar = () => {
     return (
         <div className={styles.sidebar}>
         <div className={styles.dashCapsule}>
-            {/* <img src={userImg} alt="user" className={styles.userImg}/> */}
             <DashboardIcon className={styles.dashIcon}/>
             <h5 className={styles.username}>Dashboard</h5>
         </div>

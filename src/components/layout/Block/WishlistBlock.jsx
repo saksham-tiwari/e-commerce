@@ -1,10 +1,11 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { useHistory } from 'react-router';
 import styles from "./Block.module.css"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useWishlist,useSetWishlist } from '../../../contexts/WishlistContext'
 import SweetAlert from 'react-bootstrap-sweetalert';
+import cartService from '../../../api/services/cart.service';
+import WishlistService from '../../../api/services/wishlist.service';
 
 
 
@@ -15,17 +16,8 @@ const Block = (props) => {
     const history = useHistory();
     const [sweet, setSweet] = useState(false);
 
-    var access_token
     const sendToCart = ()=>{
-        access_token = JSON.parse(localStorage.getItem("keys")).access;
-        axios({
-            method: "put",
-            url: "https://vshopappdjango.herokuapp.com/api/products/cart/add-product/",
-            data: {id:props.id, quantity:1},
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        cartService.AddProduct({id:props.id, quantity:1})
         .then((res)=>{
             
             if(res.status===201){
@@ -47,16 +39,8 @@ const Block = (props) => {
     }
     const delProd = ()=>{
         setSweet(false);
-        access_token = JSON.parse(localStorage.getItem("keys")).access;
 
-        axios({
-            method: "delete",
-            url: "https://vshopappdjango.herokuapp.com/api/products/wishlist/",
-            data: {id:props.id},
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        WishlistService.DeleteProduct({id:props.id})
         .then((res)=>{
             
             if(res.status===404){

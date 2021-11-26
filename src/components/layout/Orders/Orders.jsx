@@ -1,13 +1,12 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Block from "../Block/OrderBlock";
 import MyComponent from 'react-fullpage-custom-loader'
 import { useHistory } from 'react-router';
 import { useSetAuth } from '../../../contexts/AuthContext';
+import OrdersService from '../../../api/services/orders.service';
 
 
 const Orders = () => {
-    let access_token;
     const [fullPageLoader, setFullPageLoader] = useState(false);
     const setAuth = useSetAuth();
 
@@ -36,14 +35,7 @@ const Orders = () => {
         if(localStorage.getItem("keys")===null){
             history.push("/");
         }
-        access_token= JSON.parse(localStorage.getItem('keys')).access
-        axios({
-            method: "get",
-            url:"https://vshopappdjango.herokuapp.com/api/products/order/",
-            headers:{
-                Authorization: "Bearer " + access_token
-            },
-        })
+        OrdersService.GetOrders()
         .then((res)=>{
             console.log(res)
             setData(res.data);

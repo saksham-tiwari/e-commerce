@@ -4,7 +4,6 @@ import { Col, Form, Row, Button, Alert } from 'react-bootstrap'
 import styles from "./PersonalInfo.module.css"
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { useUpdateUser, useUser } from '../../../contexts/UserContext';
 import { useHistory } from 'react-router';
 import { PropagateLoader } from 'react-spinners';
@@ -18,15 +17,14 @@ import { useSeller, useSetSeller } from '../../../contexts/SellerContext';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useSetAuth } from '../../../contexts/AuthContext';
 import { useSetPersonal, usePersonal } from '../../../contexts/PersonalContext';
-
+import UserService from '../../../api/services/user.service';
+import AuthService from '../../../api/services/auth.service';
 
 
 
 const PersonalInfo = () => {
-    let access_token;
     const updateUser = useUpdateUser();
     let history = useHistory();
-    const [data, setData] = useState({});
     const [name, setName] = useState(true)
     const [gender, setGender] = useState(true)
     const [female, setFemale] = useState(false)
@@ -57,7 +55,6 @@ const PersonalInfo = () => {
     useEffect(() => {
         setLoader(true);
         if(isUser){
-            access_token= JSON.parse(localStorage.getItem("keys")).access;
             setAuth(false);
             xyz();
 
@@ -79,11 +76,7 @@ const PersonalInfo = () => {
 
 
     function xyz(){
-        axios.get("https://vshopappdjango.herokuapp.com/api/Account/details/", {
-        headers:{
-            Authorization: "Bearer " + access_token
-        }
-        })
+        UserService.UserDetails()
         .then((res)=>{
             console.log(res.data)
             setPersonal(res.data);
@@ -141,23 +134,8 @@ const PersonalInfo = () => {
         setLoader(true);
         var formData = new FormData(event.target);
         formData.append("is_seller",isSeller);
-        access_token = JSON.parse(localStorage.getItem("keys")).access;
-        // axios.put("https://vshopappdjango.herokuapp.com/api/Account/update-account/",{
-        //     headers: { 
-        //         // "Content-Type": "multipart/form-data", 
-        //         Authorization: "Bearer " + access_token
-        //     }
-        // })
 
-        axios({
-            method: "put",
-            url: "https://vshopappdjango.herokuapp.com/api/Account/update-account/",
-            data: formData,
-            headers: { 
-                "Content-Type": "multipart/form-data",
-                Authorization: "Bearer " + access_token
-             },
-          })
+        UserService.UpdateDetails(formData)
             .then(function (response) {
               //handle success
               if(response.status===202){
@@ -183,7 +161,7 @@ const PersonalInfo = () => {
         if(isUser){
             setLoader(true);
             // setEmail(data.email);
-            axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/",{email:personal.email})
+            AuthService.EmailVerify({email:personal.email})
             .then((res)=>{
                 if(res.status===202){
                     setAllow();

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Alert, Button, Form } from 'react-bootstrap'
 import {Link, withRouter} from "react-router-dom"
@@ -9,10 +8,9 @@ import ReactStars from "react-rating-stars-component";
 import MyComponent from 'react-fullpage-custom-loader'
 import { useUser } from '../../../contexts/UserContext'
 import { useHistory } from 'react-router'
-
+import ProductsService from '../../../api/services/products.service'
 
 const Product = (props) => {
-    var access_token;
     const history = useHistory();
     const [data,setData] = useState([{
         id: props.match.params.id,
@@ -46,7 +44,7 @@ const Product = (props) => {
     useEffect(()=>{
         setFullPageLoader(true);
         // console.log(props.match.params.id)
-        axios.get("https://vshopappdjango.herokuapp.com/api/products/")
+        ProductsService.GetProducts()
         .then((res)=>{
             setData(res.data.filter(prod=>prod.id==props.match.params.id));
             console.log(res.data.filter(prod=>prod.id==props.match.params.id));
@@ -86,16 +84,7 @@ const Product = (props) => {
             history.push("/login");
         }
         else{
-        access_token = JSON.parse(localStorage.getItem("keys")).access;
-        // axios.put("https://vshopappdjango.herokuapp.com/api/products/wishlist/", {id:props.match.params.id, quantity:1})
-        axios({
-            method: "put",
-            url: "https://vshopappdjango.herokuapp.com/api/products/wishlist/",
-            data: {id:props.match.params.id},
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        ProductsService.AddToWishlist({id:props.match.params.id})
         .then((res)=>{
             if(res.status===201){
                 setSuccess(true);
@@ -117,15 +106,7 @@ const Product = (props) => {
              history.push("/login");
          }   
          else{
-        access_token = JSON.parse(localStorage.getItem("keys")).access;
-        axios({
-            method: "put",
-            url: "https://vshopappdjango.herokuapp.com/api/products/cart/add-product/",
-            data: {id:props.match.params.id, quantity:1},
-            headers: { 
-                Authorization: "Bearer " + access_token
-             },
-        })
+        ProductsService.AddToCart({id:props.match.params.id, quantity:1})
         .then((res)=>{
             if(res.status===201){
                 setSuccess3(true);
@@ -154,18 +135,10 @@ const Product = (props) => {
             history.push("/login");
         }  
         else{      
-        access_token = JSON.parse(localStorage.getItem("keys")).access;
         console.log(parseInt(props.match.params.id));
         console.log(comment);
         console.log(stars);
-        axios({
-            method: "post",
-            url: "https://vshopappdjango.herokuapp.com/api/products/add-comment/",
-            data: {product:parseInt(props.match.params.id), content:comment, rating:stars.toString()},
-            headers: { 
-                Authorization: "Bearer " + access_token
-            },
-        })
+        ProductsService.AddComment({product:parseInt(props.match.params.id), content:comment, rating:stars.toString()})
         .then((res)=>{
             if(res.status===201){
                 console.log(res);
