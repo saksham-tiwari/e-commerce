@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 
 import { Form, Button } from 'react-bootstrap';
@@ -12,7 +11,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
-
+import AuthService from "../../api/services/auth.service";
 import { useSetAuth } from '../../contexts/AuthContext';
 
 
@@ -70,12 +69,12 @@ const ChangePassword = () => {
             alert("Passwords do not match")
         } else{
             setLoader(true);
-            await axios.post("https://vshopappdjango.herokuapp.com/api/Account/reset-password/change-password/",{email,"new password": newPass})
+            await AuthService.ChangePassword({email,"new password": newPass})
             .then((res)=>{
                 if(res.status===202){
                     const obj = { email, password:newPass}
                     setEmail("");
-                    axios.post("https://vshopappdjango.herokuapp.com/api/token/",obj)
+                    AuthService.GetToken(obj)
                     .then((res)=>{
                         // console.log(res.data);
                         localStorage.setItem("keys", JSON.stringify(res.data));

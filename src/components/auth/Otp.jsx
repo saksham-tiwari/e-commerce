@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import globe from '../../assets/globe.svg'
-import axios from 'axios';
 import { useUpdateUser } from '../../contexts/UserContext';
 import { useEmail } from '../../contexts/EmailContext';
 import { useObject, useUpdateObject } from '../../contexts/ObjectContext';
@@ -13,6 +12,8 @@ import { useSetSeller } from '../../contexts/SellerContext';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
 import { useSetAuth } from '../../contexts/AuthContext';
+import AuthService from "../../api/services/auth.service";
+
 
 
 const Otp = () => {
@@ -59,7 +60,7 @@ const Otp = () => {
     async function resendOtp(){
         setLoader(true);
         console.log(email)
-        await axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/", {"email":email.trim()} )
+        await AuthService.EmailVerify({"email":email.trim()})
         .then((res)=>{
             if(res.status===202){
                 setSuccess(true);
@@ -76,14 +77,14 @@ const Otp = () => {
             setLoader(true);
             let stat;
             let otpInt = parseInt(otp);
-            axios.post("https://vshopappdjango.herokuapp.com/api/Account/otp/verify/",{"otp":otpInt, "email":email.trim()})
+            AuthService.OtpVerify({"otp":otpInt, "email":email.trim()})
               .then((response)=> {
                 console.log(response.status);
                 stat=response.status;
                 if(stat===202){
                     changeUser();
                     if(push==="signup"){
-                        axios.post("https://vshopappdjango.herokuapp.com/api/token/",obj)
+                        AuthService.GetToken(obj)
                         .then((res)=>{
                             // console.log(res.data);
                             localStorage.setItem("keys", JSON.stringify(res.data));
@@ -97,7 +98,7 @@ const Otp = () => {
                     } else if(push === "forgot"){
                         history.push("/change-password")
                     } else if(push==="seller"){
-                        let access_token = JSON.parse(localStorage.getItem("keys")).access;
+                        // let access_token = JSON.parse(localStorage.getItem("keys")).access;
                         // axios.put("https://vshopappdjango.herokuapp.com/api/Account/become-seller/",{
                         //     headers:{
                         //         Authorization: "Bearer " + access_token
@@ -109,13 +110,7 @@ const Otp = () => {
                         //         }
                         //     })
 
-                        axios({
-                            method: "put",
-                            url: "https://vshopappdjango.herokuapp.com/api/Account/become-seller/",
-                            headers: { 
-                                Authorization: "Bearer " + access_token
-                                },
-                            })
+                        AuthService.BecomeSeller()
                             .then((res)=> {
                                 //handle success
                                 if(res.status===200){

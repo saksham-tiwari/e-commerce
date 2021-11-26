@@ -4,7 +4,6 @@ import google from '../../assets/google.svg'
 import { Form, Button, Alert } from 'react-bootstrap';
 import { Link ,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
-import axios from "axios"
 import { useUpdateObject } from '../../contexts/ObjectContext';
 import { useSetPush } from '../../contexts/PushContext';
 import { useSetAllow } from '../../contexts/AllowedContext';
@@ -14,6 +13,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
 import { useSetAuth } from '../../contexts/AuthContext';
+import AuthService from "../../api/services/auth.service";
 
 
 
@@ -92,7 +92,7 @@ const SignUp = () => {
                 password:pass.trim(),
                 name: name.trim()
             }
-            await axios.post("https://vshopappdjango.herokuapp.com/api/Account/create-account/", user)
+            await AuthService.SignUp(user)
             .then(()=>{
                 createObj({email,password:pass})
                 setPush("signup")

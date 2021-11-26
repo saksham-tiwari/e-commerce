@@ -4,13 +4,13 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 import globe from '../../assets/globe.svg'
 import { validEmail } from './regex.jsx';
-import axios from 'axios';
 import { useSetEmail } from '../../contexts/EmailContext';
 import { useSetPush } from '../../contexts/PushContext';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
 import { useSetAllow } from '../../contexts/AllowedContext';
 import { useSetAuth } from '../../contexts/AuthContext';
+import AuthService from "../../api/services/auth.service";
 
 
 
@@ -52,7 +52,7 @@ const Forgot = () => {
             alert("Your email is invalid. Must contain '@' and a domain.")
         } else{
             setLoader(true);
-            await axios.post("https://vshopappdjango.herokuapp.com/api/Account/email-verify/",{email})
+            await AuthService.EmailVerify({email})
             .then((res)=>{
                 if(res.status===202){
                     saveEmail(email);

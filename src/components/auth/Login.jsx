@@ -4,7 +4,6 @@ import google from '../../assets/google.svg'
 import { Form, Button, Alert } from 'react-bootstrap';
 import { Link,useHistory } from 'react-router-dom';
 import { validEmail, validPassword } from './regex.jsx';
-import axios from 'axios';
 import { useUpdateUser } from "../../contexts/UserContext"
 import { useSetEmail } from '../../contexts/EmailContext';
 import { useSetAllow } from '../../contexts/AllowedContext';
@@ -15,6 +14,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { PropagateLoader } from 'react-spinners';
 import { css } from '@emotion/react'
 import { useSetAuth } from '../../contexts/AuthContext';
+import AuthService from "../../api/services/auth.service";
 
 
 
@@ -70,12 +70,12 @@ const Login = () => {
         }else {
             setLoader(true);
             let stat;
-            await axios.post("https://vshopappdjango.herokuapp.com/api/Account/login/",{"email":email.trim(),"password":pass.trim()})
+            await AuthService.LogIn({"email":email.trim(),"password":pass.trim()})
             .then((res)=>{
                 stat=res.status;
                 console.log(stat);
                 if(stat===202){
-                    axios.post("https://vshopappdjango.herokuapp.com/api/token/",{"email":email.trim(),"password":pass.trim()})    
+                    AuthService.GetToken({"email":email.trim(),"password":pass.trim()})    
                     .then((res)=>{
                             // console.log(res.data);
                             localStorage.setItem("keys", JSON.stringify(res.data));
