@@ -56,7 +56,7 @@
     border-radius: 10px;
     opacity: 0.7;
 }
-.shortImg{
+/* .shortImg{
     display: inline-block;
     height: 15vh;
     width: 5vw;
@@ -64,6 +64,10 @@
     border-radius: 50px;
     background-color: #E8E7E5;
     border: 1px solid #E8E7E5
+} */
+.star{
+    position: relative;
+    top: -2px;
 }
 .prodID{
     text-align: right;
@@ -98,6 +102,9 @@
 .reviewBlock{
     margin-left: 10%;
 }
+/* .active{
+    border: 2px black;
+} */
 @media only screen and (max-width: 700px){
     .btnWish{
         width: 70%;

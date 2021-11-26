@@ -115,7 +115,7 @@ const SignUp = () => {
             <div>
             <img src = {globe} alt="globe" className="globe"/>
             <div>
-            <h2>Create your Account</h2>
+            <h2 className="h2Auth">Create your Account</h2>
 
             <Form>
             <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>

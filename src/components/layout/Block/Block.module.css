@@ -7,6 +7,9 @@
     display: flex;
     text-align: justify;
 }
+.widthSet{
+    width: 100%;
+}
 .imgSample{
     height: 70%;
     width: 15vw;
@@ -29,6 +32,16 @@
     font-weight: 700;
     margin-left: 25%;
     width: 10vw;
+}
+.cartDelBtn{
+    background-color:red;
+    border-radius: 10px;
+    border: 0px;
+    font-weight: 700;
+    color: aliceblue;
+    position: relative;
+    left: 15%;
+    /* margin-left: 25%; */
 }
 .number{
     position: relative;

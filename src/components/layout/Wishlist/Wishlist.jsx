@@ -17,6 +17,8 @@ const Wishlist = () => {
     const wishlist = useWishlist();
     const setWishlist = useSetWishlist();
     const [success, setSuccess] = useState(false);
+    const [success2, setSuccess2] = useState(false);
+
 
     const history = useHistory();
     const isUser = useUser();
@@ -51,8 +53,11 @@ const Wishlist = () => {
             {success?<Alert variant="success" onClose={()=>setSuccess(false)} className="alert" style={{marginLeft:"35%"}} dismissible>
                     Added to cart
                 </Alert>:<p></p>}
+            {success2?<Alert variant="success" onClose={()=>setSuccess2(false)} className="alert" style={{marginLeft:"35%"}} dismissible>
+                Product Deleted
+            </Alert>:<p></p>}
             {wishlist.map((product)=>{
-                return(<Block id={product.id} name={product.name} price={product.price} desc={product.description} img={product.picture1} setSuccess={setSuccess}/>)
+                return(<Block id={product.id} name={product.name} price={product.price} desc={product.description} img={product.picture1} setSuccess={setSuccess} setSuccess2={setSuccess2}/>)
             })}
             {/* <Block/>            
             <Block/>            

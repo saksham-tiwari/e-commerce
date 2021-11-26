@@ -144,7 +144,7 @@ const Otp = () => {
         <div>
             <img src = {globe} alt="globe" className="globe"/>
 
-            <h2 className="chng">Verification Page</h2>
+            <h2 className="chng h2Auth">Verification Page</h2>
 
             <Form className="chng-form">
             <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>

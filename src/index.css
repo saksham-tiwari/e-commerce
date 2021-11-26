@@ -124,7 +124,7 @@ form{
 }
 
 
-h2{
+.h2Auth{
   position: absolute;
   width: 40%;
   height: 50%;
@@ -384,6 +384,19 @@ form h4{
   color: #7C64EF;
 }
 
+.shortImg{
+  display: inline-block;
+  height: 15vh;
+  width: 5vw;
+  margin: 10px;
+  border-radius: 50px;
+  background-color: #E8E7E5;
+  border: 1px solid #E8E7E5
+}
+.activeShortImg{
+  border: 2px solid black;
+}
+
 @media only screen and (max-width: 1200px){
   .searchbar{
     width: 320px;
@@ -440,7 +453,7 @@ form h4{
     padding-left: 5%;
     margin-left: 25%;
   }
-  h2, .chng{
+  .h2Auth, .chng{
     top: 47%;
     left: 0;
     margin-left: 15%;
@@ -527,7 +540,7 @@ form h4{
 }
 @media only screen and (max-width: 454px){
   
-  h2{
+  .h2Auth{
     font-size: 30px;
   }
   .hr-span{
@@ -538,7 +551,7 @@ form h4{
   }
 }
 @media only screen and (max-width: 384px){
-  h2{
+  .h2Auth{
     font-size: 26px;
   }
   .hr-span{

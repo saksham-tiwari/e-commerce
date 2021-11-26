@@ -17,6 +17,7 @@ const Product = (props) => {
     const [data,setData] = useState([{
         id: props.match.params.id,
         name: "Name",
+        avg_rating: 0,
         price: 0,
         brand: "Brand",
         description: "Description",
@@ -32,9 +33,11 @@ const Product = (props) => {
     const [success2, setSuccess2] = useState(false);
     const [success3, setSuccess3] = useState(false);
     const [success4, setSuccess4] = useState(false);
+    const [reviewOnce, setReviewOnce] = useState(false);
     const [fullPageLoader, setFullPageLoader] = useState(false);
 
     const [stars, setStars] = useState(3);
+    const [avgRate, setAvgRate] = useState(0);
     const [comment, setComment] = useState("")
     const [mainImg, setMainImg] = useState();
 
@@ -48,6 +51,7 @@ const Product = (props) => {
             setData(res.data.filter(prod=>prod.id==props.match.params.id));
             console.log(res.data.filter(prod=>prod.id==props.match.params.id));
             setMainImg(res.data.filter(prod=>prod.id==props.match.params.id)[0].picture1);
+            setAvgRate(res.data.filter(prod=>prod.id==props.match.params.id)[0].avg_rating);
             // img1= data[0].picture1
             setFullPageLoader(false);
 
@@ -174,13 +178,28 @@ const Product = (props) => {
             }
         })
         .catch((err)=>{
+            if(err.response.status===401){
+                setReviewOnce(true);
+                setStars(0);
+                setComment("");
+                setTimeout(()=>{
+                    setReviewOnce(false);
+                },2000)
+            }
             console.log(err.response);
         })
         }
     }
 
-    const handleImgClick = (x)=>{
+    // const handleImgClick = (x)=>{
+    //     setMainImg(x)
+
+    // }
+    const handleClickImg = (e,x)=>{
+        document.querySelector('.activeShortImg').classList.remove('activeShortImg');
+        e.target.classList.add("activeShortImg");
         setMainImg(x)
+
     }
 
     return (
@@ -205,13 +224,15 @@ const Product = (props) => {
                 <Button className={styles.btnWish} onClick={handleCartClick}>Add to Cart</Button>
                 <Button className={styles.btnWish} onClick={handleWishClick}>Add to Wishlist</Button>
                 <hr className={styles.hrsides}></hr>
+                <h5>Average rating: {data[0].avg_rating}<span className={styles.star}>&#11088;</span></h5>
+
 
             </div>
             <div className={styles.priceBox2}>
-                <span onClick={()=>{handleImgClick(data[0].picture1)}}><img src={data[0].picture1} alt="" className={styles.shortImg}></img></span>
-                {data[0].picture2!==null?<span onClick={()=>{handleImgClick(data[0].picture2)}}><img src={data[0].picture2} alt="" className={styles.shortImg}></img></span>:<></>}
-                {data[0].picture3!==null?<span onClick={()=>{handleImgClick(data[0].picture3)}}><img src={data[0].picture3} alt="" className={styles.shortImg}></img></span>:<></>}
-                {data[0].picture4!==null?<span onClick={()=>{handleImgClick(data[0].picture4)}}><img src={data[0].picture4} alt="" className={styles.shortImg}></img></span>:<></>}
+                <span onClick={(e)=>handleClickImg(e,data[0].picture1)}><img src={data[0].picture1} alt="" className="shortImg activeShortImg"></img></span>
+                {data[0].picture2!==null?<span onClick={(e)=>handleClickImg(e,data[0].picture2)}><img src={data[0].picture2} alt="" className="shortImg"></img></span>:<></>}
+                {data[0].picture3!==null?<span onClick={(e)=>handleClickImg(e,data[0].picture3)}><img src={data[0].picture3} alt="" className="shortImg"></img></span>:<></>}
+                {data[0].picture4!==null?<span onClick={(e)=>handleClickImg(e,data[0].picture4)}><img src={data[0].picture4} alt="" className="shortImg"></img></span>:<></>}
 
                 <hr className={styles.hrsides}></hr>
                 <p className={styles.prodID}>Product ID: {data[0].id}</p>
@@ -230,6 +251,9 @@ const Product = (props) => {
                 <Button className={styles.textAreaBtn} onClick={handleReviews}>Submit</Button>
                 {success4?<Alert variant="success" onClose={()=>setSuccess4(false)} dismissible>
                     <p>Review added successfully. Thanks for your contribution.</p><Tick size={40} /> 
+                </Alert>:<p></p>}
+                {reviewOnce?<Alert variant="danger" onClose={()=>setReviewOnce(false)} dismissible>
+                    <p>You can add your reviews only once.</p>
                 </Alert>:<p></p>}
             </div>
 
