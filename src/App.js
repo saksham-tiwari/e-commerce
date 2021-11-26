@@ -31,6 +31,7 @@ import { CartProvider } from './contexts/CartContext';
 import { WishlistProvider } from './contexts/WishlistContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { PersonalProvider } from './contexts/PersonalContext';
+import { SearchProvider } from './contexts/SearchContext';
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
     <WishlistProvider>
     <AuthProvider>
     <PersonalProvider>
+    <SearchProvider>
       <Router>
         {/* <NavBar/> */}
 
@@ -127,6 +129,7 @@ function App() {
         </Switch>
           <Footer/>
       </Router>
+    </SearchProvider>
     </PersonalProvider>
     </AuthProvider>
     </WishlistProvider>

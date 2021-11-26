@@ -7,13 +7,17 @@ import CardCarousel from '../CardCarousel';
 import MyComponent from 'react-fullpage-custom-loader'
 import { useSetAuth } from '../../../contexts/AuthContext'
 import ProductsService from '../../../api/services/products.service'
+import { useLocation } from 'react-router-dom'
 
 const ProductsPage = () => {
 
     const [fullPageLoader, setFullPageLoader] = useState(false);
     const setAuth = useSetAuth();
+    const location = useLocation();
+
 
     useEffect(()=>{
+        console.log(location.pathname);
         setFullPageLoader(true)
         setAuth(false);
         ProductsService.GetProducts()

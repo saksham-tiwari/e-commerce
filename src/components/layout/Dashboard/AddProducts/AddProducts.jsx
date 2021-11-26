@@ -50,6 +50,9 @@ const AddProducts = () => {
               if(response.status===201){
                 setLoader(false);
                 setSuccess(true);
+                setTimeout(()=>{
+                    setSuccess(false)
+                },2000)
               }
                 
             }).catch((err)=> {

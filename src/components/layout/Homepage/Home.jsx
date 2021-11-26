@@ -9,13 +9,20 @@ import design1 from "../../../assets/2.png";
 import design2 from "../../../assets/3.png";
 import design3 from "../../../assets/1.png";
 import { useSetAuth } from '../../../contexts/AuthContext';
+import { useSearch } from '../../../contexts/SearchContext'
+import { useHistory } from 'react-router'
 
 
 const Home = () => {
     // console.log(localStorage.getItem("keys").access);
     const setAuth = useSetAuth();
+    const search = useSearch();
+    const history = useHistory();
     useEffect(()=>{
         setAuth(false)
+        if(search.cond===true){
+            history.push(`/products/query=${search.query}`);
+        }
     })
     return (
         <div style={{marginTop:"-25px"}}>

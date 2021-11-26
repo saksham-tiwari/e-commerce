@@ -12,10 +12,16 @@ import bag from "../assets/shoppingbag.svg";
 import { useUser } from "../contexts/UserContext";
 import logo from "../assets/logovshop.png";
 import { useAuth } from "../contexts/AuthContext";
+import { useLocation } from 'react-router-dom'
+import { useSetSearch } from "../contexts/SearchContext";
+
 
 const NavBar = () => {
   const history = useHistory();
   const isUser = useUser();
+  const location = useLocation();
+  const changeSearch = useSetSearch();
+
   // const style2={
   //   maxHeight: "400px",
   //   marginLeft: "75%"
@@ -30,8 +36,16 @@ const NavBar = () => {
 
   const searchProd = (e)=>{
     e.preventDefault();
-    setSearch("");
-    history.push(`/products/query=${search}`);
+    if(location.pathname.slice(0,16)!=="/products/query="){
+      setSearch("");
+      history.push(`/products/query=${search}`);
+    } else if(location.pathname.slice(0,16)==="/products/query="){
+      console.log("searchcall");
+      changeSearch({cond:true, query:search})
+      // setSearch("")
+      history.push("/")
+    }
+    
   }
 
   return (

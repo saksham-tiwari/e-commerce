@@ -3,8 +3,20 @@ import axios from 'axios';
 class ProductsService{
 
     GetProducts(){
-        return axios
-        .get(BaseUrl()+"api/products/")
+        if(localStorage.getItem("keys")===null){
+            return axios
+            .get(BaseUrl()+"api/products/")
+        } else{
+            let access_token = JSON.parse(localStorage.getItem("keys")).access;
+            return axios({
+                method: "get",
+                url: BaseUrl()+ "api/products/",
+                headers: { 
+                    Authorization: "Bearer " + access_token
+                 },
+            })
+        }
+        
     }
 
     AddProduct(fd){

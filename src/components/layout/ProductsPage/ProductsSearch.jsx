@@ -8,14 +8,25 @@ import MyComponent from 'react-fullpage-custom-loader'
 import { withRouter } from 'react-router'
 import { useSetAuth } from '../../../contexts/AuthContext'
 import ProductsService from '../../../api/services/products.service'
+import { useSearch, useSetSearch } from '../../../contexts/SearchContext'
 
 
 const ProductsPage = (props) => {
 
     const [fullPageLoader, setFullPageLoader] = useState(false);
     const setAuth = useSetAuth();
+    const search = useSearch();
+    const setSearch = useSetSearch();
 
     useEffect(()=>{
+        if(search.cond === true){
+            setSearch(
+                {
+                    cond: false,
+                    query: ""
+                }
+            )
+        }
         setFullPageLoader(true)
         setAuth(false);
         ProductsService.SearchProducts(props.match.params.query)
