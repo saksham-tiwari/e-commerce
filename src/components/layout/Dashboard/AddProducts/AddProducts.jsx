@@ -22,6 +22,12 @@ const AddProducts = () => {
 
     const [success, setSuccess] = useState(false);
     const [loader, setLoader] = useState(false);
+    const [field1, setField1] = useState(false);
+    const [field2, setField2] = useState(false);
+    const [field3, setField3] = useState(false);
+    const [fieldBtn, setFieldBtn] = useState(false);
+
+
     const setAuth = useSetAuth();
 
     useEffect(()=>{
@@ -56,6 +62,17 @@ const AddProducts = () => {
             });
     }
 
+    const addFields = ()=>{
+        if(field1===false){
+            setField1(true)
+        } else if(field2===false){
+            setField2(true)
+        } else if(field3===false){
+            setField3(true)
+        } else {
+            setFieldBtn(true)
+        }
+    }
     return (
         <div className={styles.block}>
             <h1 className={styles.head}>Product Information</h1>
@@ -82,11 +99,12 @@ const AddProducts = () => {
                 <Form.Group>
                     <Form.Label className={styles.label}>Add Images of the Product. Min 1 image is required and you can add upto 4 images.</Form.Label>
                     <Form.Control name="picture1" type="file" required/>
-                    <Form.Control name="picture2" type="file"/>
-                    <Form.Control name="picture3" type="file"/>
-                    <Form.Control name="picture4" type="file"/>
+                    {field1?<Form.Control name="picture2" type="file"/>:<></>}
+                    {field2?<Form.Control name="picture3" type="file"/>:<></>}
+                    {field3?<Form.Control name="picture4" type="file"/>:<></>}
+                    <Button variant="warning" onClick={addFields} disabled={fieldBtn} style={{marginTop:"10px"}}>Add more</Button>
                 </Form.Group>
-                <Button type="submit">Next</Button>
+                <Button type="submit" style={{marginTop:"10px"}}>Next</Button>
             </Form>
 
             {success?<Alert variant="success" onClose={()=>setSuccess(false)} className={styles.alertSuccess} dismissible>
