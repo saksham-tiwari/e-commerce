@@ -81,7 +81,7 @@ const NavBar = () => {
                   Home
                 </Link>
               </Nav.Link>
-              <Nav.Link className="homelink">
+              <Nav.Link >
                 <Link to="/products-page" className="nav-link">
                   Products
                 </Link>
