@@ -16,6 +16,9 @@ const Oval3 = (props) => {
                 <div className="flip-card-back">
                 <h1>{props.name.substring(0,20)+"..."}</h1>
                 <p>{props.brand}</p>
+                <h5>Average rating: {props.rating}<span 
+                style={{position: "relative", top: "-2px", fontSize:"16px"}}
+                >&#11088;</span></h5>
                 <p>{props.description}</p>
                 </div>
             </div>

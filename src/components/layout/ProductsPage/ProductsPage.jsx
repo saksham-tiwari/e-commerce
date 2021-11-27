@@ -59,11 +59,11 @@ const ProductsPage = () => {
                     count = 0;
                 }
                 if(count === 0){
-                    return(<Oval1 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price}/>)
+                    return(<Oval1 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price} rating={product.avg_rating}/>)
                 } else if(count === 1){
-                    return(<Oval2 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price}/>)
+                    return(<Oval2 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price} rating={product.avg_rating}/>)
                 } else{
-                    return(<Oval3 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price}/>)
+                    return(<Oval3 id={product.id} name={product.name} brand={product.brand} description={product.description} img={String(product.picture1)} price = {product.price} rating={product.avg_rating}/>)
                 }
             })}
            
