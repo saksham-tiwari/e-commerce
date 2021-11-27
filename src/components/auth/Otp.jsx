@@ -65,6 +65,9 @@ const Otp = () => {
             if(res.status===202){
                 setSuccess(true);
                 setLoader(false);
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
             } 
         })
     }
@@ -129,6 +132,9 @@ const Otp = () => {
                 if(error.response.status===401){
                     setMsg("Incorrect OTP");
                     setLoader(false);
+                    setTimeout(()=>{
+                        setMsg("")
+                    },2000)
                 }
               });
               

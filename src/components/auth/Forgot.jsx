@@ -65,6 +65,9 @@ const Forgot = () => {
                 if(err.response.status===406){
                     setAlert1(true);
                     setLoader(false);
+                    setTimeout(()=>{
+                        setAlert1(false)
+                    },2000)
 
                 }
             }

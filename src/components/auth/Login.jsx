@@ -90,6 +90,9 @@ const Login = () => {
                 if(err.response.status===401){
                     setAlert1(true);
                     setLoader(false);
+                    setTimeout(()=>{
+                        setAlert1(false)
+                    },2000)
                   }
                 else if(err.response.status===503){
                     saveEmail(email);
@@ -101,6 +104,9 @@ const Login = () => {
                 else if(err.response.status===406){
                     setAlert2(true)
                     setLoader(false);
+                    setTimeout(()=>{
+                        setAlert2(false)
+                    },2000)
                 }
             });
             
