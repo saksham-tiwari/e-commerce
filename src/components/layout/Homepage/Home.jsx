@@ -34,8 +34,8 @@ const Home = () => {
             <Homeblock4/>
             <img src={design3} alt="design" className="design3"/>
             <Homeblock5/>
-            <Homeblock5/>
-            <Homeblock5/>
+            {/* <Homeblock5/>
+            <Homeblock5/> */}
 
         </div>
     )
