@@ -11,7 +11,7 @@ const Homeblock2 = () => {
                 <h3>ELECTRONICS</h3>
                 <p className="parablock"><br/> <br/> Buy 2 save more. <br/> Get Extra 25% off</p>
             </div>
-            <div className="blockinlinetwo blocksecond">
+            <div className="blockinlinetwo">
                 <img src={grocery} alt="" className="imagesattop" style={{position:"relative",left:"-15%"}}/>
                 <h3>GROCERY</h3>
                 <p className="parablock"><br/> <br/> Buy 2 save more. <br/> Get Extra 25% off</p>

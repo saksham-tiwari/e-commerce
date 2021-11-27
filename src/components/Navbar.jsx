@@ -50,7 +50,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg" className="color-nav navibar">
+      <Navbar bg="light" expand="lg" className="color-nav">
         <Container fluid>
           <Link to="/" style={{ textDecoration: "none", width:"10%" }}>
             <Navbar.Brand><img src={logo} alt="logo" className="logo"></img></Navbar.Brand>
@@ -147,7 +147,7 @@ const NavBar = () => {
       
       
       
-      <Navbar
+      {/* <Navbar
         bg="light"
         expand="lg"
         className="color-nav navbar navbar-default navbar-static-top"
@@ -218,7 +218,7 @@ const NavBar = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
+      </Navbar> */}
     </div>
   );
 };

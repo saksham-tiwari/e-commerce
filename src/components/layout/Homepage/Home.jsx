@@ -29,10 +29,10 @@ const Home = () => {
             <Homeblock1/>
             <Homeblock2/>
             <Homeblock3/>
-            <img src={design1} alt="design" className="design1"/>
-            <img src={design2} alt="design" className="design2"/>
+            {/* <img src={design1} alt="design" className="design1"/> */}
+            {/* <img src={design2} alt="design" className="design2"/> */}
             <Homeblock4/>
-            <img src={design3} alt="design" className="design3"/>
+            {/* <img src={design3} alt="design" className="design3"/> */}
             <Homeblock5/>
             {/* <Homeblock5/>
             <Homeblock5/> */}
