@@ -118,7 +118,7 @@ const Login = () => {
     return (
         <div>
             <img src = {globe} alt="globe" className="globe"/>
-            <div>
+            <div className="mobileAuth">
             <h2 className="h2Auth">Login to your Account</h2>
 
             <Form>

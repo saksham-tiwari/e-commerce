@@ -117,7 +117,7 @@ const SignUp = () => {
         <div>
             <div>
             <img src = {globe} alt="globe" className="globe"/>
-            <div>
+            <div className="mobileAuth">
             <h2 className="h2Auth">Create your Account</h2>
 
             <Form>
