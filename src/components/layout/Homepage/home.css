@@ -183,6 +183,9 @@ opacity: 0.8;
     .imagesattop{
         width: 20vw;
     }
+    .maingirl{
+        visibility: hidden;
+    }
 
     .box-2{
         /* display: flex; */
