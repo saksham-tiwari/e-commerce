@@ -50,7 +50,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg" className="color-nav">
+      <Navbar bg="light" expand="lg" className="color-nav fixnav">
         <Container fluid>
           <Link to="/" style={{ textDecoration: "none", width:"10%" }}>
             <Navbar.Brand><img src={logo} alt="logo" className="logo"></img></Navbar.Brand>
