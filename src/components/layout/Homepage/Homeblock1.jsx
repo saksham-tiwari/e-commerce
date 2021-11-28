@@ -13,7 +13,7 @@ const Homeblock1 = () => {
             <div className="img-main">
                 <h1 className="main-slogan">ONE STOP FOR YOUR ALL SHOPPING NEEDS. INDIA SHOPS HERE, WE SHOP at V-SHOP.</h1>
                 <Button onClick={handleClick} variant="primary" className="viewProdBtn">View Products</Button>
-                {/* <img src={maingirl} alt="" className="maingirl"/> */}
+                <img src={maingirl} alt="" className="maingirl"/>
             </div>
         </div>
     )

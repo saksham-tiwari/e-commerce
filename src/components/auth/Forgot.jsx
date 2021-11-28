@@ -80,7 +80,7 @@ const Forgot = () => {
             <img src = {globe} alt="globe" className="globe"/>
 
            
-            <h2 className="chng h2Auth">Forgot Password?</h2>
+            <h2 className="chng h2Auth">Reset Password.</h2>
             
             
 

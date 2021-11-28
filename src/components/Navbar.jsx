@@ -73,7 +73,7 @@ const NavBar = () => {
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0 navlinks"
-              style={isUser?{maxHeight: "400px"}:{maxHeight: "400px", marginLeft: "75%"}}
+              style={isUser?{maxHeight: "400px"}:{maxHeight: "400px"}}
               navbarScroll
             >
               <Nav.Link className="homelink">

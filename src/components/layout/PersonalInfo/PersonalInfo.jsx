@@ -345,7 +345,7 @@ const PersonalInfo = () => {
                 </Form.Group>
 
                 <Button type="submit" disabled={submit}>Submit</Button> 
-                <Link to="forgot-password"><Button type="link" variant="secondary" className={styles.resetPass}>Reset password</Button></Link>
+                {/* <Link to="forgot-password"><Button type="link" variant="secondary" className={styles.resetPass}>Reset password</Button></Link> */}
 
                 {success?<Alert variant="success" onClose={()=>setSuccess(false)} className={styles.alertSuccess} dismissible>
                     Updated.
